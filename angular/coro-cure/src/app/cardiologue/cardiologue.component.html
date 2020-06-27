@@ -1,0 +1,93 @@
+<!--content-->
+<div class="patient-container justify-content-center align-items-center" id="patients">
+    <form class="form-inline my-2 my-lg-0">
+      <h5>Gérer Comptes</h5>
+      <div class="ajouter">
+        <button class="btn my-2 my-sm-0 btn-search rounded-pill " type="submit" data-toggle="modal"
+          data-target="#modalcompte">+ Ajouter un nouveau Compte</button>
+      </div>
+      <div class="ml-auto">
+        <input class="form-control mr-sm-2 rounded-pill" type="search" placeholder="Username" aria-label="Search">
+        <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Rechercher</button>
+      </div>
+    </form>
+  </div>
+  
+  <!--table-->
+  <div class="table-patient">
+    <div class="scrollable">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">CIN</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Qualification</th>
+            <th scope="col">Username</th>
+            <th scope="col">Role</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cardiologue of cardiologues" [attr.id]="cardiologue.cin">
+            <th scope="row">{{cardiologue.cin}}</th>
+            <td>{{cardiologue.nom}}</td>
+            <td>{{cardiologue.prenom}}</td>
+            <td>{{cardiologue.qualification}}</td>
+            <td>{{cardiologue.username}}</td>
+            <td>{{cardiologue.role}}</td>
+            <td>
+              <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Modifier</button>
+              <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit" (click)="deleteCardiologue(cardiologue.cin)">
+                Supprimer
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <!-- Modal ajouter -->
+  <div class="modal fade" id="modalcompte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content modal-ajouter d-flex justify-content-center align-items-center">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Ajouter Compte</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="login-form text-center">
+            <div class="form-group">
+              <input type="text" id="cin" class="form-control rounded-pill form-control-lg" placeholder="CIN">
+            </div>
+            <div class="form-group">
+              <input type="text" id="nameint" class="form-control rounded-pill form-control-lg" placeholder="Nom">
+            </div>
+            <div class="form-group">
+              <input type="text" id="lastnameint" class="form-control rounded-pill form-control-lg" placeholder="Prénom">
+            </div>
+            <div class="form-group">
+              <input type="text" id="qual" class="form-control rounded-pill form-control-lg" placeholder="Qualification">
+            </div>
+            <div class="form-group">
+              <input type="text" id="userint" class="form-control rounded-pill form-control-lg" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <input type="text" id="pwdint" class="form-control rounded-pill form-control-lg" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <input type="text" id="role" class="form-control rounded-pill form-control-lg" placeholder="Role">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-custom rounded-pill">Ajouter</button>
+          <button type="button" class="btn btn-custom rounded-pill">Réinitialiser</button>
+        </div>
+      </div>
+    </div>
+  </div>

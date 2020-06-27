@@ -1,0 +1,131 @@
+<!--content-->
+<div class="patient-container justify-content-center align-items-center" id="patients">
+  <form class=" form-inline my-2 my-lg-0">
+    <h5>Gérer Patients</h5>
+    <div class="ml-auto">
+      <input class="form-control mr-sm-2 rounded-pill" type="search" placeholder="Num Dossier" aria-label="Search">
+      <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Rechercher</button>
+    </div>
+  </form>
+</div>
+<div class="ajouter">
+  <button class="btn my-2 my-sm-0 btn-search rounded-pill" data-toggle="modal" data-target="#modal-ajouter">
+    + Ajouter un nouveau Patient
+  </button>
+</div>
+
+<!--table-->
+<div class="table-patient">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">N° Dossier</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">Tél</th>
+        <th scope="col">NSS</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">Date de naissance</th>
+        <th scope="col">Sexe</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let patient of patients' [attr.id]="patient.id">
+        <th scope="row">{{patient.id}}</th>
+        <td>{{patient.nom}}</td>
+        <td>{{patient.prenom}}</td>
+        <td>{{patient.tel}}</td>
+        <td>{{patient.nss}}</td>
+        <td>{{patient.adresse}}</td>
+        <td>{{patient.dateNaissance}}</td>
+        <td>{{patient.sexe}}</td>
+        <td>
+          <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit" data-toggle="modalajouter"
+            data-target="#modalajouter">
+            Modifier
+          </button>
+          <!-- <span *ngIf="confirmDelete">
+                            <span>Etes-vous sûr de vouloir supprimer ce patient?</span>
+                            <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit" (click)="deletePatient()">
+                              Oui
+                            </button>
+                            <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit" (click)="confirmDelete= false">
+                              Non
+                            </button>
+                          </span>-  !-->
+          <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit"
+            (click)="deletePatient(patient.id)">
+            Supprimer
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal ajouter -->
+<div class="modal fade" id="modal-ajouter" tabindex="-1" role="dialog" aria-labelledby="modalajouterLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content modal-ajouter d-flex justify-content-center align-items-center">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalaj">Ajouter Patient</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="login-form text-center">
+          <div class="form-group">
+            <input type="text" id="doc" class="form-control rounded-pill form-control-lg" placeholder="N° Dossier">
+          </div>
+          <div class="form-group">
+            <input type="text" id="name" class="form-control rounded-pill form-control-lg" placeholder="Nom">
+          </div>
+          <div class="form-group">
+            <input type="text" id="lastname" class="form-control rounded-pill form-control-lg" placeholder="Prénom">
+          </div>
+          <div class="form-group">
+            <input type="text" id="tel" class="form-control rounded-pill form-control-lg" placeholder="Télephone">
+          </div>
+          <div class="form-group">
+            <input type="text" id="nss" class="form-control rounded-pill form-control-lg" placeholder="NSS">
+          </div>
+          <div class="form-group">
+            <input type="text" id="adr" class="form-control rounded-pill form-control-lg" placeholder="Adresse">
+          </div>
+          <div class="form-group">
+            <div class="input-group date patient-date">
+              <input type="text" class="form-control rounded-pill" placeholder="Date de naissance"><span
+                class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+            </div>
+          </div>
+          <fieldset class="form-group">
+            <div class="row">
+              <legend class="col-form-label col-sm-2 pt-0">Sexe</legend>
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="Homme" value="Homme">
+                  <label class="form-check-label" for="Homme">
+                    Homme
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="Femme" value="Femme">
+                  <label class="form-check-label" for="Femme">
+                    Femme
+                  </label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-custom rounded-pill">Ajouter</button>
+        <button type="button" class="btn btn-custom rounded-pill">Réinitialiser</button>
+      </div>
+    </div>
+  </div>
+</div>

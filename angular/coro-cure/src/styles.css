@@ -1,0 +1,95 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
+body{
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  background: #eee;
+  color:#666;
+}
+.login-container{
+    height: 100vh;
+    width: 100%;
+  }
+.login-form{
+  margin: auto;
+  width: 370px;
+  padding: 15px;
+  max-width: 100%;
+}
+.login-form .form-control{
+    font-size: 15px;
+    min-height: 48px;
+    font-weight: 500;
+  }
+  .form-control:focus{
+    border-color:#3dbead;
+    box-shadow: 0 0 0 0.2rem rgba(199, 2, 248, 0.25);
+  }
+  .forgot-link {
+    font-size: 13px;
+    text-decoration: underline;
+    color:#666;
+  }
+  .forgot-link:hover{
+    color:#99a09f;
+  }
+  .btn-custom{
+    background: #3dbead;
+    border-color:#3dbead;
+    color:#fff;
+    font-size: 15px;
+    font-weight: 600;
+    min-height: 48px;
+  }
+  .btn-custom:focus,
+  .btn-custom:hover,
+  .btn-custom:active,
+  .btn-custom:active:focus{
+    background: #22776c;
+    border-color: #22776c;
+    color:#fff;
+  }
+  .btn-custom:focus{
+    box-shadow: 0 0 0 0.2rem rgba(29, 90, 100, 0.25);
+  }
+  .patient-container{
+    background:#3dbead;
+    padding: 20px;
+    margin: 50px;
+    font-family: 'Poppins', sans-serif;
+   color:#ffffff;
+   border-radius: 30px;
+  }
+  .btn-search{
+    background: #ffffff;
+    color:#3dbead;
+    font-size: 12px;
+    font-weight: 600;
+    min-height: 30px;
+  }
+  .btn-search:focus,
+  .btn-search:hover,
+  .btn-search:active,
+  .btn-search:active:focus{
+    background: #22776c;
+    border-color: #22776c;
+    color:#fff;
+  }
+  .ajouter{
+    margin: 10px;
+  }
+  .table-patient{
+    margin: 50px;
+  }
+  .scrollable{
+    height: 400px;
+    overflow: scroll;
+  }
+  .modal-ajouter{
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    background: #eee;
+    color:#666;
+    text-align: center;
+  }

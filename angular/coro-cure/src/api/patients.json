@@ -1,0 +1,62 @@
+[
+    {
+        "NumDossier": 1,
+        "Nom": "mondayyyy",
+        "Prenom": "lundi",
+        "Tel": 2222,
+        "NSS": 58,
+        "Adresse": "rue50",
+        "DateNaiss": "01-01-1999",
+        "Sexe": "Femme"
+    },
+    {
+        "NumDossier": 2,
+        "Nom": "tuesday",
+        "Prenom": "mardi",
+        "Tel": 22558,
+        "NSS": 59,
+        "Adresse": "rue25",
+        "DateNaiss": "01-01-1999",
+        "Sexe": "Homme"  
+    },
+    {
+        "NumDossier": 3,
+        "Nom": "wednesday",
+        "Prenom": "mercredi",
+        "Tel": 2599,
+        "NSS": 558,
+        "Adresse": "rue17",
+        "DateNaiss": "01-01-1999",
+        "Sexe": "Femme"
+    },
+    {
+        "NumDossier": 4,
+        "Nom": "thursday",
+        "Prenom": "jeudi",
+        "Tel": 55889,
+        "NSS": 125,
+        "Adresse": "rue70",
+        "DateNaiss": "01-01-1999",
+        "Sexe": "Homme"
+    },
+    {
+        "NumDossier": 5,
+        "Nom": "friday",
+        "Prenom": "vendredi",
+        "Tel": 8997,
+        "NSS": 16,
+        "Adresse": "rue82",
+        "DateNaiss": "01-01-1999",
+        "Sexe": "Femme"
+    },
+    {
+        "NumDossier": 6,
+        "Nom": "saturday",
+        "Prenom": "samedi",
+        "Tel": 558897,
+        "NSS": 64,
+        "Adresse": "rue66",
+        "DateNaiss": "01-01-1999",
+        "Sexe": "Homme"
+    }
+]
