@@ -1,0 +1,16 @@
+C:\Users\fatma\source\repos\CoroCure.Data\bin\Debug\netcoreapp3.1\CoroCure.Data.deps.json
+C:\Users\fatma\source\repos\CoroCure.Data\bin\Debug\netcoreapp3.1\CoroCure.Data.dll
+C:\Users\fatma\source\repos\CoroCure.Data\obj\Debug\netcoreapp3.1\CoroCure.Data.AssemblyInfoInputs.cache
+C:\Users\fatma\source\repos\CoroCure.Data\obj\Debug\netcoreapp3.1\CoroCure.Data.AssemblyInfo.cs
+C:\Users\fatma\source\repos\CoroCure.Data\obj\Debug\netcoreapp3.1\CoroCure.Data.csprojAssemblyReference.cache
+C:\Users\fatma\source\repos\CoroCure.Data\bin\Debug\netcoreapp3.1\CoroCure.Data.pdb
+C:\Users\fatma\source\repos\CoroCure.Data\obj\Debug\netcoreapp3.1\CoroCure.Data.dll
+C:\Users\fatma\source\repos\CoroCure.Data\obj\Debug\netcoreapp3.1\CoroCure.Data.pdb
+C:\Users\fatma\desktop\pfe\source\repos\CoroCure.Data\bin\Debug\netcoreapp3.1\CoroCure.Data.deps.json
+C:\Users\fatma\desktop\pfe\source\repos\CoroCure.Data\bin\Debug\netcoreapp3.1\CoroCure.Data.dll
+C:\Users\fatma\desktop\pfe\source\repos\CoroCure.Data\bin\Debug\netcoreapp3.1\CoroCure.Data.pdb
+C:\Users\fatma\desktop\pfe\source\repos\CoroCure.Data\obj\Debug\netcoreapp3.1\CoroCure.Data.csprojAssemblyReference.cache
+C:\Users\fatma\desktop\pfe\source\repos\CoroCure.Data\obj\Debug\netcoreapp3.1\CoroCure.Data.AssemblyInfoInputs.cache
+C:\Users\fatma\desktop\pfe\source\repos\CoroCure.Data\obj\Debug\netcoreapp3.1\CoroCure.Data.AssemblyInfo.cs
+C:\Users\fatma\desktop\pfe\source\repos\CoroCure.Data\obj\Debug\netcoreapp3.1\CoroCure.Data.dll
+C:\Users\fatma\desktop\pfe\source\repos\CoroCure.Data\obj\Debug\netcoreapp3.1\CoroCure.Data.pdb
