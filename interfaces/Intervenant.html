@@ -1,0 +1,251 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+          <!--view port-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+          <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!--Bootstrap file (css js)-->
+    <link rel="stylesheet" type="text/css" href="file:///C:/Users/fatma/Downloads/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="file:///C:/Users/fatma/Downloads/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+    <!--import (bootstrap jquery popper)-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <!--datepicker-->
+    <script charset="utf-8" src="file:///C:/Users/fatma/Desktop/interfaces/datepicker/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="file:///C:/Users/fatma/Desktop/interfaces/datepicker/css/bootstrap-datepicker.min.css">
+        <title>Intervenant</title>
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background: #3dbead;">
+            <a class="navbar-brand" href="#">CoroCure</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Link1 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link2</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          <!--content-->
+          <div class="patient-container justify-content-center align-items-center" id="patients">
+            <form class="form-inline my-2 my-lg-0">
+                <h5>Gérer Comptes</h5>
+                <div class="ajouter">
+                    <button class="btn my-2 my-sm-0 btn-search rounded-pill " type="submit" data-toggle="modal" data-target="#modalcompte">+ Ajouter un nouveau Compte</button>
+                </div>
+                <div class="ml-auto">
+                 <input class="form-control mr-sm-2 rounded-pill" type="search" placeholder="Username" aria-label="Search">
+                 <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Rechercher</button>
+                </div>
+              </form>
+          </div>
+
+          <!--table-->
+          <div class="table-patient">
+                      <div class="scrollable">
+                        <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th scope="col">CIN</th>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Prenom</th>
+                                <th scope="col">Qualification</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Mot de passe</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>1325648</td>
+                                <td>Otto</td>
+                                <td>jack</td>
+                                <td>a</td>
+                                <td>hkhjbhbd5p</td>
+                                <td>manager</td>
+                                <td>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Modifier</button>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Supprimer</button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2</th>
+                                <td>1325648</td>
+                                <td>Otto</td>
+                                <td>jack</td>
+                                <td>a</td>
+                                <td>hkhjbhbd5p</td>
+                                <td>manager</td>
+                                <td>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Modifier</button>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Supprimer</button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">3</th>
+                                <td>1325648</td>
+                                <td>Otto</td>
+                                <td>jack</td>
+                                <td>a</td>
+                                <td>hkhjbhbd5p</td>
+                                <td>manager</td>
+                                <td>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Modifier</button>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Supprimer</button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">4</th>
+                                <td>1325648</td>
+                                <td>Otto</td>
+                                <td>jack</td>
+                                <td>a</td>
+                                <td>hkhjbhbd5p</td>
+                                <td>manager</td>
+                                <td>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Modifier</button>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Supprimer</button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>1325648</td>
+                                <td>Otto</td>
+                                <td>jack</td>
+                                <td>a</td>
+                                <td>hkhjbhbd5p</td>
+                                <td>manager</td>
+                                <td>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Modifier</button>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Supprimer</button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>1325648</td>
+                                <td>Otto</td>
+                                <td>jack</td>
+                                <td>a</td>
+                                <td>hkhjbhbd5p</td>
+                                <td>manager</td>
+                                <td>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Modifier</button>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Supprimer</button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>1325648</td>
+                                <td>Otto</td>
+                                <td>jack</td>
+                                <td>a</td>
+                                <td>hkhjbhbd5p</td>
+                                <td>manager</td>
+                                <td>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Modifier</button>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Supprimer</button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>1325648</td>
+                                <td>Otto</td>
+                                <td>jack</td>
+                                <td>a</td>
+                                <td>hkhjbhbd5p</td>
+                                <td>manager</td>
+                                <td>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Modifier</button>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Supprimer</button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>1325648</td>
+                                <td>Otto</td>
+                                <td>jack</td>
+                                <td>a</td>
+                                <td>hkhjbhbd5p</td>
+                                <td>manager</td>
+                                <td>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Modifier</button>
+                                    <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Supprimer</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>
+          </div>
+        
+        <!-- Modal ajouter -->
+        <div class="modal fade" id="modalcompte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content modal-ajouter d-flex justify-content-center align-items-center">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Ajouter Compte</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="login-form text-center">
+                            <div class="form-group">
+                                <input type="text" id="cin" class="form-control rounded-pill form-control-lg" placeholder="CIN">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="nameint" class="form-control rounded-pill form-control-lg" placeholder="Nom">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="lastnameint" class="form-control rounded-pill form-control-lg" placeholder="Prénom">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="qual" class="form-control rounded-pill form-control-lg" placeholder="Qualification">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="userint" class="form-control rounded-pill form-control-lg" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="pwdint" class="form-control rounded-pill form-control-lg" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="role" class="form-control rounded-pill form-control-lg" placeholder="Role">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-custom rounded-pill">Ajouter</button>
+                    <button type="button" class="btn btn-custom rounded-pill">Réinitialiser</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
