@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CoroCure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200626191926_one-to-one")]
-    partial class onetoone
+    [Migration("20200705180702_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -189,7 +189,7 @@ namespace CoroCure.Migrations
                     b.Property<int>("BiologieId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("CardiologueCIN")
+                    b.Property<int>("CIN")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("Date")
@@ -202,7 +202,7 @@ namespace CoroCure.Migrations
                     b.Property<int>("Numero")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("PatientId")
+                    b.Property<int>("PatientId")
                         .HasColumnType("integer");
 
                     b.Property<string>("TypeIntervention")
@@ -217,7 +217,7 @@ namespace CoroCure.Migrations
                     b.HasIndex("BiologieId")
                         .IsUnique();
 
-                    b.HasIndex("CardiologueCIN");
+                    b.HasIndex("CIN");
 
                     b.HasIndex("PatientId");
 
@@ -233,7 +233,7 @@ namespace CoroCure.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CoronarographieId")
+                    b.Property<int>("CoronarographieId")
                         .HasColumnType("integer");
 
                     b.Property<double>("Degre")
@@ -327,7 +327,7 @@ namespace CoroCure.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("AngioplastieId")
+                    b.Property<int>("AngioplastieId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Resultat")
@@ -353,7 +353,7 @@ namespace CoroCure.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("AgioplastieId")
+                    b.Property<int>("AngioplastieId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("Date")
@@ -368,7 +368,7 @@ namespace CoroCure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AgioplastieId");
+                    b.HasIndex("AngioplastieId");
 
                     b.ToTable("traitement");
                 });
@@ -460,7 +460,7 @@ namespace CoroCure.Migrations
                     b.Property<string>("Phase")
                         .HasColumnType("text");
 
-                    b.Property<int?>("ProcedureId")
+                    b.Property<int>("ProcedureId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Type")
@@ -475,9 +475,15 @@ namespace CoroCure.Migrations
                 {
                     b.HasBaseType("CoroCure.Data.Entities.Materiel");
 
+                    b.Property<int>("ProcedureId")
+                        .HasColumnName("Guide_ProcedureId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Type")
                         .HasColumnName("Guide_Type")
                         .HasColumnType("text");
+
+                    b.HasIndex("ProcedureId");
 
                     b.HasDiscriminator().HasValue("Guide");
                 });
@@ -503,7 +509,7 @@ namespace CoroCure.Migrations
                     b.Property<int>("PressionInf")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("ProcedureId")
+                    b.Property<int>("ProcedureId")
                         .HasColumnName("Stent_ProcedureId")
                         .HasColumnType("integer");
 
@@ -535,18 +541,24 @@ namespace CoroCure.Migrations
 
                     b.HasOne("CoroCure.Data.Entities.Cardiologue", "Cardiologue")
                         .WithMany("InterventionMedicales")
-                        .HasForeignKey("CardiologueCIN");
+                        .HasForeignKey("CIN")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CoroCure.Data.Entities.Patient", "Patient")
                         .WithMany("InterventionMedicales")
-                        .HasForeignKey("PatientId");
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CoroCure.Data.Entities.Lesion", b =>
                 {
                     b.HasOne("CoroCure.Data.Entities.Coronarographie", "Coronarographie")
                         .WithMany("Lesions")
-                        .HasForeignKey("CoronarographieId");
+                        .HasForeignKey("CoronarographieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CoroCure.Data.Entities.Materiel", b =>
@@ -560,14 +572,18 @@ namespace CoroCure.Migrations
                 {
                     b.HasOne("CoroCure.Data.Entities.Angioplastie", "Angioplastie")
                         .WithMany("Procedures")
-                        .HasForeignKey("AngioplastieId");
+                        .HasForeignKey("AngioplastieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CoroCure.Data.Entities.Traitement", b =>
                 {
                     b.HasOne("CoroCure.Data.Entities.Angioplastie", "Agioplastie")
                         .WithMany("Traitements")
-                        .HasForeignKey("AgioplastieId");
+                        .HasForeignKey("AngioplastieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CoroCure.Data.Entities.Coronarographie", b =>
@@ -595,14 +611,27 @@ namespace CoroCure.Migrations
                 {
                     b.HasOne("CoroCure.Data.Entities.Procedure", "Procedure")
                         .WithMany("Ballons")
-                        .HasForeignKey("ProcedureId");
+                        .HasForeignKey("ProcedureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CoroCure.Data.Entities.Guide", b =>
+                {
+                    b.HasOne("CoroCure.Data.Entities.Procedure", "Procedure")
+                        .WithMany("Guides")
+                        .HasForeignKey("ProcedureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CoroCure.Data.Entities.Stent", b =>
                 {
                     b.HasOne("CoroCure.Data.Entities.Procedure", "Procedure")
                         .WithMany("Stents")
-                        .HasForeignKey("ProcedureId");
+                        .HasForeignKey("ProcedureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -11,6 +11,7 @@ namespace CoroCure.Data.Entities
         public string TypeLesion { get; set; }
         public double Degre { get; set; }
         public int FluxTIMI { get; set; }
+        public int CoronarographieId { get; set; }
         public Coronarographie Coronarographie { get; set; }
 
     }

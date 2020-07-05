@@ -100,7 +100,46 @@ namespace CoroCure.Data
                         .HasForeignKey<Coronarographie>(ad => ad.AngioplastieId);
 
             //one to many
+            modelBuilder.Entity<InterventionMedicale>()
+            .HasOne(bc => bc.Cardiologue)
+            .WithMany(b => b.InterventionMedicales)
+            .HasForeignKey(bc => bc.CIN);
 
+            modelBuilder.Entity<InterventionMedicale>()
+            .HasOne(bc => bc.Patient)
+            .WithMany(b => b.InterventionMedicales)
+            .HasForeignKey(bc => bc.PatientId);
+
+            modelBuilder.Entity<Lesion>()
+            .HasOne(bc => bc.Coronarographie)
+            .WithMany(b => b.Lesions)
+            .HasForeignKey(bc => bc.CoronarographieId);
+
+            modelBuilder.Entity<Traitement>()
+            .HasOne(bc => bc.Angioplastie)
+            .WithMany(b => b.Traitements)
+            .HasForeignKey(bc => bc.AngioplastieId);
+
+            modelBuilder.Entity<Ballon>()
+            .HasOne(bc => bc.Procedure)
+            .WithMany(b => b.Ballons)
+            .HasForeignKey(bc => bc.ProcedureId);
+
+            modelBuilder.Entity<Stent>()
+            .HasOne(bc => bc.Procedure)
+            .WithMany(b => b.Stents)
+            .HasForeignKey(bc => bc.ProcedureId);
+
+            modelBuilder.Entity<Guide>()
+            .HasOne(bc => bc.Procedure)
+            .WithMany(b => b.Guides)
+            .HasForeignKey(bc => bc.ProcedureId);
+
+            modelBuilder.Entity<Procedure>()
+            .HasOne(bc => bc.Angioplastie)
+            .WithMany(b => b.Procedures)
+            .HasForeignKey(bc => bc.AngioplastieId)
+            .OnDelete(DeleteBehavior.Cascade);
 
 
         }

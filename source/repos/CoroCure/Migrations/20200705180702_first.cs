@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CoroCure.Migrations
 {
-    public partial class onetoone : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -134,8 +134,8 @@ namespace CoroCure.Migrations
                     Numero = table.Column<int>(nullable: false),
                     DateIntervention = table.Column<DateTime>(nullable: false),
                     estUrgente = table.Column<bool>(nullable: false),
-                    CardiologueCIN = table.Column<int>(nullable: true),
-                    PatientId = table.Column<int>(nullable: true),
+                    CIN = table.Column<int>(nullable: false),
+                    PatientId = table.Column<int>(nullable: false),
                     BiologieId = table.Column<int>(nullable: false),
                     TypeIntervention = table.Column<string>(nullable: false),
                     PADiastolique = table.Column<int>(nullable: true),
@@ -184,17 +184,17 @@ namespace CoroCure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_interventionMedicale_cardiologue_CardiologueCIN",
-                        column: x => x.CardiologueCIN,
+                        name: "FK_interventionMedicale_cardiologue_CIN",
+                        column: x => x.CIN,
                         principalTable: "cardiologue",
                         principalColumn: "CIN",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_interventionMedicale_patient_PatientId",
                         column: x => x.PatientId,
                         principalTable: "patient",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -206,7 +206,7 @@ namespace CoroCure.Migrations
                     TypeLesion = table.Column<string>(nullable: true),
                     Degre = table.Column<double>(nullable: false),
                     FluxTIMI = table.Column<int>(nullable: false),
-                    CoronarographieId = table.Column<int>(nullable: true)
+                    CoronarographieId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -216,7 +216,7 @@ namespace CoroCure.Migrations
                         column: x => x.CoronarographieId,
                         principalTable: "interventionMedicale",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -228,7 +228,7 @@ namespace CoroCure.Migrations
                     Technique = table.Column<string>(nullable: true),
                     TIMIFinal = table.Column<int>(nullable: false),
                     Resultat = table.Column<string>(nullable: true),
-                    AngioplastieId = table.Column<int>(nullable: true)
+                    AngioplastieId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -238,7 +238,7 @@ namespace CoroCure.Migrations
                         column: x => x.AngioplastieId,
                         principalTable: "interventionMedicale",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -250,17 +250,17 @@ namespace CoroCure.Migrations
                     Nom = table.Column<string>(nullable: true),
                     DateTraitement = table.Column<DateTime>(nullable: false),
                     Posologie = table.Column<int>(nullable: false),
-                    AgioplastieId = table.Column<int>(nullable: true)
+                    AngioplastieId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_traitement", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_traitement_interventionMedicale_AgioplastieId",
-                        column: x => x.AgioplastieId,
+                        name: "FK_traitement_interventionMedicale_AngioplastieId",
+                        column: x => x.AngioplastieId,
                         principalTable: "interventionMedicale",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -281,6 +281,7 @@ namespace CoroCure.Migrations
                     Phase = table.Column<string>(nullable: true),
                     ProcedureId = table.Column<int>(nullable: true),
                     Guide_Type = table.Column<string>(nullable: true),
+                    Guide_ProcedureId = table.Column<int>(nullable: true),
                     Stent_Type = table.Column<string>(nullable: true),
                     Stent_Longueur = table.Column<int>(nullable: true),
                     Stent_Diametre = table.Column<int>(nullable: true),
@@ -297,7 +298,13 @@ namespace CoroCure.Migrations
                         column: x => x.ProcedureId,
                         principalTable: "procedure",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_materiel_procedure_Guide_ProcedureId",
+                        column: x => x.Guide_ProcedureId,
+                        principalTable: "procedure",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_materiel_interventionMedicale_AngioplastieId",
                         column: x => x.AngioplastieId,
@@ -309,7 +316,7 @@ namespace CoroCure.Migrations
                         column: x => x.Stent_ProcedureId,
                         principalTable: "procedure",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -343,9 +350,9 @@ namespace CoroCure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_interventionMedicale_CardiologueCIN",
+                name: "IX_interventionMedicale_CIN",
                 table: "interventionMedicale",
-                column: "CardiologueCIN");
+                column: "CIN");
 
             migrationBuilder.CreateIndex(
                 name: "IX_interventionMedicale_PatientId",
@@ -363,6 +370,11 @@ namespace CoroCure.Migrations
                 column: "ProcedureId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_materiel_Guide_ProcedureId",
+                table: "materiel",
+                column: "Guide_ProcedureId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_materiel_AngioplastieId",
                 table: "materiel",
                 column: "AngioplastieId");
@@ -378,9 +390,9 @@ namespace CoroCure.Migrations
                 column: "AngioplastieId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_traitement_AgioplastieId",
+                name: "IX_traitement_AngioplastieId",
                 table: "traitement",
-                column: "AgioplastieId");
+                column: "AngioplastieId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -15,6 +15,7 @@ namespace CoroCure.Data.Entities
         public int Diametre { get; set; }
 
         public string Phase { get; set; }
+        public int ProcedureId { get; set; }
         public Procedure Procedure { get; set; }
 
     }

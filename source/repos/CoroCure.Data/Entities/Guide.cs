@@ -8,6 +8,8 @@ namespace CoroCure.Data.Entities
     public class Guide : Materiel
     {
         public string Type { get; set; }
+        public int ProcedureId { get; set; }
+        public Procedure Procedure { get; set; }
 
     }
 }

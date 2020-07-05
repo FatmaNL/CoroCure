@@ -19,6 +19,7 @@ namespace CoroCure.Data.Entities
         public int PressionInf { get; set; }
 
         public int DureeInf { get; set; }
+        public int ProcedureId { get; set; }
         public Procedure Procedure { get; set; }
 
     }

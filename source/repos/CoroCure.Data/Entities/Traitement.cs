@@ -13,7 +13,8 @@ namespace CoroCure.Data.Entities
         [Column("DateTraitement")]
         public DateTime Date { get; set; }
         public int Posologie { get; set; }
-        public Angioplastie Agioplastie { get; set; }
+        public int AngioplastieId { get; set; }
+        public Angioplastie Angioplastie { get; set; }
 
     }
 }
