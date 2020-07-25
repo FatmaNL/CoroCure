@@ -75,9 +75,14 @@ namespace CoroCure.Data
             modelBuilder.Entity<Cardiologue>()
                         .HasOne(s => s.Compte)
                         .WithOne(ad => ad.Cardiologue)
-                        .HasForeignKey<Cardiologue>(ad => ad.Username)
+                        .HasForeignKey<Compte>(ad => ad.CIN)
                         .IsRequired()
                         .OnDelete(DeleteBehavior.Cascade);
+
+            /*modelBuilder.Entity<Compte>()
+                        .HasOne(s => s.Cardiologue)
+                        .WithOne(ad => ad.Compte)
+                        .HasForeignKey<Cardiologue>(ad => ad.Username);*/
 
             modelBuilder.Entity<InterventionMedicale>()
                         .HasOne(s => s.Biologie)

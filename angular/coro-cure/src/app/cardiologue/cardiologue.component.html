@@ -2,15 +2,15 @@
 <div class="patient-container justify-content-center align-items-center" id="patients">
     <form class="form-inline my-2 my-lg-0">
       <h5>Gérer Comptes</h5>
-      <div class="ajouter">
-        <button class="btn my-2 my-sm-0 btn-search rounded-pill " type="submit" data-toggle="modal"
-          data-target="#modalcompte">+ Ajouter un nouveau Compte</button>
-      </div>
       <div class="ml-auto">
         <input class="form-control mr-sm-2 rounded-pill" type="search" placeholder="Username" aria-label="Search">
         <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Rechercher</button>
       </div>
     </form>
+  </div>
+  <div class="ajouter">
+    <button class="btn my-2 my-sm-0 btn-search rounded-pill " type="submit" data-toggle="modal"
+      data-target="#modal-ajouter">+ Ajouter un nouveau Compte</button>
   </div>
   
   <!--table-->
@@ -49,7 +49,7 @@
   </div>
   
   <!-- Modal ajouter -->
-  <div class="modal fade" id="modalcompte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  <div #dismissCreateDialog class="modal fade" id="modal-ajouter" tabindex="-1" role="dialog" aria-labelledby="modalajouterLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content modal-ajouter d-flex justify-content-center align-items-center">
@@ -60,33 +60,40 @@
           </button>
         </div>
         <div class="modal-body">
-          <form class="login-form text-center">
+          <form #cardiologueForm class="login-form text-center" (ngSubmit)="addCardiologue()">
             <div class="form-group">
-              <input type="text" id="cin" class="form-control rounded-pill form-control-lg" placeholder="CIN">
+              <label for="cin">CIN:</label>
+              <input type="text" id="cin" name="cin" class="form-control rounded-pill form-control-lg" [(ngModel)]="cardiologue.cin">
             </div>
             <div class="form-group">
-              <input type="text" id="nameint" class="form-control rounded-pill form-control-lg" placeholder="Nom">
+              <label for="nom">Nom:</label>
+              <input type="text" id="nom" name="nom" class="form-control rounded-pill form-control-lg" [(ngModel)]="cardiologue.nom">
             </div>
             <div class="form-group">
-              <input type="text" id="lastnameint" class="form-control rounded-pill form-control-lg" placeholder="Prénom">
+              <label for="prenom">Prénom:</label>
+              <input type="text" id="prenom" name="prenom" class="form-control rounded-pill form-control-lg" [(ngModel)]="cardiologue.prenom">
             </div>
             <div class="form-group">
-              <input type="text" id="qual" class="form-control rounded-pill form-control-lg" placeholder="Qualification">
+              <label for="qualification">Qualification:</label>
+              <input type="text" id="qualification" name="qualification" class="form-control rounded-pill form-control-lg" [(ngModel)]="cardiologue.qualification">
             </div>
             <div class="form-group">
-              <input type="text" id="userint" class="form-control rounded-pill form-control-lg" placeholder="Username">
+              <label for="username">Username:</label>
+              <input type="text" id="username" name="username" class="form-control rounded-pill form-control-lg" [(ngModel)]="cardiologue.username">
             </div>
             <div class="form-group">
-              <input type="text" id="pwdint" class="form-control rounded-pill form-control-lg" placeholder="Password">
+              <label for="password">Password:</label>
+              <input type="text" id="password" name="password" class="form-control rounded-pill form-control-lg" [(ngModel)]="cardiologue.password">
             </div>
             <div class="form-group">
-              <input type="text" id="role" class="form-control rounded-pill form-control-lg" placeholder="Role">
+              <label for="role">Role:</label>
+              <input type="text" id="role" name="role" class="form-control rounded-pill form-control-lg" [(ngModel)]="cardiologue.role">
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-custom rounded-pill">Enregistrer</button>
+              <button type="button" class="btn btn-custom rounded-pill">Réinitialiser</button>
             </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-custom rounded-pill">Ajouter</button>
-          <button type="button" class="btn btn-custom rounded-pill">Réinitialiser</button>
         </div>
       </div>
     </div>

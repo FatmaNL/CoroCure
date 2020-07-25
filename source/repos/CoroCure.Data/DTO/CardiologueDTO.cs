@@ -12,6 +12,7 @@ namespace CoroCure.Data.DTO
         public string Prenom { get; set; }
         public string Qualification { get; set; }
         public string Username { get; set; }
+        public string Password { get; set; }
         public string Role { get; set; }
 
         public CardiologueDTO(Cardiologue c)
@@ -19,8 +20,9 @@ namespace CoroCure.Data.DTO
             CIN = c.CIN;
             Nom = c.Nom;
             Prenom = c.Prenom;
-            Qualification = c.Qualifaction;
-            Username = c.Username;
+            Qualification = c.Qualificaction;
+            Username = c.Compte.Username;
+            Password = c.Compte.Password;
             Role = c.Compte.Role;
         }
 

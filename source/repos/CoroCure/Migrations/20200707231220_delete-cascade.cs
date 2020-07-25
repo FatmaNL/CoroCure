@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CoroCure.Migrations
 {
-    public partial class first : Migration
+    public partial class deletecascade : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,7 +32,8 @@ namespace CoroCure.Migrations
                 {
                     Username = table.Column<string>(nullable: false),
                     Password = table.Column<string>(nullable: true),
-                    Role = table.Column<string>(nullable: true)
+                    Role = table.Column<string>(nullable: true),
+                    CIN = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -110,8 +111,8 @@ namespace CoroCure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Nom = table.Column<string>(nullable: true),
                     Prenom = table.Column<string>(nullable: true),
-                    Qualifaction = table.Column<string>(nullable: true),
-                    Username = table.Column<string>(nullable: false)
+                    Qualificaction = table.Column<string>(nullable: true),
+                    Username = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

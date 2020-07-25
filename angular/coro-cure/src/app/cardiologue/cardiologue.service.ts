@@ -10,6 +10,7 @@ import { catchError, tap} from 'rxjs/operators'
 
 export class CardiologueService{
     private cardiologueUrl='https://localhost:5001/api/Cardiologue';
+    //private cardiologueUrl='api/cardiologue.json';
 
     constructor(private http: HttpClient){}
 
@@ -26,6 +27,13 @@ export class CardiologueService{
         .pipe(
           catchError(this.handleError)
         );
+      }
+
+      addCardiologue(newCardiologue: TabCardiologue): Observable<TabCardiologue> {
+        return this.http.post<TabCardiologue>(this.cardiologueUrl, newCardiologue)
+          .pipe(
+            catchError(this.handleError)
+          );
       }
 
     private handleError(err: HttpErrorResponse) {

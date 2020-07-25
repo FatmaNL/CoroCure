@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 
 namespace CoroCure.Controllers
 {
@@ -33,8 +34,10 @@ namespace CoroCure.Controllers
         }
 
         [HttpPost]
-        public void Create(Cardiologue cardiologue)
+        public void Create([FromBody] Cardiologue cardiologue)
         {
+            cardiologue.Compte = new Compte();
+            cardiologue.Compte.CIN = 987;
             _context.Cardiologues.Add(cardiologue);
             _context.SaveChanges();
         }

@@ -1,8 +1,15 @@
-export class TabCardiologue{
-        cin: number;
-        nom: string;
-        prenom: string;
-        qualification: string;
-        username: string;
-        role: string
+export class TabCardiologue {
+
+        constructor() {
+        }
+
+
+        public cin: number;
+        public nom: string;
+        public prenom: string;
+        public qualification: string;
+        //compte:
+        public username: string;
+        public password: string;
+        public role: string
 }

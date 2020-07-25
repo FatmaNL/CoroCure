@@ -12,9 +12,9 @@ namespace CoroCure.Data.Entities
         public int CIN { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
-        public string Qualifaction { get; set; }
+        public string Qualificaction { get; set; }
 
-        public string Username { get; set; }
+        //public string Username { get; set; }
         //[ForeignKey("Username")]
         public Compte Compte { get; set; }
         public List<InterventionMedicale> InterventionMedicales { get; set; }

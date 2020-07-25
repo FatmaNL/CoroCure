@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fatma\\desktop\\pfe\\source\\repos\\corocure\\CoroCure.csproj": {}
+    "C:\\Users\\fatma\\Desktop\\pfe\\source\\repos\\CoroCure\\CoroCure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fatma\\desktop\\pfe\\source\\repos\\CoroCure.Data\\CoroCure.Data.csproj": {
+    "C:\\Users\\fatma\\Desktop\\pfe\\source\\repos\\CoroCure.Data\\CoroCure.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fatma\\desktop\\pfe\\source\\repos\\CoroCure.Data\\CoroCure.Data.csproj",
+        "projectUniqueName": "C:\\Users\\fatma\\Desktop\\pfe\\source\\repos\\CoroCure.Data\\CoroCure.Data.csproj",
         "projectName": "CoroCure.Data",
-        "projectPath": "C:\\Users\\fatma\\desktop\\pfe\\source\\repos\\CoroCure.Data\\CoroCure.Data.csproj",
+        "projectPath": "C:\\Users\\fatma\\Desktop\\pfe\\source\\repos\\CoroCure.Data\\CoroCure.Data.csproj",
         "packagesPath": "C:\\Users\\fatma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fatma\\desktop\\pfe\\source\\repos\\CoroCure.Data\\obj\\",
+        "outputPath": "C:\\Users\\fatma\\Desktop\\pfe\\source\\repos\\CoroCure.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fatma\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -70,14 +70,14 @@
         }
       }
     },
-    "C:\\Users\\fatma\\desktop\\pfe\\source\\repos\\corocure\\CoroCure.csproj": {
+    "C:\\Users\\fatma\\Desktop\\pfe\\source\\repos\\CoroCure\\CoroCure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fatma\\desktop\\pfe\\source\\repos\\corocure\\CoroCure.csproj",
+        "projectUniqueName": "C:\\Users\\fatma\\Desktop\\pfe\\source\\repos\\CoroCure\\CoroCure.csproj",
         "projectName": "CoroCure",
-        "projectPath": "C:\\Users\\fatma\\desktop\\pfe\\source\\repos\\corocure\\CoroCure.csproj",
+        "projectPath": "C:\\Users\\fatma\\Desktop\\pfe\\source\\repos\\CoroCure\\CoroCure.csproj",
         "packagesPath": "C:\\Users\\fatma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fatma\\desktop\\pfe\\source\\repos\\corocure\\obj\\",
+        "outputPath": "C:\\Users\\fatma\\Desktop\\pfe\\source\\repos\\CoroCure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fatma\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -93,8 +93,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\fatma\\desktop\\pfe\\source\\repos\\CoroCure.Data\\CoroCure.Data.csproj": {
-                "projectPath": "C:\\Users\\fatma\\desktop\\pfe\\source\\repos\\CoroCure.Data\\CoroCure.Data.csproj"
+              "C:\\Users\\fatma\\Desktop\\pfe\\source\\repos\\CoroCure.Data\\CoroCure.Data.csproj": {
+                "projectPath": "C:\\Users\\fatma\\Desktop\\pfe\\source\\repos\\CoroCure.Data\\CoroCure.Data.csproj"
               }
             }
           }
@@ -108,6 +108,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -131,6 +135,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.2, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
             }
           },
           "imports": [

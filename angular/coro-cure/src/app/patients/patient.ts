@@ -1,11 +1,18 @@
 export class TabPatient {
-                id: number;
-                nom: string;
-                prenom: string;
-                tel: string;
-                nss: string;
-                adresse: string;
-                dateNaissance: string;
-                sexe: string
-  }
-  
+
+    /**
+     *
+     */
+    constructor() {
+    }
+
+    public id: number;
+    public nom: string;
+    public prenom: string;
+    public tel: string;
+    public nss: string;
+    public adresse: string;
+    public dateNaissance: Date;
+    public sexe: string;
+    public interventionMedicales: any[]
+}

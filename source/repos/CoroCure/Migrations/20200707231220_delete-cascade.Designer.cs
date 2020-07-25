@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CoroCure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200705180702_first")]
-    partial class first
+    [Migration("20200707231220_delete-cascade")]
+    partial class deletecascade
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,11 +64,10 @@ namespace CoroCure.Migrations
                     b.Property<string>("Prenom")
                         .HasColumnType("text");
 
-                    b.Property<string>("Qualifaction")
+                    b.Property<string>("Qualificaction")
                         .HasColumnType("text");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("CIN");
@@ -83,6 +82,9 @@ namespace CoroCure.Migrations
                 {
                     b.Property<string>("Username")
                         .HasColumnType("text");
+
+                    b.Property<int>("CIN")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Password")
                         .HasColumnType("text");
@@ -579,7 +581,7 @@ namespace CoroCure.Migrations
 
             modelBuilder.Entity("CoroCure.Data.Entities.Traitement", b =>
                 {
-                    b.HasOne("CoroCure.Data.Entities.Angioplastie", "Agioplastie")
+                    b.HasOne("CoroCure.Data.Entities.Angioplastie", "Angioplastie")
                         .WithMany("Traitements")
                         .HasForeignKey("AngioplastieId")
                         .OnDelete(DeleteBehavior.Cascade)

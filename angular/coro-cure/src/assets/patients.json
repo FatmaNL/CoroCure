@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "nom": "mondayyyy",
+        "prenom": "lundi",
+        "tel": 2222,
+        "nss": 58,
+        "adresse": "rue50",
+        "dateNaissance": "01-01-1999",
+        "sexe": "Femme"
+    },
+    {
+        "id": 2,
+        "nom": "tuesday",
+        "prenom": "mardi",
+        "tel": 22558,
+        "nss": 59,
+        "adresse": "rue25",
+        "dateNaissance": "01-01-1999",
+        "sexe": "Homme"  
+    },
+    {
+        "id": 3,
+        "nom": "wednesday",
+        "prenom": "mercredi",
+        "tel": 2599,
+        "nss": 558,
+        "adresse": "rue17",
+        "dateNaissance": "01-01-1999",
+        "sexe": "Femme"
+    },
+    {
+        "id": 4,
+        "nom": "thursday",
+        "prenom": "jeudi",
+        "tel": 55889,
+        "nss": 125,
+        "adresse": "rue70",
+        "dateNaissance": "01-01-1999",
+        "sexe": "Homme"
+    },
+    {
+        "id": 5,
+        "nom": "friday",
+        "prenom": "vendredi",
+        "tel": 8997,
+        "nss": 16,
+        "adresse": "rue82",
+        "dateNaissance": "01-01-1999",
+        "sexe": "Femme"
+    },
+    {
+        "id": 6,
+        "nom": "saturday",
+        "prenom": "samedi",
+        "tel": 558897,
+        "nss": 64,
+        "adresse": "rue66",
+        "dateNaissance": "01-01-1999",
+        "sexe": "Homme"
+    }
+]

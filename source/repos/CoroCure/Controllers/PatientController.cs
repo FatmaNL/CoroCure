@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using CoroCure.Data;
 using CoroCure.Data.Entities;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoroCure.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
     public class PatientController : ControllerBase
     {
         private ApplicationDbContext _context;
@@ -35,17 +36,28 @@ namespace CoroCure.Controllers
         }
 
         [HttpPost]
-        public void Create (Patient patient)
+        [Consumes(MediaTypeNames.Application.Json)]
+        public void Create([FromBody] Patient patient)
         {
             _context.Patients.Add(patient);
             _context.SaveChanges();
 
         }
 
-        [HttpPut]
-        public void Update(int id, Patient patient)
+        [HttpPut("{id}")]
+        public ActionResult Update([FromRoute] int id, [FromBody] Patient patient)
         {
-            var dbPatient = _context.Patients.Where(c => c.Id == id).SingleOrDefault();
+            var exists = _context.Patients.Where(c => c.Id == id)
+                                          .AsNoTracking()
+                                          .SingleOrDefault() != null;
+
+            if (!exists)
+                return BadRequest("Patient introuvable");
+
+            _context.Update(patient);
+            _context.SaveChanges();
+
+            return Ok();
         } 
 
 

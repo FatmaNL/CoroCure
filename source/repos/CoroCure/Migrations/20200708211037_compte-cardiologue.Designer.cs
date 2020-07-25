@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CoroCure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200705181932_second")]
-    partial class second
+    [Migration("20200708211037_compte-cardiologue")]
+    partial class comptecardiologue
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,17 +64,10 @@ namespace CoroCure.Migrations
                     b.Property<string>("Prenom")
                         .HasColumnType("text");
 
-                    b.Property<string>("Qualifaction")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
+                    b.Property<string>("Qualificaction")
                         .HasColumnType("text");
 
                     b.HasKey("CIN");
-
-                    b.HasIndex("Username")
-                        .IsUnique();
 
                     b.ToTable("cardiologue");
                 });
@@ -84,6 +77,9 @@ namespace CoroCure.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("text");
 
+                    b.Property<int>("CIN")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Password")
                         .HasColumnType("text");
 
@@ -91,6 +87,9 @@ namespace CoroCure.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Username");
+
+                    b.HasIndex("CIN")
+                        .IsUnique();
 
                     b.ToTable("compte");
                 });
@@ -522,11 +521,11 @@ namespace CoroCure.Migrations
                     b.HasDiscriminator().HasValue("Stent");
                 });
 
-            modelBuilder.Entity("CoroCure.Data.Entities.Cardiologue", b =>
+            modelBuilder.Entity("CoroCure.Data.Entities.Compte", b =>
                 {
-                    b.HasOne("CoroCure.Data.Entities.Compte", "Compte")
-                        .WithOne("Cardiologue")
-                        .HasForeignKey("CoroCure.Data.Entities.Cardiologue", "Username")
+                    b.HasOne("CoroCure.Data.Entities.Cardiologue", "Cardiologue")
+                        .WithOne("Compte")
+                        .HasForeignKey("CoroCure.Data.Entities.Compte", "CIN")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
