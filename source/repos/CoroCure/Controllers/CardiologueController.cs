@@ -43,14 +43,19 @@ namespace CoroCure.Controllers
         }
 
         [HttpPut]
-        public void Update(int cin, CardiologueDTO cardiologueDto)
+        public ActionResult Update(int cin, CardiologueDTO cardiologueDto)
         {
             var dbCardiologue = _context.Cardiologues.Where(c => c.CIN == cin)
                                                      .AsNoTracking()
                                                      .SingleOrDefault();
 
-            // set
-            return;
+            if (dbCardiologue == null)
+                return BadRequest("Cardiologue introuvable");
+
+            var cardiologue = new Cardiologue(cardiologueDto);
+            _context.Update(cardiologue);
+
+            return Ok();
         }
 
         [HttpDelete("{id}")]

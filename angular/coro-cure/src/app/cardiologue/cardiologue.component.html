@@ -1,5 +1,5 @@
-<!--content-->
-<div class="patient-container justify-content-center align-items-center" id="patients">
+<div class="col-8 offset-2">
+  <div class="patient-container justify-content-center align-items-center" id="patients">
     <form class="form-inline my-2 my-lg-0">
       <h5>Gérer Comptes</h5>
       <div class="ml-auto">
@@ -12,12 +12,13 @@
     <button class="btn my-2 my-sm-0 btn-search rounded-pill " type="submit" data-toggle="modal"
       data-target="#modal-ajouter">+ Ajouter un nouveau Compte</button>
   </div>
-  
-  <!--table-->
-  <div class="table-patient">
-    <div class="scrollable">
-      <table class="table table-striped">
-        <thead>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <div class="table-cardiologue">
+      <table class="table table-striped table-hover">
+        <thead class="thead-dark">
           <tr>
             <th scope="col">CIN</th>
             <th scope="col">Nom</th>
@@ -29,7 +30,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let cardiologue of cardiologues" [attr.id]="cardiologue.cin">
+          <tr *ngFor="let cardiologue of cardiologues" [attr.id]="cardiologue.cin" (click)="cardiologueClicked()">
             <th scope="row">{{cardiologue.cin}}</th>
             <td>{{cardiologue.nom}}</td>
             <td>{{cardiologue.prenom}}</td>
@@ -38,7 +39,8 @@
             <td>{{cardiologue.role}}</td>
             <td>
               <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit">Modifier</button>
-              <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit" (click)="deleteCardiologue(cardiologue.cin)">
+              <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" type="submit"
+                (click)="deleteCardiologue(cardiologue.cin)">
                 Supprimer
               </button>
             </td>
@@ -47,54 +49,62 @@
       </table>
     </div>
   </div>
-  
-  <!-- Modal ajouter -->
-  <div #dismissCreateDialog class="modal fade" id="modal-ajouter" tabindex="-1" role="dialog" aria-labelledby="modalajouterLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content modal-ajouter d-flex justify-content-center align-items-center">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Ajouter Compte</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form #cardiologueForm class="login-form text-center" (ngSubmit)="addCardiologue()">
-            <div class="form-group">
-              <label for="cin">CIN:</label>
-              <input type="text" id="cin" name="cin" class="form-control rounded-pill form-control-lg" [(ngModel)]="cardiologue.cin">
-            </div>
-            <div class="form-group">
-              <label for="nom">Nom:</label>
-              <input type="text" id="nom" name="nom" class="form-control rounded-pill form-control-lg" [(ngModel)]="cardiologue.nom">
-            </div>
-            <div class="form-group">
-              <label for="prenom">Prénom:</label>
-              <input type="text" id="prenom" name="prenom" class="form-control rounded-pill form-control-lg" [(ngModel)]="cardiologue.prenom">
-            </div>
-            <div class="form-group">
-              <label for="qualification">Qualification:</label>
-              <input type="text" id="qualification" name="qualification" class="form-control rounded-pill form-control-lg" [(ngModel)]="cardiologue.qualification">
-            </div>
-            <div class="form-group">
-              <label for="username">Username:</label>
-              <input type="text" id="username" name="username" class="form-control rounded-pill form-control-lg" [(ngModel)]="cardiologue.username">
-            </div>
-            <div class="form-group">
-              <label for="password">Password:</label>
-              <input type="text" id="password" name="password" class="form-control rounded-pill form-control-lg" [(ngModel)]="cardiologue.password">
-            </div>
-            <div class="form-group">
-              <label for="role">Role:</label>
-              <input type="text" id="role" name="role" class="form-control rounded-pill form-control-lg" [(ngModel)]="cardiologue.role">
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-custom rounded-pill">Enregistrer</button>
-              <button type="button" class="btn btn-custom rounded-pill">Réinitialiser</button>
-            </div>
-          </form>
-        </div>
+</div>
+
+<!-- Modal ajouter -->
+<div #dismissCreateDialog class="modal fade" id="modal-ajouter" tabindex="-1" role="dialog"
+  aria-labelledby="modalajouterLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content modal-ajouter d-flex justify-content-center align-items-center">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Ajouter Compte</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #cardiologueForm class="login-form text-center" (ngSubmit)="addCardiologue()">
+          <div class="form-group">
+            <label for="cin">CIN:</label>
+            <input type="text" id="cin" name="cin" class="form-control rounded-pill form-control-lg"
+              [(ngModel)]="cardiologue.cin">
+          </div>
+          <div class="form-group">
+            <label for="nom">Nom:</label>
+            <input type="text" id="nom" name="nom" class="form-control rounded-pill form-control-lg"
+              [(ngModel)]="cardiologue.nom">
+          </div>
+          <div class="form-group">
+            <label for="prenom">Prénom:</label>
+            <input type="text" id="prenom" name="prenom" class="form-control rounded-pill form-control-lg"
+              [(ngModel)]="cardiologue.prenom">
+          </div>
+          <div class="form-group">
+            <label for="qualification">Qualification:</label>
+            <input type="text" id="qualification" name="qualification" class="form-control rounded-pill form-control-lg"
+              [(ngModel)]="cardiologue.qualification">
+          </div>
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" class="form-control rounded-pill form-control-lg"
+              [(ngModel)]="cardiologue.username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="password" class="form-control rounded-pill form-control-lg"
+              [(ngModel)]="cardiologue.password">
+          </div>
+          <div class="form-group">
+            <label for="role">Role:</label>
+            <input type="text" id="role" name="role" class="form-control rounded-pill form-control-lg"
+              [(ngModel)]="cardiologue.role">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-custom rounded-pill">Enregistrer</button>
+            <button type="button" class="btn btn-custom rounded-pill">Réinitialiser</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>

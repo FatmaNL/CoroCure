@@ -9,14 +9,14 @@ import { CardiologueComponent } from './cardiologue/cardiologue.component';
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent},
-  { path: 'welcome', component: WelcomeComponent},
-  { path: 'patients', component: PatientComponent},
-  { path: 'coronarographie', component: CoronarographieComponent},
-  { path: 'angioplastie', component: AngioplastieComponent},
-  {path: 'cardiologue', component: CardiologueComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'welcome', component: WelcomeComponent },
+  { path: 'patients', component: PatientComponent },
+  { path: 'coronarographie', component: CoronarographieComponent },
+  { path: 'angioplastie', component: AngioplastieComponent },
+  { path: 'cardiologue', component: CardiologueComponent },
 
-  { path: '', redirectTo:'welcome', pathMatch: 'full'}
+  { path: '', redirectTo: 'welcome', pathMatch: 'full' }
   //{path: '**', component: LoginComponent} //wildcard path
 ];
 

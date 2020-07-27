@@ -1,0 +1,3 @@
+.table-cardiologue > table > tbody > tr :hover{
+  cursor: pointer;
+}

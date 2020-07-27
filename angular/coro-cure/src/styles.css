@@ -94,3 +94,7 @@ body{
     color:#666;
     text-align: center;
   }
+
+  body, html, .container-fluid {
+    height: 100%;
+  }

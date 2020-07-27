@@ -11,6 +11,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { CoronarographieComponent } from './coronarographie/coronarographie.component';
 import { AngioplastieComponent } from './angioplastie/angioplastie.component';
 import { CardiologueComponent } from './cardiologue/cardiologue.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CardiologueComponent } from './cardiologue/cardiologue.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
