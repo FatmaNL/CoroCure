@@ -9,8 +9,8 @@ import { catchError, tap} from 'rxjs/operators'
 )
 
 export class CardiologueService{
-    private cardiologueUrl='https://localhost:5001/api/Cardiologue';
-    //private cardiologueUrl='api/cardiologue.json';
+    //private cardiologueUrl='https://localhost:5001/api/Cardiologue';
+    private cardiologueUrl='assets/cardiologue.json';
 
     constructor(private http: HttpClient){}
 
@@ -35,6 +35,10 @@ export class CardiologueService{
             catchError(this.handleError)
           );
       }
+
+      /*updateCardiologue(updatedCardiologue: TabCardiologue) {
+        return this.http.put<void>(`${this.cardiologueUrl}/${this.cardiologueUrl.cin}`, updatedCardiologue);
+      }*/
 
     private handleError(err: HttpErrorResponse) {
         // in a real world app, we may send the server to some remote logging infrastructure

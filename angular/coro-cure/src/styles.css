@@ -94,3 +94,9 @@ body{
     color:#666;
     text-align: center;
   }
+  .interv-form{
+    font-size: 15px;
+    min-height: 48px;
+    font-weight: 500;
+    padding: 50px;
+  }

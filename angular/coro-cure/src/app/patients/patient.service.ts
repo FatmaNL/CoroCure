@@ -9,8 +9,8 @@ import { catchError, tap, map } from 'rxjs/operators'
 )
 
 export class PatientService {
-  private patientUrl = 'http://localhost:5000/api/Patient';
-  //private patientUrl = 'assets/patients.json';
+  //private patientUrl = 'http://localhost:5000/api/Patient';
+  private patientUrl = 'assets/patients.json';
 
   constructor(private http: HttpClient) { }
 

@@ -12,9 +12,10 @@ export class CardiologueComponent implements OnInit {
   cardiologues: TabCardiologue[]=[];
   errorMessage: string;
   cardiologue: TabCardiologue = new TabCardiologue();
-  selectedCadiologue: TabCardiologue;
+  selectedCardiologue: TabCardiologue;
 
   @ViewChild("dismissCreateDialog") dismissCreateDialog: ElementRef;
+  @ViewChild("dismissUpdateDialog") dismissUpdateDialog: ElementRef;
 
   constructor(private cardiologueservice: CardiologueService) { }
 
@@ -52,5 +53,9 @@ export class CardiologueComponent implements OnInit {
         (err: any) => console.log(err)
       )
   }
+
+  setSelection(cardiologue: TabCardiologue) {
+    this.selectedCardiologue = cardiologue;
+}
 
 }
