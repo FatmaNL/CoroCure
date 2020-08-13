@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PatientService } from './patient.service';
 import { TabPatient } from './patient';
 import { __assign } from 'tslib';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
     selector: 'pm-patient',
@@ -17,7 +18,7 @@ export class PatientComponent implements OnInit {
     @ViewChild("dismissUpdateDialog") dismissUpdateDialog: ElementRef;
     @ViewChild("dismissCreateDialog") dismissCreateDialog: ElementRef;
 
-    constructor(private patientservice: PatientService) {
+    constructor(private patientservice: PatientService, private spinner: NgxSpinnerService) {
     }
 
     ngOnInit() {
@@ -25,9 +26,10 @@ export class PatientComponent implements OnInit {
     }
 
     getPatients(): void {
+        this.spinner.show();
         this.patientservice.getPatients().subscribe({
-            next: patients => this.patients = patients,
-            error: err => this.errorMessage = err
+            next: patients => {this.patients = patients; this.spinner.hide();},
+            error: err => {this.errorMessage = err; this.spinner.hide();}
         });
     }
 
@@ -70,9 +72,8 @@ export class PatientComponent implements OnInit {
         this.patientservice.updatePatient(patient)
             .subscribe(
                 () => {
-                    this.getPatients();
                     this.dismissUpdateDialog.nativeElement.click();
-                    //this.getPatients();
+                    this.getPatients();
                 },
                 (error) => {
                     console.log(error)

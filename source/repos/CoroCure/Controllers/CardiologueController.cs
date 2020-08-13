@@ -34,20 +34,29 @@ namespace CoroCure.Controllers
         }
 
         [HttpPost]
-        public void Create([FromBody] Cardiologue cardiologue)
+        public void Create([FromBody] CardiologueDTO cardiologueDto)
         {
-            cardiologue.Compte = new Compte();
-            cardiologue.Compte.CIN = 987;
+            var cardiologue = new Cardiologue(cardiologueDto);
+
             _context.Cardiologues.Add(cardiologue);
             _context.SaveChanges();
         }
 
-        [HttpPut]
-        public void Update(int cin, Cardiologue cardiologue)
+        [HttpPut("{id}")]
+        public ActionResult Update([FromRoute] int id, [FromBody] CardiologueDTO cardiologueDto)
         {
-            var dbCardiologue = _context.Cardiologues.Where(c => c.CIN == cin).SingleOrDefault();
-            // set
-            return;
+            var dbCardiologue = _context.Cardiologues.Where(c => c.CIN == id)
+                                                     .AsNoTracking()
+                                                     .SingleOrDefault();
+
+            if (dbCardiologue == null)
+                return BadRequest("Cardiologue introuvable");
+
+            var cardiologue = new Cardiologue(cardiologueDto);
+            _context.Update(cardiologue);
+            _context.SaveChanges();
+
+            return Ok();
         }
 
         [HttpDelete("{id}")]

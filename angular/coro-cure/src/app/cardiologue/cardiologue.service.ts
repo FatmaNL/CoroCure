@@ -2,39 +2,47 @@ import { Injectable } from '@angular/core';
 import { TabCardiologue } from './cardiologue';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap} from 'rxjs/operators'
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable(
-    {providedIn: 'root'}
+  { providedIn: 'root' }
 )
 
 export class CardiologueService{
-    //private cardiologueUrl='https://localhost:5001/api/Cardiologue';
-    private cardiologueUrl='assets/cardiologue.json';
+    private cardiologueUrl='http://localhost:5000/api/Cardiologue';
+    // private cardiologueUrl='assets/cardiologue.json';
 
-    constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) { }
 
-    getCardiologues(): Observable <TabCardiologue[]>{
-        return this.http.get<TabCardiologue[]>(this.cardiologueUrl)
-        .pipe(
-            tap(data => console.log('All: ' + JSON.stringify(data))),
-            catchError(this.handleError)
-          );
-    }
+  getCardiologues(): Observable<TabCardiologue[]> {
+    return this.http.get<TabCardiologue[]>(this.cardiologueUrl)
+      .pipe(
+        tap(data => console.log('All: ' + JSON.stringify(data))),
+        catchError(this.handleError)
+      );
+  }
 
-    deleteCardiologue(id: number): Observable<void> {
-      return this.http.delete<void>(`${this.cardiologueUrl}/${id}`)
-        .pipe(
-          catchError(this.handleError)
-        );
-      }
+  getCardiologue(cin: number): Observable<TabCardiologue | undefined> {
+    return this.http.get<TabCardiologue>(`${this.cardiologueUrl}/${cin}`);
+  }
 
-      addCardiologue(newCardiologue: TabCardiologue): Observable<TabCardiologue> {
-        return this.http.post<TabCardiologue>(this.cardiologueUrl, newCardiologue)
-          .pipe(
-            catchError(this.handleError)
-          );
-      }
+  deleteCardiologue(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.cardiologueUrl}/${id}`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  addCardiologue(newCardiologue: TabCardiologue): Observable<TabCardiologue> {
+    return this.http.post<TabCardiologue>(this.cardiologueUrl, newCardiologue)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  updateCardiologue(updatedCardiologue: TabCardiologue) {
+    return this.http.put<void>(`${this.cardiologueUrl}/${updatedCardiologue.cin}`, updatedCardiologue);
+  }
 
       /*updateCardiologue(updatedCardiologue: TabCardiologue) {
         return this.http.put<void>(`${this.cardiologueUrl}/${this.cardiologueUrl.cin}`, updatedCardiologue);

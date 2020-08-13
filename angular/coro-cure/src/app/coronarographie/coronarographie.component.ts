@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TabCardiologue } from 'src/app/cardiologue/cardiologue';
+import { CardiologueService } from 'src/app/cardiologue/cardiologue.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-coronarographie',
@@ -6,10 +9,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./coronarographie.component.css']
 })
 export class CoronarographieComponent implements OnInit {
+  cardiologues: TabCardiologue[] = [];
+  cardiologue: TabCardiologue = new TabCardiologue();
+  errorMessage: string;
 
-  constructor() { }
+  constructor(private cardiologueservice: CardiologueService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.getCardiologues();
+  }
+
+  getCardiologues(): void {
+    this.spinner.show();
+    this.cardiologueservice.getCardiologues().subscribe({
+      next: cardiologues => { this.cardiologues = cardiologues; this.spinner.hide(); },
+      error: err => {this.errorMessage = err; this.spinner.hide(); }
+    });
   }
 
 }

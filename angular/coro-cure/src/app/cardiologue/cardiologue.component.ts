@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TabCardiologue } from './cardiologue';
 import { CardiologueService } from './cardiologue.service';
 import { __assign } from 'tslib';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-cardiologue',
@@ -9,7 +10,7 @@ import { __assign } from 'tslib';
   styleUrls: ['./cardiologue.component.css']
 })
 export class CardiologueComponent implements OnInit {
-  cardiologues: TabCardiologue[]=[];
+  cardiologues: TabCardiologue[] = [];
   errorMessage: string;
   cardiologue: TabCardiologue = new TabCardiologue();
   selectedCardiologue: TabCardiologue;
@@ -17,18 +18,26 @@ export class CardiologueComponent implements OnInit {
   @ViewChild("dismissCreateDialog") dismissCreateDialog: ElementRef;
   @ViewChild("dismissUpdateDialog") dismissUpdateDialog: ElementRef;
 
-  constructor(private cardiologueservice: CardiologueService) { }
+  constructor(private cardiologueservice: CardiologueService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.getCardiologues();
   }
 
   getCardiologues(): void {
+    this.spinner.show();
     this.cardiologueservice.getCardiologues().subscribe({
-      next: cardiologues => this.cardiologues = cardiologues,
-      error: err => this.errorMessage = err
+      next: cardiologues => { this.cardiologues = cardiologues; this.spinner.hide(); },
+      error: err => {this.errorMessage = err; this.spinner.hide(); }
     });
   }
+
+  getCardiologue(cin: number) {
+    this.cardiologueservice.getCardiologue(cin).subscribe({
+        next: cardiologue => this.cardiologue = cardiologue,
+        error: err => this.errorMessage = err
+    });
+}
 
   deleteCardiologue(id: number): void {
     this.cardiologueservice.deleteCardiologue(id).subscribe(
@@ -57,5 +66,22 @@ export class CardiologueComponent implements OnInit {
   setSelection(cardiologue: TabCardiologue) {
     this.selectedCardiologue = cardiologue;
 }
+
+updateCardiologue(cardiologue: TabCardiologue): void {
+  this.cardiologueservice.updateCardiologue(cardiologue)
+      .subscribe(
+          () => {
+              this.dismissUpdateDialog.nativeElement.click();
+              this.getCardiologues();
+          },
+          (error) => {
+              console.log(error)
+          });
+}
+
+
+  cardiologueClicked(): void {
+    console.log('cardiologue clicked');
+  }
 
 }
