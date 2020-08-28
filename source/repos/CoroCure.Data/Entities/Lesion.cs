@@ -13,6 +13,8 @@ namespace CoroCure.Data.Entities
         public int FluxTIMI { get; set; }
         public int CoronarographieId { get; set; }
         public Coronarographie Coronarographie { get; set; }
+        public int DescriptionId { get; set; }
+        public Description Description { get; set; }
 
     }
 }

@@ -30,7 +30,7 @@ namespace CoroCure.Data
         public DbSet<Ballon> Ballons { get; set; }
         public DbSet<Stent> Stents { get; set; }
         public DbSet<Guide> Guides { get; set; }
-
+        public DbSet<Description> Descriptions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -58,6 +58,7 @@ namespace CoroCure.Data
             modelBuilder.Entity<Procedure>().ToTable("procedure").HasKey(pk => pk.Id);
             //modelBuilder.Entity<Stent>().ToTable("stent");
             modelBuilder.Entity<Traitement>().ToTable("traitement").HasKey(pk => pk.Id);
+            modelBuilder.Entity<Description>().ToTable("description").HasKey(pk => pk.Id);
 
             //generalisation
             modelBuilder.Entity<Materiel>()
@@ -93,6 +94,11 @@ namespace CoroCure.Data
                         .HasOne(s => s.FacteursRisqueAntecedants)
                         .WithOne(ad => ad.Coronarographie)
                         .HasForeignKey<Coronarographie>(ad => ad.FacteursRisqueAntecedantsId);
+
+            modelBuilder.Entity<Lesion>()
+                        .HasOne(s => s.Description)
+                        .WithOne(ad => ad.Lesion)
+                        .HasForeignKey<Lesion>(ad => ad.DescriptionId);
 
             modelBuilder.Entity<Coronarographie>()
                         .HasOne(s => s.ContrasteDosimetrie)
