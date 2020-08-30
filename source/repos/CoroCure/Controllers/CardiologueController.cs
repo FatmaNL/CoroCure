@@ -42,10 +42,10 @@ namespace CoroCure.Controllers
             _context.SaveChanges();
         }
 
-        [HttpPut]
-        public ActionResult Update(int cin, CardiologueDTO cardiologueDto)
+        [HttpPut("{id}")]
+        public ActionResult Update([FromRoute] int id, [FromBody] CardiologueDTO cardiologueDto)
         {
-            var dbCardiologue = _context.Cardiologues.Where(c => c.CIN == cin)
+            var dbCardiologue = _context.Cardiologues.Where(c => c.CIN == id)
                                                      .AsNoTracking()
                                                      .SingleOrDefault();
 
@@ -54,6 +54,7 @@ namespace CoroCure.Controllers
 
             var cardiologue = new Cardiologue(cardiologueDto);
             _context.Update(cardiologue);
+            _context.SaveChanges();
 
             return Ok();
         }

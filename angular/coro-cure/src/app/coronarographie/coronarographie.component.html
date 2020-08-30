@@ -1,1 +1,594 @@
-<p>coronarographie works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div id="coro" class="col-3">
+      <div class="d-flex justify-content-left align-items-left coro-container">
+        <form class="interv-form">
+          <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Coronarographie :</h5>
+          <hr>
+          <div class="form-group">
+            <label for="numero">Numéro*:</label>
+            <input type="text" id="numero" name="numero" class="form-control rounded-pill form-control-sm" required>
+          </div>
+          <legend class="col-form-label col-sm-2 pt-0">Urgente*:</legend>
+          <div class="row">
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="urgente" id="oui" value="oui" required>
+                <label class="form-check-label" for="oui">
+                  Oui
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="urgente" id="non" value="non">
+                <label class="form-check-label" for="non">
+                  Non
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="date">Date*:</label>
+            <input type="date" id="date" name="date" class="form-control rounded-pill form-control-sm" required>
+          </div>
+          <div class="form-group">
+            <label for="numDossier">Numéro dossier*:</label>
+            <input type="text" id="numDossier" name="numDossier" class="form-control rounded-pill form-control-sm"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="cardiologue">Opérateur:</label>
+            <select name="cardiologue" id="cardiologue" class="form-control">
+              <option disabled selected value> -- select -- </option>
+              <option *ngFor="let cardiologue of cardiologues" [value]="cardiologue.cin">{{cardiologue.nom}} </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="voie">Voie d'abord:</label>
+            <input type="text" id="voie" name="voie" class="form-control rounded-pill form-control-sm">
+          </div>
+          <div class="form-group">
+            <label for="statut">Statut Coronaire:</label>
+            <select name="statut" id="statut" class="form-control">
+              <option disabled selected value> -- select -- </option>
+              <option value="mono">Mono</option>
+              <option value="bi">Bi</option>
+              <option value="tri">Tri</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="motif">Motif principal:</label>
+            <select name="motif" id="motif" class="form-control">
+              <option disabled selected value> -- select -- </option>
+              <option value="SCA ST+">SCA ST+</option>
+              <option value="SCA ST- Tropo+">SCA ST- Tropo+</option>
+              <option value="SCA ST- Tropo -">SCA ST- Tropo -</option>
+              <option value="Maladie Coronaire Stable">Maladie Coronaire Stable</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="autreMotif">Autre motif:</label>
+            <input type="text" id="autreMotif" name="autreMotif" class="form-control rounded-pill form-control-sm">
+          </div>
+          <div class="form-group">
+            <label for="fevg">FeVG:</label>
+            <input type="range" id="send" name="fevg" oninput="result.value=send.value"
+              class="form-control rounded-pill form-control-sm">
+            <input type="text" id="result" name="fevg" class="form-control rounded-pill form-control-sm">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="facteurs" class="col-6">
+      <div class="d-flex justify-content-left align-items-left coro-container">
+        <form class="interv-form">
+          <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Facteurs :</h5>
+          <hr>
+          <div class="row">
+            <div class="col-3" style="min-width: 225px;">
+              <div class="form-group">
+                <label for="taille">Taille (cm):</label>
+                <input type="text" id="taille" name="taille" class="form-control rounded-pill form-control-sm">
+              </div>
+              <div class="form-group">
+                <label for="poids">Poids (kg):</label>
+                <input type="text" id="poids" name="poids" class="form-control rounded-pill form-control-sm">
+              </div>
+              <div class="form-group">
+                <label for="imc">IMC:</label>
+                <input type="texte" id="imc" name="imc" class="form-control rounded-pill form-control-sm" readonly>
+              </div>
+              <div class="form-group">
+                <label for="obesite">Obesité:</label>
+                <input type="text" id="obesite" name="obesite" class="form-control rounded-pill form-control-sm"
+                  readonly>
+              </div>
+              <div class="form-group">
+                <label for="hta">HTA:</label>
+                <div class="row">
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="hta" id="oui" value="oui">
+                      <label class="form-check-label" for="oui">
+                        Oui
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="hta" id="non" value="non">
+                      <label class="form-check-label" for="non">
+                        Non
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="diabete">Diabete:</label>
+                <div class="row">
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="diabete" id="oui" value="oui">
+                      <label class="form-check-label" for="oui">
+                        Oui
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="diabete" id="non" value="non">
+                      <label class="form-check-label" for="non">
+                        Non
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="typeDiabete">Type Diabète:</label>
+                <select name="typeDiabete" id="typeDiabete" class="form-control">
+                  <option disabled selected value> -- select -- </option>
+                  <option value="did">DID</option>
+                  <option value="dnid">DNID</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="motif">Ancienete Diabète:</label>
+                <input type="text" id="motif" name="motif" class="form-control rounded-pill form-control-sm">
+              </div>
+            </div>
+            <div class="col-3" style="padding-left:50px; min-width: 250px;">
+              <div class="form-group">
+                <label for="tabac">Tabac:</label>
+                <div class="row">
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="tabac" id="oui" value="oui">
+                      <label class="form-check-label" for="oui">
+                        Oui
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="tabac" id="non" value="non">
+                      <label class="form-check-label" for="non">
+                        Non
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="dysplidemie">Dysplidémie:</label>
+                <div class="row">
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="dysplidemie" id="oui" value="oui">
+                      <label class="form-check-label" for="oui">
+                        Oui
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="dysplidemie" id="non" value="non">
+                      <label class="form-check-label" for="non">
+                        Non
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="ait">AIT:</label>
+                <div class="row">
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="ait" id="oui" value="oui">
+                      <label class="form-check-label" for="oui">
+                        Oui
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="ait" id="non" value="non">
+                      <label class="form-check-label" for="non">
+                        Non
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="avcIschemique">AVC ischémique:</label>
+                <div class="row">
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="avcIschemique" id="oui" value="oui">
+                      <label class="form-check-label" for="oui">
+                        Oui
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="avcIschemique" id="non" value="non">
+                      <label class="form-check-label" for="non">
+                        Non
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="avcHemorragique">AVC hémorragique:</label>
+                <div class="row">
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="avcHemorragique" id="oui" value="oui">
+                      <label class="form-check-label" for="oui">
+                        Oui
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="avcHemorragique" id="non" value="non">
+                      <label class="form-check-label" for="non">
+                        Non
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="atcdIdm">ATCD IDM:</label>
+                <div class="row">
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="atcdIdm" id="oui" value="oui">
+                      <label class="form-check-label" for="oui">
+                        Oui
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="atcdIdm" id="non" value="non">
+                      <label class="form-check-label" for="non">
+                        Non
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="atcdAtl">ATCD ATL:</label>
+                <div class="row">
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="atcdAtl" id="oui" value="oui">
+                      <label class="form-check-label" for="oui">
+                        Oui
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="atcdAtl" id="non" value="non">
+                      <label class="form-check-label" for="non">
+                        Non
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="atcdPac">ATCD PAC:</label>
+                <div class="row">
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="atcdPac" id="oui" value="oui">
+                      <label class="form-check-label" for="oui">
+                        Oui
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="atcdPac" id="non" value="non">
+                      <label class="form-check-label" for="non">
+                        Non
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-3" id="biologie">
+      <div class="d-flex justify-content-left align-items-left coro-container">
+        <form class="interv-form">
+          <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Biologie:</h5>
+          <hr>
+          <div class="form-group">
+            <label for="creatinine">Créatinine:</label>
+            <input type="text" id="creatinine" name="creatinine" class="form-control rounded-pill form-control-sm">
+          </div>
+          <div class="form-group">
+            <label for="clCreatinine">CL créatinine (ml/min):</label>
+            <input type="text" id="clCreatinine" name="clCreatinine" class="form-control rounded-pill form-control-sm"
+              readonly>
+          </div>
+          <div class="form-group">
+            <label for="irc">IRC:</label>
+            <input type="text" id="irc" name="irc" class="form-control rounded-pill form-control-sm" readonly>
+          </div>
+          <div class="form-group">
+            <label for="hemoglobine">Hemoglobine (gr/dl):</label>
+            <input type="text" id="hemoglobine" name="hemoglobine" class="form-control rounded-pill form-control-sm">
+          </div>
+          <div class="form-group">
+            <label for="inr">INR:</label>
+            <input type="text" id="inr" name="inr" class="form-control rounded-pill form-control-sm">
+          </div>
+          <div class="form-group">
+            <label for="picTroponine">Pic de troponine (us):</label>
+            <input type="text" id="picTroponine" name="picTroponine" class="form-control rounded-pill form-control-sm">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-3" id="contrasteDosimetrie">
+      <div class="d-flex justify-content-left align-items-left coro-container">
+        <form class="interv-form">
+          <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Contraste et dosimétrie:</h5>
+          <hr>
+          <div class="form-group">
+            <label for="typePdc">Type PDC:</label>
+            <input type="text" id="typePdc" name="typePdc" class="form-control rounded-pill form-control-sm">
+          </div>
+          <div class="form-group">
+            <label for="quantitePdc">Quantité PDC:</label>
+            <input type="text" id="quantitePdc" name="quantitePdc" class="form-control rounded-pill form-control-sm">
+          </div>
+          <div class="form-group">
+            <label for="quantitePds">Quantité PDS:</label>
+            <input type="text" id="quantitePds" name="quantitePds" class="form-control rounded-pill form-control-sm">
+          </div>
+          <div class="form-group">
+            <label for="nombreImg">Nombre d'images:</label>
+            <input type="number" id="nombreImg" name="nombreImg" class="form-control rounded-pill form-control-sm"
+              min="1" max="100">
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!--Table-->
+    <div style="margin-left: 10px; min-width: 500px;">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Lésions:</h5>
+          <hr>
+          <div class="grid-table table table-striped table-hover">
+            <div class="thead thead-dark">
+              <div class="tr">
+                <th scope="col">Type</th>
+                <th scope="col">Degré</th>
+                <th scope="col">Flux TIMI</th>
+                <th scope="col">Segment</th>
+                <th scope="col"></th>
+              </div>
+            </div>
+            <div class="tbody">
+              <form class="tr" [formGroup]="formGroupLesion" *ngFor="let formGroupLesion of lesionForms.controls">
+                <div class="td"><input class="form-control" formControlName="type"></div>
+                <div class="td"><input class="form-control" formControlName="degre"></div>
+                <div class="td"><input class="form-control" formControlName="fluxTIMI"></div>
+                <div class="td"><input class="form-control" formControlName="descriptionSegment"></div>
+              </form> 
+            </div>
+          </div>
+
+          <div class="card" style="margin-left: 10px; text-align: center; max-height: 150px; padding: 20px;  max-width: 300px;">
+            <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Description:</h5>
+            <hr>
+            <button class="btn btn-custom rounded-pill" type="submit" style="font-size: 15px;" data-toggle="modal"
+              data-target="#descriptionModal">
+              Schéma
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--btn-->
+  <div class="row">
+    <div style="text-align: center; margin-top: 25px; margin-bottom: 25px; padding: 50px;">
+      <button type="submit" class="btn btn-custom">Enregistrer</button>
+      <button type="submit" class="btn btn-custom">Réinitialiser</button>
+    </div>
+  </div>
+
+
+
+</div>
+
+
+<!--modal-->
+<div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Description</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div id="schema">
+              <img [src]='schemaUrl' style="width: 450px;">
+            </div>
+            <div id="segment">
+              <div style="margin-left: 10px; min-width: 500px;">
+                <div class="card">
+                  <div class="card-body">
+                    <table class="table table-striped table-hover">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th scope="col"></th>
+                          <th scope="col">Segment</th>
+                          <th scope="col"></th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>RCA</td>
+                          <td>RCA proximal</td>
+                          <td>1</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>RCA mid</td>
+                          <td>2</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>RCA distal</td>
+                          <td>3</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td>LM</td>
+                          <td>Left Main</td>
+                          <td>5</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td>LAD</td>
+                          <td>LAD proximal</td>
+                          <td>6</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>LAD mid</td>
+                          <td>7</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>LAD apical</td>
+                          <td>8</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>First diagonal</td>
+                          <td>9</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>Add. first diagonal</td>
+                          <td>9a</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>second diagonal</td>
+                          <td>10</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>Add. second diagonal</td>
+                          <td>10a</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td>LCX</td>
+                          <td>Proximal circumflex</td>
+                          <td>11</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>Intermediate/anterolateral</td>
+                          <td>12</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>Obtuse marginal</td>
+                          <td>12a</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>Obtuse marginal</td>
+                          <td>12b</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>Distal circumflex</td>
+                          <td>13</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>Left posterolateral</td>
+                          <td>14</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>Left posterolateral</td>
+                          <td>14a</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>Left posterolateral</td>
+                          <td>14b</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>Posterior descending</td>
+                          <td>15</td>
+                          <td><input type="checkbox" name="segment" value=""></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-custom rounded-pill" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-custom rounded-pill">Poursuivre</button>
+      </div>
+    </div>
+  </div>
+</div>

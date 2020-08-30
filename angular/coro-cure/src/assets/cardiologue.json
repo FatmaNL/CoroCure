@@ -1,65 +1,65 @@
 [
     {
-        "CIN": 2135,
-        "Nom": "heeeeeeeeyyy",
-        "Prenom": "un",
-        "Qualification": "skso",
-        "Username": "djddi",
-        "Password": "54d54d",
-        "Role": "A"
+        "cin": 2135,
+        "nom": "heeeeeeeeyyy",
+        "prenom": "un",
+        "qualification": "skso",
+        "username": "djddi",
+        "password": "54d54d",
+        "role": "A"
     },
     {
-        "CIN": 5588,
-        "Nom": "two",
-        "Prenom": "deux",
-        "Qualification": "dkzkl",
-        "Username": "aol",
-        "Password": "5d8d",
-        "Role": "D"
+        "cin": 5588,
+        "nom": "two",
+        "prenom": "deux",
+        "qualification": "dkzkl",
+        "username": "aol",
+        "password": "5d8d",
+        "role": "D"
     },
     {
-        "CIN": 8892,
-        "Nom": "three",
-        "Prenom": "trois",
-        "Qualification": "dkdk",
-        "Username": "ppzoo",
-        "Password": "9z51",
-        "Role": "B"
+        "cin": 8892,
+        "nom": "three",
+        "prenom": "trois",
+        "qualification": "dkdk",
+        "username": "ppzoo",
+        "password": "9z51",
+        "role": "B"
     },
     {
-        "CIN": 21587,
-        "Nom": "four",
-        "Prenom": "quatre",
-        "Qualification": "eekdl",
-        "Username": "acdi",
-        "Password": "d6d2d",
-        "Role": "B"
+        "cin": 21587,
+        "nom": "four",
+        "prenom": "quatre",
+        "qualification": "eekdl",
+        "username": "acdi",
+        "password": "d6d2d",
+        "role": "B"
     },
     {
-        "CIN": 5597,
-        "Nom": "five",
-        "Prenom": "cinq",
-        "Qualification": "zkkkkee",
-        "Username": "djdeeedi",
-        "Password": "54dee54d",
-        "Role": "E"
+        "cin": 5597,
+        "nom": "five",
+        "prenom": "cinq",
+        "qualification": "zkkkkee",
+        "username": "djdeeedi",
+        "password": "54dee54d",
+        "role": "E"
     },
     {
-        "CIN": 5599,
-        "Nom": "six",
-        "Prenom": "six",
-        "Qualification": "djjj",
-        "Username": "djddzppi",
-        "Password": "9a221",
-        "Role": "A"
+        "cin": 5599,
+        "nom": "six",
+        "prenom": "six",
+        "qualification": "djjj",
+        "username": "djddzppi",
+        "password": "9a221",
+        "role": "A"
     },
     {
-        "CIN": 5589220,
-        "Nom": "seven",
-        "Prenom": "sept",
-        "Qualification": "ssssa",
-        "Username": "nskk",
-        "Password": "3s1447",
-        "Role": "C"
+        "cin": 5589220,
+        "nom": "seven",
+        "prenom": "sept",
+        "qualification": "ssssa",
+        "username": "nskk",
+        "password": "3s1447",
+        "role": "C"
     }
 ]

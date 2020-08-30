@@ -13,9 +13,10 @@ export class CardiologueComponent implements OnInit {
   cardiologues: TabCardiologue[] = [];
   errorMessage: string;
   cardiologue: TabCardiologue = new TabCardiologue();
-  selectedCadiologue: TabCardiologue;
+  selectedCardiologue: TabCardiologue;
 
-  @ViewChild('dismissCreateDialog') dismissCreateDialog: ElementRef;
+  @ViewChild("dismissCreateDialog") dismissCreateDialog: ElementRef;
+  @ViewChild("dismissUpdateDialog") dismissUpdateDialog: ElementRef;
 
   constructor(private cardiologueservice: CardiologueService, private spinner: NgxSpinnerService) { }
 
@@ -30,6 +31,13 @@ export class CardiologueComponent implements OnInit {
       error: err => {this.errorMessage = err; this.spinner.hide(); }
     });
   }
+
+  getCardiologue(cin: number) {
+    this.cardiologueservice.getCardiologue(cin).subscribe({
+        next: cardiologue => this.cardiologue = cardiologue,
+        error: err => this.errorMessage = err
+    });
+}
 
   deleteCardiologue(id: number): void {
     this.cardiologueservice.deleteCardiologue(id).subscribe(
@@ -54,6 +62,23 @@ export class CardiologueComponent implements OnInit {
         (err: any) => console.log(err)
       )
   }
+
+  setSelection(cardiologue: TabCardiologue) {
+    this.selectedCardiologue = cardiologue;
+}
+
+updateCardiologue(cardiologue: TabCardiologue): void {
+  this.cardiologueservice.updateCardiologue(cardiologue)
+      .subscribe(
+          () => {
+              this.dismissUpdateDialog.nativeElement.click();
+              this.getCardiologues();
+          },
+          (error) => {
+              console.log(error)
+          });
+}
+
 
   cardiologueClicked(): void {
     console.log('cardiologue clicked');

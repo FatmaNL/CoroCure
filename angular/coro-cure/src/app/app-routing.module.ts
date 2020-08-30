@@ -6,6 +6,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { AngioplastieComponent } from './angioplastie/angioplastie.component';
 import { CoronarographieComponent } from './coronarographie/coronarographie.component';
 import { CardiologueComponent } from './cardiologue/cardiologue.component';
+import { ExportationComponent } from './exportation/exportation.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'coronarographie', component: CoronarographieComponent },
   { path: 'angioplastie', component: AngioplastieComponent },
   { path: 'cardiologue', component: CardiologueComponent },
+  { path: 'exportation', component: ExportationComponent }, 
 
   { path: '', redirectTo: 'welcome', pathMatch: 'full' }
   //{path: '**', component: LoginComponent} //wildcard path

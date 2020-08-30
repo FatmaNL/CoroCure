@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -13,6 +13,11 @@ import { AngioplastieComponent } from './angioplastie/angioplastie.component';
 import { CardiologueComponent } from './cardiologue/cardiologue.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { ExportationComponent } from './exportation/exportation.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,14 +26,19 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     WelcomeComponent,
     CoronarographieComponent,
     AngioplastieComponent,
-    CardiologueComponent
+    CardiologueComponent,
+    ExportationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxSpinnerModule
+    ReactiveFormsModule,
+    NgxSpinnerModule,
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]
