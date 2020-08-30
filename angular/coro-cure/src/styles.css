@@ -117,3 +117,22 @@ body{
   .coro-container:hover {
     background-color:rgba(127, 255, 212, 0.363);
   }
+.grid-table
+{
+  display:table;
+}
+.thead
+{
+	display:table-header-group;
+}
+.tbody
+{
+	display:table-row-group;
+}
+.tr{
+  display:table-row;	
+}
+.td
+{
+	display:table-cell;
+}

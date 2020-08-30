@@ -379,26 +379,27 @@
         <div class="card-body">
           <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Lésions:</h5>
           <hr>
-          <table class="table table-striped table-hover">
-            <thead class="thead-dark">
-              <tr>
+          <div class="grid-table table table-striped table-hover">
+            <div class="thead thead-dark">
+              <div class="tr">
                 <th scope="col">Type</th>
                 <th scope="col">Degré</th>
                 <th scope="col">Flux TIMI</th>
+                <th scope="col">Segment</th>
                 <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+              </div>
+            </div>
+            <div class="tbody">
+              <form class="tr" [formGroup]="formGroupLesion" *ngFor="let formGroupLesion of lesionForms.controls">
+                <div class="td"><input class="form-control" formControlName="type"></div>
+                <div class="td"><input class="form-control" formControlName="degre"></div>
+                <div class="td"><input class="form-control" formControlName="fluxTIMI"></div>
+                <div class="td"><input class="form-control" formControlName="descriptionSegment"></div>
+              </form> 
+            </div>
+          </div>
 
-          <div class="card" style="margin-left: 10px; text-align: center; max-height: 150px; padding: 20px;">
+          <div class="card" style="margin-left: 10px; text-align: center; max-height: 150px; padding: 20px;  max-width: 300px;">
             <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Description:</h5>
             <hr>
             <button class="btn btn-custom rounded-pill" type="submit" style="font-size: 15px;" data-toggle="modal"
