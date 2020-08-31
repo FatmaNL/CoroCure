@@ -1,4 +1,5 @@
 ﻿using CoroCure.Data.Entities;
+using Reinforced.Typings.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Text;

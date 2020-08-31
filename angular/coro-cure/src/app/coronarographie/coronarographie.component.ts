@@ -3,6 +3,9 @@ import { TabCardiologue } from 'src/app/cardiologue/cardiologue';
 import { CardiologueService } from 'src/app/cardiologue/cardiologue.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FormGroup, FormBuilder, FormArray} from '@angular/forms';
+import { CoronarographieDTO } from '../models/coronarographie.dto';
+import { LesionDTO } from '../models/lesion.dto';
+import { DescriptionDTO } from '../models/description.dto';
 
 @Component({
   selector: 'app-coronarographie',
@@ -13,16 +16,25 @@ export class CoronarographieComponent implements OnInit {
   cardiologues: TabCardiologue[] = [];
   cardiologue: TabCardiologue = new TabCardiologue();
   errorMessage: string;
-  schemaUrl: string = 'assets/schema.png';
+  schemaUrl = 'assets/schema.png';
   lesionForms: FormArray = this.fb.array([]);
 
-  constructor(private cardiologueservice: CardiologueService, 
+  private coronarographie: CoronarographieDTO;
+  public lesions: LesionDTO[];
+  public lesion: LesionDTO;
+
+  constructor(private cardiologueservice: CardiologueService,
               private spinner: NgxSpinnerService,
               private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.getCardiologues();
     this.addLesionForm();
+
+    this.coronarographie = new CoronarographieDTO();
+    this.lesion = new LesionDTO();
+    this.lesion.Description = new DescriptionDTO();
+    this.lesions = new Array<LesionDTO>();
   }
 
   getCardiologues(): void {
@@ -31,6 +43,13 @@ export class CoronarographieComponent implements OnInit {
       next: cardiologues => { this.cardiologues = cardiologues; this.spinner.hide(); },
       error: err => {this.errorMessage = err; this.spinner.hide(); }
     });
+  }
+
+  public addLesion(): void {
+    if(this.lesion !== null && this.lesion !== undefined)
+    {
+      this.lesions.push(this.lesion);
+    }
   }
 
   addLesionForm() {

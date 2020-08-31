@@ -2,11 +2,37 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using CoroCure.Data.DTO;
 
 namespace CoroCure.Data.Entities
 {
     public class FacteursRisqueAntecedants
     {
+        public FacteursRisqueAntecedants()
+        {
+        }
+
+        public FacteursRisqueAntecedants(FacteursRisqueAntecedantsDTO dto)
+        {
+            this.Id = dto.Id;
+            this.Taille= dto.Taille;
+            this.Poids = dto.Poids;
+            this.IMC = dto.IMC;
+            this.Obesite= dto.Obesite;
+            this.HTA = dto.HTA;
+            this.Diabete = dto.Diabete;
+            this.TypeDiabete = dto.TypeDiabete;
+            this.AncDiabete = dto.AncDiabete;
+            this.Tabac = dto.Tabac;
+            this.Dysplidemie = dto.Dysplidemie;
+            this.AIT = dto.AIT;
+            this.AVCIsh = dto.AVCIsh;
+            this.AVCHem = dto.AVCHem;
+            this.ATCDIDM = dto.ATCDIDM;
+            this.ATCDATL = dto.ATCDATL;
+            this.ATCDPAC = dto.ATCDPAC;
+        }
+
         public int Id { get; set; }
         public int Taille { get; set; }
         public int Poids { get; set; }

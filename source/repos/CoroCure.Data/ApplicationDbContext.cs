@@ -51,7 +51,15 @@ namespace CoroCure.Data
             //modelBuilder.Entity<Coronarographie>().ToTable("coronarographie");
             modelBuilder.Entity<FacteursRisqueAntecedants>().ToTable("facteursRisqueAntecedants").HasKey(pk => pk.Id);
             //modelBuilder.Entity<Guide>().ToTable("guide");
-            modelBuilder.Entity<InterventionMedicale>().ToTable("interventionMedicale").HasKey(pk => pk.Id);
+            
+            modelBuilder.Entity<InterventionMedicale>()
+                        .ToTable("interventionMedicale")
+                        .HasKey(pk => pk.Id);
+
+            modelBuilder.Entity<InterventionMedicale>()
+                        .Property(e => e.Id)
+                        .ValueGeneratedOnAdd();
+                        
             modelBuilder.Entity<Lesion>().ToTable("lesion").HasKey(pk => pk.Id);
             modelBuilder.Entity<Materiel>().ToTable("materiel").HasKey(pk => pk.Id);
             modelBuilder.Entity<Patient>().ToTable("patient").HasKey(pk => pk.Id);

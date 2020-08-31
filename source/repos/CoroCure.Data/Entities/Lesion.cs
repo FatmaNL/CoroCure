@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+﻿using CoroCure.Data.DTO;
 
 namespace CoroCure.Data.Entities
 {
     public class Lesion
     {
+        public Lesion(LesionDTO dto)
+        {
+            this.TypeLesion = dto.TypeLesion;
+            this.Degre = dto.Degre;
+            this.FluxTIMI = dto.FluxTIMI;
+            
+            this.CoronarographieId = dto.CoronarographieId;
+            this.DescriptionId = dto.DescriptionId;
+        }
+
         public int Id { get; set; }
         public string TypeLesion { get; set; }
         public double Degre { get; set; }

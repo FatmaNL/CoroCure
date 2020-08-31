@@ -7,34 +7,41 @@ body{
   background: #eee;
   color:#666;
 }
+
 .login-container{
     height: 100vh;
     width: 100%;
-  }
+}
+
 .login-form{
   margin: auto;
   width: 370px;
   padding: 15px;
   max-width: 100%;
 }
-.login-form, 
+
+.login-form,
 .form-control{
     font-size: 15px;
     min-height: 48px;
     font-weight: 500;
   }
+
   .form-control:focus{
     border-color:#3dbead;
     box-shadow: 0 0 0 0.2rem rgba(199, 2, 248, 0.25);
   }
+
   .forgot-link {
     font-size: 13px;
     text-decoration: underline;
     color:#666;
   }
+
   .forgot-link:hover{
     color:#99a09f;
   }
+
   .btn-custom{
     background: #3dbead;
     border-color:#3dbead;
@@ -43,6 +50,7 @@ body{
     font-weight: 600;
     min-height: 48px;
   }
+
   .btn-custom:focus,
   .btn-custom:hover,
   .btn-custom:active,
@@ -51,9 +59,11 @@ body{
     border-color: #22776c;
     color:#fff;
   }
+
   .btn-custom:focus{
     box-shadow: 0 0 0 0.2rem rgba(29, 90, 100, 0.25);
   }
+
   .patient-container{
     background:#3dbead;
     padding: 20px;
@@ -62,6 +72,7 @@ body{
    color:#ffffff;
    border-radius: 30px;
   }
+
   .btn-search{
     background: #ffffff;
     color:#3dbead;
@@ -69,6 +80,7 @@ body{
     font-weight: 600;
     min-height: 30px;
   }
+
   .btn-search:focus,
   .btn-search:hover,
   .btn-search:active,
@@ -77,17 +89,21 @@ body{
     border-color: #22776c;
     color:#fff;
   }
+
   .ajouter{
     margin-bottom: 50px;
     margin-left: 50px;
   }
+
   .table-patient{
     margin: 50px;
   }
+
   .scrollable{
     height: 400px;
     overflow: scroll;
   }
+
   .modal-ajouter{
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
@@ -99,7 +115,7 @@ body{
   body, html, .container-fluid {
     height: 100%;
   }
-  
+
   .interv-form{
     font-size: 15px;
     padding: 50px;
@@ -107,16 +123,23 @@ body{
     font-weight: 400;
   }
 
-  .coro-container{
+.coro-container{
+background-color: #d0e0dc85;
+color: #5e5d5d;
+font-weight:lighter;
+border-radius: 30px;
+}
+
+.coro-container-dark{
   background-color: #d0e0dc85;
   color: #5e5d5d;
-  font-weight:lighter;
+  /* font-weight:lighter; */
   border-radius: 30px;
   }
 
-  .coro-container:hover {
-    background-color:rgba(127, 255, 212, 0.363);
-  }
+.coro-container:hover {
+  background-color:rgba(127, 255, 212, 0.363);
+}
 .grid-table
 {
   display:table;
@@ -130,7 +153,7 @@ body{
 	display:table-row-group;
 }
 .tr{
-  display:table-row;	
+  display:table-row;
 }
 .td
 {
