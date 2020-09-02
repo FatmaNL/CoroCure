@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, FormArray} from '@angular/forms';
 import { CoronarographieDTO } from '../models/coronarographie.dto';
 import { LesionDTO } from '../models/lesion.dto';
 import { DescriptionDTO } from '../models/description.dto';
+import { CardiologueDTO } from '../models/cardiologue.dto';
 
 @Component({
   selector: 'app-coronarographie',
@@ -19,8 +20,7 @@ export class CoronarographieComponent implements OnInit {
   schemaUrl = 'assets/schema.png';
   lesionForms: FormArray = this.fb.array([]);
 
-  private coronarographie: CoronarographieDTO;
-  public lesions: LesionDTO[];
+  public coronarographie: CoronarographieDTO;
   public lesion: LesionDTO;
 
   constructor(private cardiologueservice: CardiologueService,
@@ -32,9 +32,9 @@ export class CoronarographieComponent implements OnInit {
     this.addLesionForm();
 
     this.coronarographie = new CoronarographieDTO();
+    this.coronarographie.Cardiologue = new CardiologueDTO();
     this.lesion = new LesionDTO();
     this.lesion.Description = new DescriptionDTO();
-    this.lesions = new Array<LesionDTO>();
   }
 
   getCardiologues(): void {
@@ -46,9 +46,9 @@ export class CoronarographieComponent implements OnInit {
   }
 
   public addLesion(): void {
-    if(this.lesion !== null && this.lesion !== undefined)
+    if (this.lesion !== null && this.lesion !== undefined)
     {
-      this.lesions.push(this.lesion);
+      this.coronarographie.Lesions.push(this.lesion);
     }
   }
 

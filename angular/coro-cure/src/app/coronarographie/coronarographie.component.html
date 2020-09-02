@@ -30,51 +30,46 @@
             <form class="interv-form">
               <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Coronarographie :</h5>
               <hr>
+
               <div class="form-group">
                 <label for="numero">Numéro*:</label>
-                <input type="text" id="numero" name="numero" class="form-control rounded-pill form-control-sm" required>
+                <input type="text" id="numero" [(ngModel)]="coronarographie.Numero"   name="numero" class="form-control rounded-pill form-control-sm" required>
               </div>
-              <legend class="col-form-label col-sm-2 pt-0">Urgente*:</legend>
-              <div class="row">
-                <div class="col-sm-10">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="urgente" id="oui" value="oui" required>
-                    <label class="form-check-label" for="oui">
-                      Oui
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="urgente" id="non" value="non">
-                    <label class="form-check-label" for="non">
-                      Non
-                    </label>
-                  </div>
-                </div>
+
+              <div class="form-check">
+                <input id="estUrgente" class="form-check-input" type="checkbox" [(ngModel)]="coronarographie.estUrgente" required>
+                <label class="form-check-label" for="estUrgente">Urgente*</label>
               </div>
+
+             <br>
+
               <div class="form-group">
                 <label for="date">Date*:</label>
-                <input type="date" id="date" name="date" class="form-control rounded-pill form-control-sm" required>
+                <input type="date" id="date" name="date" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.Date" required>
               </div>
+
               <div class="form-group">
                 <label for="numDossier">Numéro dossier*:</label>
-                <input type="text" id="numDossier" name="numDossier" class="form-control rounded-pill form-control-sm"
-                  required>
+                <input type="text" id="numDossier" name="numDossier" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.Numero" required>
               </div>
+
               <div class="form-group">
                 <label for="cardiologue">Opérateur:</label>
-                <select name="cardiologue" id="cardiologue" class="form-control">
+                <select name="cardiologue" id="cardiologue" class="form-control" [(ngModel)]="coronarographie.Cardiologue.CIN">
                   <option disabled selected value> -- select -- </option>
                   <option *ngFor="let cardiologue of cardiologues" [value]="cardiologue.cin">{{cardiologue.nom}}
                   </option>
                 </select>
               </div>
+
               <div class="form-group">
                 <label for="voie">Voie d'abord:</label>
-                <input type="text" id="voie" name="voie" class="form-control rounded-pill form-control-sm">
+                <input type="text" id="voie" name="voie" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.Voie">
               </div>
+
               <div class="form-group">
                 <label for="statut">Statut Coronaire:</label>
-                <select name="statut" id="statut" class="form-control">
+                <select name="statut" id="statut" class="form-control" [(ngModel)]="coronarographie.Statut">
                   <option disabled selected value> -- select -- </option>
                   <option value="mono">Mono</option>
                   <option value="bi">Bi</option>
@@ -83,7 +78,7 @@
               </div>
               <div class="form-group">
                 <label for="motif">Motif principal:</label>
-                <select name="motif" id="motif" class="form-control">
+                <select name="motif" id="motif" class="form-control" [(ngModel)]="coronarographie.MotifPrinc">
                   <option disabled selected value> -- select -- </option>
                   <option value="SCA ST+">SCA ST+</option>
                   <option value="SCA ST- Tropo+">SCA ST- Tropo+</option>
@@ -93,7 +88,7 @@
               </div>
               <div class="form-group">
                 <label for="autreMotif">Autre motif:</label>
-                <input type="text" id="autreMotif" name="autreMotif" class="form-control rounded-pill form-control-sm">
+                <input type="text" id="autreMotif" name="autreMotif" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.AutreMotif">
               </div>
               <div class="form-group">
                 <label for="fevg">FeVG:</label>
@@ -341,22 +336,19 @@
               <hr>
               <div class="form-group">
                 <label for="typePdc">Type PDC:</label>
-                <input type="text" id="typePdc" name="typePdc" class="form-control rounded-pill form-control-sm">
+                <input type="text" id="typePdc" name="typePdc" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.ContrasteDosimetrie.TypePDC">
               </div>
               <div class="form-group">
                 <label for="quantitePdc">Quantité PDC:</label>
-                <input type="text" id="quantitePdc" name="quantitePdc"
-                  class="form-control rounded-pill form-control-sm">
+                <input type="text" id="quantitePdc" name="quantitePdc" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.ContrasteDosimetrie.QtePDC">
               </div>
               <div class="form-group">
                 <label for="quantitePds">Quantité PDS:</label>
-                <input type="text" id="quantitePds" name="quantitePds"
-                  class="form-control rounded-pill form-control-sm">
+                <input type="text" id="quantitePds" name="quantitePds" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.ContrasteDosimetrie.QtePDS">
               </div>
               <div class="form-group">
                 <label for="nombreImg">Nombre d'images:</label>
-                <input type="number" id="nombreImg" name="nombreImg" class="form-control rounded-pill form-control-sm"
-                  min="1" max="100">
+                <input type="number" id="nombreImg" name="nombreImg" class="form-control rounded-pill form-control-sm" min="1" max="100" [(ngModel)]="coronarographie.ContrasteDosimetrie.NombreImages">
               </div>
             </form>
           </div>
@@ -405,8 +397,7 @@
                     <form>
                       <div class="form-group">
                         <label for="type-lesion">Type :</label>
-                        <input type="text" id="type-lesion" name="type-lesion" [(ngModel)]="lesion.TypeLesion"
-                          class="form-control rounded-pill form-control-sm" required>
+                        <input type="text" id="type-lesion" name="type-lesion" [(ngModel)]="lesion.TypeLesion" class="form-control rounded-pill form-control-sm" required>
                       </div>
                       <div class="form-group">
                         <label for="degree-lesion">Degrée :</label>
@@ -457,7 +448,7 @@
                     <th scope="col">Segment</th>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let lesion of lesions">
+                    <tr *ngFor="let lesion of coronarographie.Lesions">
                       <td>{{lesion.TypeLesion}}</td>
                       <td>{{lesion.Degre}}</td>
                       <td>{{lesion.FluxTIMI}}</td>
