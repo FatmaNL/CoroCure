@@ -4,6 +4,10 @@ namespace CoroCure.Data.Entities
 {
     public class Lesion
     {
+        public Lesion()
+        {
+        }
+
         public Lesion(LesionDTO dto)
         {
             this.TypeLesion = dto.TypeLesion;

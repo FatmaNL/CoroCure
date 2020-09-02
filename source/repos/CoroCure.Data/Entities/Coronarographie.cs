@@ -6,6 +6,10 @@ namespace CoroCure.Data.Entities
 {
     public class Coronarographie : InterventionMedicale
     {
+        public Coronarographie()
+        {
+        }
+
         public Coronarographie(CoronarographieDTO dto)
         {
             this.Id = dto.Id;

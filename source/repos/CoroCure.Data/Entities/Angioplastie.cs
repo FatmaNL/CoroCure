@@ -8,6 +8,10 @@ namespace CoroCure.Data.Entities
 {
     public class Angioplastie : InterventionMedicale
     {
+        public Angioplastie()
+        {
+        }
+
         public Angioplastie(AngioplastieDTO dto)
         {
             this.PADiastolique = dto.PADiastolique;
