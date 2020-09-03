@@ -28,7 +28,7 @@ namespace CoroCure.Data.Entities
                 this.FacteursRisqueAntecedants = new FacteursRisqueAntecedants(dto.FacteursRisqueAntecedants);
             }
 
-            if (dto.Angioplastie != null)
+            if (dto.Angioplastie != null && !string.IsNullOrWhiteSpace(dto.Angioplastie.Nom))
             {
                 this.AngioplastieId = dto.Angioplastie.Id;
                 this.Angioplastie = new Angioplastie(dto.Angioplastie);
@@ -49,6 +49,24 @@ namespace CoroCure.Data.Entities
                     this.Lesions.Add(lesion);
                 }
             }
+
+            if(dto.Cardiologue != null)
+            {
+                this.CIN = dto.Cardiologue.CIN;
+            }
+
+            if (dto.Biologie != null)
+            {
+                this.BiologieId = null;
+
+                this.Biologie = new Biologie(dto.Biologie);
+                this.Biologie.InterventionMedicale = this;
+            }
+
+            if (dto.PatientId != 0)
+            {
+                this.PatientId = dto.PatientId;
+            }
         }
 
         public string Voie { get; set; }
@@ -57,13 +75,13 @@ namespace CoroCure.Data.Entities
         public string AutreMotif { get; set; }
         public double FeVG { get; set; }
 
-        public int FacteursRisqueAntecedantsId { get; set; }
+        public int? FacteursRisqueAntecedantsId { get; set; }
         public FacteursRisqueAntecedants FacteursRisqueAntecedants { get; set; }
 
-        public int AngioplastieId { get; set; }
+        public int? AngioplastieId { get; set; }
         public Angioplastie Angioplastie { get; set; }
 
-        public int ContrasteDosimetrieId { get; set; }
+        public int? ContrasteDosimetrieId { get; set; }
         public ContrasteDosimetrie ContrasteDosimetrie { get; set; }
 
         public List<Lesion> Lesions { get; set; }

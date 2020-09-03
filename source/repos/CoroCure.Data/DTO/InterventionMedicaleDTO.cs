@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CoroCure.Data.Entities;
 using Reinforced.Typings.Attributes;
 
 namespace CoroCure.Data.DTO
 {
     public abstract class InterventionMedicaleDTO
     {
+        public InterventionMedicaleDTO()
+        {
+        }
+
         public int Id { get; }
         public string Nom { get; set; }
         public int Numero { get; set; }

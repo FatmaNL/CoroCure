@@ -8,6 +8,7 @@ import { AngioplastieDTO } from './angioplastie.dto';
 import { ContrasteDosimetrieDTO } from './contraste-dosimetrie.dto';
 import { LesionDTO } from './lesion.dto';
 import { CardiologueDTO } from './cardiologue.dto';
+import { BiologieDTO } from './biologie.dto';
 
 export class CoronarographieDTO extends InterventionMedicaleDTO {
 
@@ -22,6 +23,7 @@ export class CoronarographieDTO extends InterventionMedicaleDTO {
     this.Angioplastie = new AngioplastieDTO();
     this.ContrasteDosimetrie = new ContrasteDosimetrieDTO();
     this.Lesions = new Array<LesionDTO>();
+    this.Biologie = new BiologieDTO();
   }
 
   public Voie: string;

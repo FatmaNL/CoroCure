@@ -5,9 +5,9 @@ namespace CoroCure.Data.DTO
     public class FacteursRisqueAntecedantsDTO
     {
         public int Id { get; set; }
-        public int Taille { get; set; }
+        public double Taille { get; set; }
         public int Poids { get; set; }
-        public int IMC { get; set; }
+        public double IMC { get; set; }
         public string Obesite { get; set; }
         public bool HTA { get; set; }
         public bool Diabete { get; set; }

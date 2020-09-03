@@ -6,7 +6,7 @@ namespace CoroCure.Data.DTO
     {
         public int Id { get; set; }
         public double Creatinine { get; set; }
-        public int CLCreatinine { get; set; }
+        public double CLCreatinine { get; set; }
         public string IRC { get; set; }
         public double Hemoglobine { get; set; }
         public int INR { get; set; }

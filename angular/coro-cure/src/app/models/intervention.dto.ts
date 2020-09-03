@@ -6,17 +6,16 @@ import { CardiologueDTO } from './cardiologue.dto';
 import { PatientDTO } from './patient.dto';
 import { BiologieDTO } from './biologie.dto';
 
-export abstract class InterventionMedicaleDTO
-{
- public Id: number;
- public Nom: string;
- public Numero: string;
- public Date: any;
- public estUrgente: boolean;
- public CIN: number;
- public Cardiologue: CardiologueDTO;
- public PatientId: number;
- public Patient: PatientDTO;
- public BiologieId: number;
- public Biologie: BiologieDTO;
+export abstract class InterventionMedicaleDTO {
+  public Id: number;
+  public Nom: string;
+  public Numero: number;
+  public Date: any;
+  public estUrgente: boolean;
+  public CIN: number;
+  public Cardiologue: CardiologueDTO;
+  public PatientId: number;
+  public Patient: PatientDTO;
+  public BiologieId: number;
+  public Biologie: BiologieDTO;
 }

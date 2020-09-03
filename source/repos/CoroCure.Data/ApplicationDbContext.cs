@@ -34,7 +34,7 @@ namespace CoroCure.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = "Server=127.0.0.1;Port=5432;Database=CoroCure;User Id=postgres;Password=0000;";
+            var connectionString = "Server=127.0.0.1;Port=5432;Database=CoroCure;User Id=postgres;Password=notasecret;";
             optionsBuilder.UseNpgsql(connectionString, m => m.MigrationsAssembly("CoroCure"));
 
             base.OnConfiguring(optionsBuilder);
@@ -45,7 +45,8 @@ namespace CoroCure.Data
             modelBuilder.Entity<Cardiologue>().ToTable("cardiologue").HasKey(pk => pk.CIN);
             //modelBuilder.Entity<Angioplastie>().ToTable("angioplastie");
             //modelBuilder.Entity<Ballon>().ToTable("ballon");
-            modelBuilder.Entity<Biologie>().ToTable("biologie").HasKey(pk => pk.Id);
+            //modelBuilder.Entity<Biologie>().ToTable("biologie").HasKey(pk => pk.Id);
+            //modelBuilder.Entity<Biologie>().Property(b => b.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Compte>().ToTable("compte").HasKey(pk => pk.Username);
             modelBuilder.Entity<ContrasteDosimetrie>().ToTable("contrasteDosimetrie").HasKey(pk => pk.Id);
             //modelBuilder.Entity<Coronarographie>().ToTable("coronarographie");
@@ -85,8 +86,7 @@ namespace CoroCure.Data
                         .HasOne(s => s.Compte)
                         .WithOne(ad => ad.Cardiologue)
                         .HasForeignKey<Compte>(ad => ad.CIN)
-                        .IsRequired()
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .IsRequired(false);
 
             /*modelBuilder.Entity<Compte>()
                         .HasOne(s => s.Cardiologue)
@@ -96,7 +96,8 @@ namespace CoroCure.Data
             modelBuilder.Entity<InterventionMedicale>()
                         .HasOne(s => s.Biologie)
                         .WithOne(ad => ad.InterventionMedicale)
-                        .HasForeignKey<InterventionMedicale>(ad => ad.BiologieId);
+                        .HasForeignKey<InterventionMedicale>(ad => ad.BiologieId)
+                        .IsRequired(false);
 
             modelBuilder.Entity<Coronarographie>()
                         .HasOne(s => s.FacteursRisqueAntecedants)
@@ -122,12 +123,14 @@ namespace CoroCure.Data
             modelBuilder.Entity<InterventionMedicale>()
             .HasOne(bc => bc.Cardiologue)
             .WithMany(b => b.InterventionMedicales)
-            .HasForeignKey(bc => bc.CIN);
+            .HasForeignKey(bc => bc.CIN)
+            .IsRequired(false);
 
             modelBuilder.Entity<InterventionMedicale>()
-            .HasOne(bc => bc.Patient)
-            .WithMany(b => b.InterventionMedicales)
-            .HasForeignKey(bc => bc.PatientId);
+             .HasOne(bc => bc.Patient)
+             .WithMany(b => b.InterventionMedicales)
+             .HasForeignKey(bc => bc.PatientId);
+
 
             modelBuilder.Entity<Lesion>()
             .HasOne(bc => bc.Coronarographie)
@@ -159,8 +162,6 @@ namespace CoroCure.Data
             .WithMany(b => b.Procedures)
             .HasForeignKey(bc => bc.AngioplastieId)
             .OnDelete(DeleteBehavior.Cascade);
-
-
         }
     }
 }

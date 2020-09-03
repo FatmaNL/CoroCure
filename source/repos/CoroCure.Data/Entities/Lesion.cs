@@ -13,9 +13,10 @@ namespace CoroCure.Data.Entities
             this.TypeLesion = dto.TypeLesion;
             this.Degre = dto.Degre;
             this.FluxTIMI = dto.FluxTIMI;
-            
+            this.DescriptionId = null;
+            this.Description = new Description() { Lesion = this, Segment = dto.Description.Segment };
+
             this.CoronarographieId = dto.CoronarographieId;
-            this.DescriptionId = dto.DescriptionId;
         }
 
         public int Id { get; set; }
@@ -24,7 +25,7 @@ namespace CoroCure.Data.Entities
         public int FluxTIMI { get; set; }
         public int CoronarographieId { get; set; }
         public Coronarographie Coronarographie { get; set; }
-        public int DescriptionId { get; set; }
+        public int? DescriptionId { get; set; }
         public Description Description { get; set; }
 
     }

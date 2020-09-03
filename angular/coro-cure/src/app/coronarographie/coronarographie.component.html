@@ -25,6 +25,7 @@
           </li>
         </ul>
         <div class="tab-content" style="margin-top: 40px;">
+          <!-- Main -->
           <div class="tab-pane fade show active" id="coronarographie" role="tabpanel"
             aria-labelledby="coronarographie-tab">
             <form class="interv-form">
@@ -49,15 +50,18 @@
               </div>
 
               <div class="form-group">
-                <label for="numDossier">Numéro dossier*:</label>
-                <input type="text" id="numDossier" name="numDossier" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.Numero" required>
+                <label for="numDossier">Numero Dossier*:</label>
+                <select name="numDossier" id="numDossier" class="form-control" [(ngModel)]="coronarographie.PatientId">
+                  <option disabled selected value> -- select -- </option>
+                  <option *ngFor="let patient of patients" [value]="patient.id">{{patient.id}} - {{patient.nom}} {{patient.prenom}}</option>
+                </select>
               </div>
 
               <div class="form-group">
                 <label for="cardiologue">Opérateur:</label>
                 <select name="cardiologue" id="cardiologue" class="form-control" [(ngModel)]="coronarographie.Cardiologue.CIN">
                   <option disabled selected value> -- select -- </option>
-                  <option *ngFor="let cardiologue of cardiologues" [value]="cardiologue.cin">{{cardiologue.cin}}</option>
+                  <option *ngFor="let cardiologue of cardiologues" [value]="cardiologue.cin">{{cardiologue.nom}} {{cardiologue.prenom}}</option>
                 </select>
               </div>
 
@@ -97,6 +101,8 @@
               </div>
             </form>
           </div>
+
+          <!-- Facteurs -->
           <div class="tab-pane fade" id="facteurs" role="tabpanel" aria-labelledby="facteurs-tab">
             <form class="interv-form">
               <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Facteurs :</h5>
@@ -104,272 +110,160 @@
               <div class="row">
                 <div class="col-3" style="min-width: 225px;">
                   <div class="form-group">
-                    <label for="taille">Taille (cm):</label>
-                    <input type="text" id="taille" name="taille" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.Taille">
+                    <label for="taille">Taille (m):</label>
+                    <input type="number" id="taille" name="taille" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.Taille">
                   </div>
                   <div class="form-group">
                     <label for="poids">Poids (kg):</label>
-                    <input type="text" id="poids" name="poids" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.Poids">
+                    <input type="number" id="poids" name="poids" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.Poids">
                   </div>
                   <div class="form-group">
                     <label for="imc">IMC:</label>
-                    <input type="texte" id="imc" name="imc" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.IMC" readonly>
+                    <input type="text" id="imc" name="imc" class="form-control rounded-pill form-control-sm" [value]="imc" readonly>
                   </div>
                   <div class="form-group">
                     <label for="obesite">Obesité:</label>
-                    <input type="text" id="obesite" name="obesite" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.Obesite" readonly>
+                    <input type="text" id="obesite" name="obesite" class="form-control rounded-pill form-control-sm" [value]="obesite" readonly>
                   </div>
 
-                  <div class="form-check">
-                    <input name="hta" class="form-check-input" type="checkbox" name="hta" value="coronarographie.FacteursRisqueAntecedants.HTA">
-                    <label class="form-check-label" for="hta"> HTA </label>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="diabete">Diabete:</label>
-                    <div class="row">
-                      <div class="col-sm-10">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="diabete" id="oui" value="oui">
-                          <label class="form-check-label" for="oui">
-                            Oui
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="diabete" id="non" value="non">
-                          <label class="form-check-label" for="non">
-                            Non
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                   <div class="form-group">
                     <label for="typeDiabete">Type Diabète:</label>
-                    <select name="typeDiabete" id="typeDiabete" class="form-control">
+                    <select name="typeDiabete" id="typeDiabete" class="form-control" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.TypeDiabete">
                       <option disabled selected value> -- select -- </option>
                       <option value="did">DID</option>
                       <option value="dnid">DNID</option>
                     </select>
                   </div>
+
                   <div class="form-group">
                     <label for="motif">Ancienete Diabète:</label>
-                    <input type="text" id="motif" name="motif" class="form-control rounded-pill form-control-sm">
+                    <input type="text" id="motif" name="motif" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.AncDiabete">
                   </div>
                 </div>
+
                 <div class="col-3" style="padding-left:50px; min-width: 250px;">
-                  <div class="form-group">
-                    <label for="tabac">Tabac:</label>
-                    <div class="row">
-                      <div class="col-sm-10">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="tabac" id="oui" value="oui">
-                          <label class="form-check-label" for="oui">
-                            Oui
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="tabac" id="non" value="non">
-                          <label class="form-check-label" for="non">
-                            Non
-                          </label>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="form-check">
+                    <input id="hta" class="form-check-input" type="checkbox" name="hta" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.HTA">
+                    <label class="form-check-label" for="hta"> HTA </label>
                   </div>
-                  <div class="form-group">
-                    <label for="dysplidemie">Dysplidémie:</label>
-                    <div class="row">
-                      <div class="col-sm-10">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="dysplidemie" id="oui" value="oui">
-                          <label class="form-check-label" for="oui">
-                            Oui
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="dysplidemie" id="non" value="non">
-                          <label class="form-check-label" for="non">
-                            Non
-                          </label>
-                        </div>
-                      </div>
-                    </div>
+
+                  <div class="form-check">
+                    <input id="diabete" class="form-check-input" type="checkbox" name="diabete" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.Diabete">
+                    <label class="form-check-label" for="diabete">Diabetes</label>
                   </div>
-                  <div class="form-group">
-                    <label for="ait">AIT:</label>
-                    <div class="row">
-                      <div class="col-sm-10">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="ait" id="oui" value="oui">
-                          <label class="form-check-label" for="oui">
-                            Oui
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="ait" id="non" value="non">
-                          <label class="form-check-label" for="non">
-                            Non
-                          </label>
-                        </div>
-                      </div>
-                    </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="tabac" id="tabac" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.Tabac">
+                    <label class="form-check-label" for="non">Tabac:</label>
                   </div>
-                  <div class="form-group">
-                    <label for="avcIschemique">AVC ischémique:</label>
-                    <div class="row">
-                      <div class="col-sm-10">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="avcIschemique" id="oui" value="oui">
-                          <label class="form-check-label" for="oui">
-                            Oui
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="avcIschemique" id="non" value="non">
-                          <label class="form-check-label" for="non">
-                            Non
-                          </label>
-                        </div>
-                      </div>
-                    </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="dysplidemie" id="dysplidemie" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.Dysplidemie">
+                    <label class="form-check-label" for="dysplidemie">Dysplidémie:</label>
                   </div>
-                  <div class="form-group">
-                    <label for="avcHemorragique">AVC hémorragique:</label>
-                    <div class="row">
-                      <div class="col-sm-10">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="avcHemorragique" id="oui" value="oui">
-                          <label class="form-check-label" for="oui">
-                            Oui
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="avcHemorragique" id="non" value="non">
-                          <label class="form-check-label" for="non">
-                            Non
-                          </label>
-                        </div>
-                      </div>
-                    </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="ait" id="ait" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.AIT">
+                    <label class="form-check-label" for="ait">AIT</label>
                   </div>
-                  <div class="form-group">
-                    <label for="atcdIdm">ATCD IDM:</label>
-                    <div class="row">
-                      <div class="col-sm-10">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="atcdIdm" id="oui" value="oui">
-                          <label class="form-check-label" for="oui">
-                            Oui
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="atcdIdm" id="non" value="non">
-                          <label class="form-check-label" for="non">
-                            Non
-                          </label>
-                        </div>
-                      </div>
-                    </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="avcIschemique" id="avcIschemique" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.AVCIsh">
+                    <label class="form-check-label" for="avcIschemique">AVC ischémique:</label>
                   </div>
-                  <div class="form-group">
-                    <label for="atcdAtl">ATCD ATL:</label>
-                    <div class="row">
-                      <div class="col-sm-10">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="atcdAtl" id="oui" value="oui">
-                          <label class="form-check-label" for="oui">
-                            Oui
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="atcdAtl" id="non" value="non">
-                          <label class="form-check-label" for="non">
-                            Non
-                          </label>
-                        </div>
-                      </div>
-                    </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="avcHemorragique" id="avcHemorragique" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.AVCHem">
+                    <label class="form-check-label" for="avcHemorragique">AVC hémorragique:</label>
                   </div>
-                  <div class="form-group">
-                    <label for="atcdPac">ATCD PAC:</label>
-                    <div class="row">
-                      <div class="col-sm-10">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="atcdPac" id="oui" value="oui">
-                          <label class="form-check-label" for="oui">
-                            Oui
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="atcdPac" id="non" value="non">
-                          <label class="form-check-label" for="non">
-                            Non
-                          </label>
-                        </div>
-                      </div>
-                    </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="atcdIdm" id="atcdIdm" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.ATCDIDM">
+                    <label class="form-check-label" for="atcdIdm">ATCD IDM:</label>
                   </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="atcdAtl" id="atcdAtl" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.ATCDATL">
+                    <label class="form-check-label" for="atcdAtl">ATCD ATL:</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="atcdPac" id="atcdPac" [(ngModel)]="coronarographie.FacteursRisqueAntecedants.ATCDPAC">
+                    <label class="form-check-label" for="atcdPac">ATCD PAC:</label>
+                  </div>
+
                 </div>
               </div>
             </form>
           </div>
-          <div class="tab-pane fade" id="contraste-dosimetrie" role="tabpanel"
-            aria-labelledby="contraste-dosimetrie-tab">
+
+          <!-- Contraste -->
+          <div class="tab-pane fade" id="contraste-dosimetrie" role="tabpanel" aria-labelledby="contraste-dosimetrie-tab">
             <form class="interv-form">
               <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Contraste et dosimétrie:</h5>
               <hr>
+
               <div class="form-group">
                 <label for="typePdc">Type PDC:</label>
                 <input type="text" id="typePdc" name="typePdc" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.ContrasteDosimetrie.TypePDC">
               </div>
+
               <div class="form-group">
                 <label for="quantitePdc">Quantité PDC:</label>
-                <input type="text" id="quantitePdc" name="quantitePdc" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.ContrasteDosimetrie.QtePDC">
+                <input type="number" id="quantitePdc" name="quantitePdc" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.ContrasteDosimetrie.QtePDC">
               </div>
+
               <div class="form-group">
                 <label for="quantitePds">Quantité PDS:</label>
-                <input type="text" id="quantitePds" name="quantitePds" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.ContrasteDosimetrie.QtePDS">
+                <input type="number" id="quantitePds" name="quantitePds" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.ContrasteDosimetrie.QtePDS">
               </div>
+
               <div class="form-group">
                 <label for="nombreImg">Nombre d'images:</label>
                 <input type="number" id="nombreImg" name="nombreImg" class="form-control rounded-pill form-control-sm" min="1" max="100" [(ngModel)]="coronarographie.ContrasteDosimetrie.NombreImages">
               </div>
             </form>
           </div>
+
+          <!-- Biologie -->
           <div class="tab-pane fade" id="biologie" role="tabpanel" aria-labelledby="biologie-tab">
             <form class="interv-form">
               <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Biologie:</h5>
               <hr>
+
               <div class="form-group">
                 <label for="creatinine">Créatinine:</label>
-                <input type="text" id="creatinine" name="creatinine" class="form-control rounded-pill form-control-sm">
+                <input type="number" id="creatinine" name="creatinine" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.Biologie.Creatinine">
               </div>
+
               <div class="form-group">
                 <label for="clCreatinine">CL créatinine (ml/min):</label>
-                <input type="text" id="clCreatinine" name="clCreatinine"
-                  class="form-control rounded-pill form-control-sm" readonly>
+                <input type="text" id="clCreatinine" name="clCreatinine" [value]="clCreatinine" class="form-control rounded-pill form-control-sm" readonly>
               </div>
+
               <div class="form-group">
                 <label for="irc">IRC:</label>
-                <input type="text" id="irc" name="irc" class="form-control rounded-pill form-control-sm" readonly>
+                <input type="number" min="0" max="100" id="irc" name="irc" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.Biologie.IRC">
               </div>
+
               <div class="form-group">
                 <label for="hemoglobine">Hemoglobine (gr/dl):</label>
-                <input type="text" id="hemoglobine" name="hemoglobine"
-                  class="form-control rounded-pill form-control-sm">
+                <input type="number" id="hemoglobine" name="hemoglobine" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.Biologie.Hemoglobine" >
               </div>
+
               <div class="form-group">
                 <label for="inr">INR:</label>
-                <input type="text" id="inr" name="inr" class="form-control rounded-pill form-control-sm">
+                <input type="text" id="inr" name="inr" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.Biologie.INR">
               </div>
+
               <div class="form-group">
                 <label for="picTroponine">Pic de troponine (us):</label>
-                <input type="text" id="picTroponine" name="picTroponine"
-                  class="form-control rounded-pill form-control-sm">
+                <input type="text" id="picTroponine" name="picTroponine" class="form-control rounded-pill form-control-sm" [(ngModel)]="coronarographie.Biologie.PicTroponine">
               </div>
             </form>
           </div>
+
+          <!-- Lesion -->
           <div class="tab-pane fade" id="lesion" role="tabpanel" aria-labelledby="lesion-tab">
             <div class="row">
               <div class="col-4">
@@ -420,7 +314,7 @@
                         </select>
                       </div>
                     </form>
-                    <a (click)="addLesion()" class="btn btn-primary">Go somewhere</a>
+                    <a (click)="addLesion()" class="btn btn-primary">Ajouter lesion</a>
                   </div>
                 </div>
               </div>
@@ -464,7 +358,7 @@
               </div>
             </div> -->
 
-            <div class="card"
+            <!-- <div class="card"
               style="margin-left: 10px; text-align: center; max-height: 150px; padding: 20px;  max-width: 300px;">
               <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Description:</h5>
               <hr>
@@ -472,7 +366,7 @@
                 data-target="#descriptionModal">
                 Schéma
               </button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

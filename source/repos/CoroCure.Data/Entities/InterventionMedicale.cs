@@ -14,12 +14,15 @@ namespace CoroCure.Data.Entities
         [Column("DateIntervention")]
         public DateTime Date { get; set; }
         public bool estUrgente { get; set; } // isUrgent()
-        public int CIN { get; set; }
+        
+        public int? CIN { get; set; }
         public Cardiologue Cardiologue { get; set; }
-        public int PatientId { get; set; }
-        public Patient Patient { get; set; }
-        public int BiologieId { get; set; }
-        public Biologie Biologie { get; set; }
+        
+        public int? PatientId { get; set; }
+        public virtual Patient Patient { get; set; }
+        
+        public int? BiologieId { get; set; }
+        public virtual Biologie Biologie { get; set; }
 
     }
 }

@@ -3,15 +3,17 @@ using System;
 using CoroCure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CoroCure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200903035138_fixing_navs")]
+    partial class fixing_navs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -429,16 +431,16 @@ namespace CoroCure.Migrations
                 {
                     b.HasBaseType("CoroCure.Data.Entities.InterventionMedicale");
 
-                    b.Property<int?>("AngioplastieId")
+                    b.Property<int>("AngioplastieId")
                         .HasColumnType("integer");
 
                     b.Property<string>("AutreMotif")
                         .HasColumnType("text");
 
-                    b.Property<int?>("ContrasteDosimetrieId")
+                    b.Property<int>("ContrasteDosimetrieId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("FacteursRisqueAntecedantsId")
+                    b.Property<int>("FacteursRisqueAntecedantsId")
                         .HasColumnType("integer");
 
                     b.Property<double>("FeVG")
@@ -604,15 +606,21 @@ namespace CoroCure.Migrations
                 {
                     b.HasOne("CoroCure.Data.Entities.Angioplastie", "Angioplastie")
                         .WithOne("Coronarographie")
-                        .HasForeignKey("CoroCure.Data.Entities.Coronarographie", "AngioplastieId");
+                        .HasForeignKey("CoroCure.Data.Entities.Coronarographie", "AngioplastieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CoroCure.Data.Entities.ContrasteDosimetrie", "ContrasteDosimetrie")
                         .WithOne("Coronarographie")
-                        .HasForeignKey("CoroCure.Data.Entities.Coronarographie", "ContrasteDosimetrieId");
+                        .HasForeignKey("CoroCure.Data.Entities.Coronarographie", "ContrasteDosimetrieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CoroCure.Data.Entities.FacteursRisqueAntecedants", "FacteursRisqueAntecedants")
                         .WithOne("Coronarographie")
-                        .HasForeignKey("CoroCure.Data.Entities.Coronarographie", "FacteursRisqueAntecedantsId");
+                        .HasForeignKey("CoroCure.Data.Entities.Coronarographie", "FacteursRisqueAntecedantsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CoroCure.Data.Entities.Ballon", b =>

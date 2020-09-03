@@ -1,9 +1,14 @@
 ﻿using System.Collections.Generic;
+using CoroCure.Data.Entities;
 
 namespace CoroCure.Data.DTO
 {
     public class CoronarographieDTO : InterventionMedicaleDTO
     {
+        public CoronarographieDTO()
+        {
+        }
+
         public string Voie { get; set; }
         public string Statut { get; set; }
         public string MotifPrinc { get; set; }
