@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
 })
 export class CoronarographieService {
 
-  private coronarographie: CoronarographieDTO;
   private endpoint: string;
 
   constructor(
@@ -19,8 +18,8 @@ export class CoronarographieService {
     this.endpoint = `${environment.endpoint}/coronarographie`;
   }
 
-  public add(): Observable<any> {
-    return this.httpClient.post(this.endpoint, this.coronarographie);
+  public add(coronarographie: CoronarographieDTO): Observable<any> {
+    return this.httpClient.post(this.endpoint, coronarographie);
   }
 
 }

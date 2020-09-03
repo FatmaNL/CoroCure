@@ -5,14 +5,21 @@
 import { CoronarographieDTO } from './coronarographie.dto';
 import { DescriptionDTO } from './description.dto';
 
-export class LesionDTO
-{
- public Id: number;
- public TypeLesion: string;
- public Degre: number;
- public FluxTIMI: number;
- public CoronarographieId: number;
- public Coronarographie: CoronarographieDTO;
- public DescriptionId: number;
- public Description: DescriptionDTO;
+export class LesionDTO {
+
+  /**
+   *
+   */
+  constructor() {
+    this.Description = new DescriptionDTO();
+  }
+
+  public Id: number;
+  public TypeLesion: string;
+  public Degre: number;
+  public FluxTIMI: number;
+  public CoronarographieId: number;
+  public Coronarographie: CoronarographieDTO;
+  public DescriptionId: number;
+  public Description: DescriptionDTO;
 }

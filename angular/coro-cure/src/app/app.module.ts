@@ -37,8 +37,8 @@ import { ExportationComponent } from './exportation/exportation.component';
     ReactiveFormsModule,
     NgxSpinnerModule,
     CommonModule,
-    BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

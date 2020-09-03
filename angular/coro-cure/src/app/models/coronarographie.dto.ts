@@ -7,19 +7,32 @@ import { FacteursRisqueAntecedantsDTO } from './facteurs.dto';
 import { AngioplastieDTO } from './angioplastie.dto';
 import { ContrasteDosimetrieDTO } from './contraste-dosimetrie.dto';
 import { LesionDTO } from './lesion.dto';
+import { CardiologueDTO } from './cardiologue.dto';
+import { BiologieDTO } from './biologie.dto';
 
-export class CoronarographieDTO extends InterventionMedicaleDTO
-{
- public Voie: string;
- public Statut: string;
- public MotifPrinc: string;
- public AutreMotif: string;
- public FeVG: number;
- public FacteursRisqueAntecedantsId: number;
- public FacteursRisqueAntecedants: FacteursRisqueAntecedantsDTO;
- public AngioplastieId: number;
- public Angioplastie: AngioplastieDTO;
- public ContrasteDosimetrieId: number;
- public ContrasteDosimetrie: ContrasteDosimetrieDTO;
- public Lesions: LesionDTO[];
+export class CoronarographieDTO extends InterventionMedicaleDTO {
+
+  /**
+   *
+   */
+  constructor() {
+    super();
+
+    this.Cardiologue = new CardiologueDTO();
+    this.FacteursRisqueAntecedants = new FacteursRisqueAntecedantsDTO();
+    this.Angioplastie = new AngioplastieDTO();
+    this.ContrasteDosimetrie = new ContrasteDosimetrieDTO();
+    this.Lesions = new Array<LesionDTO>();
+    this.Biologie = new BiologieDTO();
+  }
+
+  public Voie: string;
+  public Statut: string;
+  public MotifPrinc: string;
+  public AutreMotif: string;
+  public FeVG: number;
+  public FacteursRisqueAntecedants: FacteursRisqueAntecedantsDTO;
+  public Angioplastie: AngioplastieDTO;
+  public ContrasteDosimetrie: ContrasteDosimetrieDTO;
+  public Lesions: LesionDTO[];
 }

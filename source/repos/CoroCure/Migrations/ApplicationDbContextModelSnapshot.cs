@@ -26,8 +26,8 @@ namespace CoroCure.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("CLCreatinine")
-                        .HasColumnType("integer");
+                    b.Property<double>("CLCreatinine")
+                        .HasColumnType("double precision");
 
                     b.Property<double>("Creatinine")
                         .HasColumnType("double precision");
@@ -46,7 +46,7 @@ namespace CoroCure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("biologie");
+                    b.ToTable("Biologies");
                 });
 
             modelBuilder.Entity("CoroCure.Data.Entities.Cardiologue", b =>
@@ -168,8 +168,8 @@ namespace CoroCure.Migrations
                     b.Property<bool>("HTA")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("IMC")
-                        .HasColumnType("integer");
+                    b.Property<double>("IMC")
+                        .HasColumnType("double precision");
 
                     b.Property<string>("Obesite")
                         .HasColumnType("text");
@@ -180,8 +180,8 @@ namespace CoroCure.Migrations
                     b.Property<bool>("Tabac")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("Taille")
-                        .HasColumnType("integer");
+                    b.Property<double>("Taille")
+                        .HasColumnType("double precision");
 
                     b.Property<string>("TypeDiabete")
                         .HasColumnType("text");
@@ -198,10 +198,10 @@ namespace CoroCure.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("BiologieId")
+                    b.Property<int?>("BiologieId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CIN")
+                    b.Property<int?>("CIN")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("Date")
@@ -214,7 +214,7 @@ namespace CoroCure.Migrations
                     b.Property<int>("Numero")
                         .HasColumnType("integer");
 
-                    b.Property<int>("PatientId")
+                    b.Property<int?>("PatientId")
                         .HasColumnType("integer");
 
                     b.Property<string>("TypeIntervention")
@@ -251,7 +251,7 @@ namespace CoroCure.Migrations
                     b.Property<double>("Degre")
                         .HasColumnType("double precision");
 
-                    b.Property<int>("DescriptionId")
+                    b.Property<int?>("DescriptionId")
                         .HasColumnType("integer");
 
                     b.Property<int>("FluxTIMI")
@@ -429,16 +429,16 @@ namespace CoroCure.Migrations
                 {
                     b.HasBaseType("CoroCure.Data.Entities.InterventionMedicale");
 
-                    b.Property<int>("AngioplastieId")
+                    b.Property<int?>("AngioplastieId")
                         .HasColumnType("integer");
 
                     b.Property<string>("AutreMotif")
                         .HasColumnType("text");
 
-                    b.Property<int>("ContrasteDosimetrieId")
+                    b.Property<int?>("ContrasteDosimetrieId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("FacteursRisqueAntecedantsId")
+                    b.Property<int?>("FacteursRisqueAntecedantsId")
                         .HasColumnType("integer");
 
                     b.Property<double>("FeVG")
@@ -544,30 +544,22 @@ namespace CoroCure.Migrations
                 {
                     b.HasOne("CoroCure.Data.Entities.Cardiologue", "Cardiologue")
                         .WithOne("Compte")
-                        .HasForeignKey("CoroCure.Data.Entities.Compte", "CIN")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CoroCure.Data.Entities.Compte", "CIN");
                 });
 
             modelBuilder.Entity("CoroCure.Data.Entities.InterventionMedicale", b =>
                 {
                     b.HasOne("CoroCure.Data.Entities.Biologie", "Biologie")
                         .WithOne("InterventionMedicale")
-                        .HasForeignKey("CoroCure.Data.Entities.InterventionMedicale", "BiologieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CoroCure.Data.Entities.InterventionMedicale", "BiologieId");
 
                     b.HasOne("CoroCure.Data.Entities.Cardiologue", "Cardiologue")
                         .WithMany("InterventionMedicales")
-                        .HasForeignKey("CIN")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CIN");
 
                     b.HasOne("CoroCure.Data.Entities.Patient", "Patient")
                         .WithMany("InterventionMedicales")
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PatientId");
                 });
 
             modelBuilder.Entity("CoroCure.Data.Entities.Lesion", b =>
@@ -580,9 +572,7 @@ namespace CoroCure.Migrations
 
                     b.HasOne("CoroCure.Data.Entities.Description", "Description")
                         .WithOne("Lesion")
-                        .HasForeignKey("CoroCure.Data.Entities.Lesion", "DescriptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CoroCure.Data.Entities.Lesion", "DescriptionId");
                 });
 
             modelBuilder.Entity("CoroCure.Data.Entities.Materiel", b =>
@@ -614,21 +604,15 @@ namespace CoroCure.Migrations
                 {
                     b.HasOne("CoroCure.Data.Entities.Angioplastie", "Angioplastie")
                         .WithOne("Coronarographie")
-                        .HasForeignKey("CoroCure.Data.Entities.Coronarographie", "AngioplastieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CoroCure.Data.Entities.Coronarographie", "AngioplastieId");
 
                     b.HasOne("CoroCure.Data.Entities.ContrasteDosimetrie", "ContrasteDosimetrie")
                         .WithOne("Coronarographie")
-                        .HasForeignKey("CoroCure.Data.Entities.Coronarographie", "ContrasteDosimetrieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CoroCure.Data.Entities.Coronarographie", "ContrasteDosimetrieId");
 
                     b.HasOne("CoroCure.Data.Entities.FacteursRisqueAntecedants", "FacteursRisqueAntecedants")
                         .WithOne("Coronarographie")
-                        .HasForeignKey("CoroCure.Data.Entities.Coronarographie", "FacteursRisqueAntecedantsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CoroCure.Data.Entities.Coronarographie", "FacteursRisqueAntecedantsId");
                 });
 
             modelBuilder.Entity("CoroCure.Data.Entities.Ballon", b =>

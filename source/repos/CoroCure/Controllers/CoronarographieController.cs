@@ -37,7 +37,16 @@ namespace CoroCure.Controllers
         public ActionResult AddCoronarographie([FromBody] CoronarographieDTO dto)
         {
             var coronarographie = new Coronarographie(dto);
+
+            //var cardiologue = _context.Cardiologues.SingleOrDefault(c => c.CIN == dto.Cardiologue.CIN);
+            //var patient = _context.Patients.SingleOrDefault(p => p.Id == dto.PatientId);
+            
+            // coronarographie.Cardiologue = cardiologue;
+            //coronarographie.Patient = patient;
+            //coronarographie.PatientId = patient.Id;
+
             _context.Coronarographies.Add(coronarographie);
+            _context.SaveChanges();
 
             return Ok();
         }

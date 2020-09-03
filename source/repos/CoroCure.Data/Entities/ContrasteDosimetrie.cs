@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-using CoroCure.Data.DTO;
+﻿using CoroCure.Data.DTO;
 
 namespace CoroCure.Data.Entities
 {
@@ -10,6 +6,9 @@ namespace CoroCure.Data.Entities
     {
         private ContrasteDosimetrieDTO contrasteDosimetrie;
 
+        public ContrasteDosimetrie()
+        {
+        }
         public ContrasteDosimetrie(ContrasteDosimetrieDTO contrasteDosimetrie)
         {
             this.contrasteDosimetrie = contrasteDosimetrie;

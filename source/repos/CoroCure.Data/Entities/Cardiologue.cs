@@ -11,7 +11,6 @@ namespace CoroCure.Data.Entities
     {
         public Cardiologue()
         {
-
         }
 
         public Cardiologue(CardiologueDTO cardiologueDTO)
