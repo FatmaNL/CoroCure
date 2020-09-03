@@ -33,8 +33,10 @@ namespace CoroCure
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.AllowAnyOrigin()
-                        .AllowAnyHeader().AllowAnyMethod();
+                        builder.WithOrigins("http://localhost:4200")
+                               .AllowAnyHeader()
+                               .AllowAnyMethod()
+                               .AllowCredentials();
                     });
             });
 
@@ -48,7 +50,7 @@ namespace CoroCure
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
                     {
-                        options.ExpireTimeSpan = TimeSpan.FromSeconds(10);
+                        options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
                         options.LoginPath = string.Empty;
                         options.AccessDeniedPath = string.Empty;
                         options.ReturnUrlParameter = string.Empty;

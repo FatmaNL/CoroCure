@@ -12,12 +12,11 @@ import { AuthGuardService } from './auth-guard.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'welcome', component: WelcomeComponent/* , canActivate: [AuthGuardService] */ },
-  { path: 'patients', component: PatientComponent/* , canActivate: [AuthGuardService] */ },
-  { path: 'coronarographie', component: CoronarographieComponent /* , canActivate: [AuthGuardService] */},
-  { path: 'angioplastie', component: AngioplastieComponent },
-  { path: 'cardiologue', component: CardiologueComponent },
-  { path: 'exportation', component: ExportationComponent },
+  { path: 'patients', component: PatientComponent , canActivate: [AuthGuardService]  },
+  { path: 'coronarographie', component: CoronarographieComponent , canActivate: [AuthGuardService] },
+  { path: 'angioplastie', component: AngioplastieComponent, canActivate: [AuthGuardService] },
+  { path: 'cardiologue', component: CardiologueComponent, canActivate: [AuthGuardService] },
+  { path: 'exportation', component: ExportationComponent, canActivate: [AuthGuardService] },
 
   { path: '', redirectTo: 'patients', pathMatch: 'full' }
   //{path: '**', component: LoginComponent} //wildcard path

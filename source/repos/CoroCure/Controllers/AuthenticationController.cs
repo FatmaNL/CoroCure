@@ -52,6 +52,7 @@ namespace CoroCure.Controllers
         }
 
         [HttpGet("authorize")]
+        [Authorize] // retourne 401 si non authentifié
         public ActionResult Session()
         {
             return Ok();
