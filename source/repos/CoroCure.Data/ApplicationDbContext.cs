@@ -34,7 +34,7 @@ namespace CoroCure.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = "Server=127.0.0.1;Port=5432;Database=CoroCure;User Id=postgres;Password=notasecret;";
+            var connectionString = "Server=127.0.0.1;Port=5432;Database=CoroCure;User Id=postgres;Password=0000;";
             optionsBuilder.UseNpgsql(connectionString, m => m.MigrationsAssembly("CoroCure"));
 
             base.OnConfiguring(optionsBuilder);
