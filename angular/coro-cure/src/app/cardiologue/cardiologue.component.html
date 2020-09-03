@@ -69,37 +69,79 @@
           <div class="form-group">
             <label for="cin">CIN:</label>
             <input type="text" id="cin" name="cin" class="form-control rounded-pill form-control-lg"
-              [(ngModel)]="cardiologue.cin">
+              [(ngModel)]="cardiologue.cin" required #cin="ngModel">
+              <div *ngIf="cin.invalid && (cin.dirty || cin.touched)"
+                class="alert alert-danger">
+                  <div *ngIf="cin.errors.required">
+                    CIN est obligatoire.
+                  </div>
+                </div>
           </div>
           <div class="form-group">
             <label for="nom">Nom:</label>
             <input type="text" id="nom" name="nom" class="form-control rounded-pill form-control-lg"
-              [(ngModel)]="cardiologue.nom">
+              [(ngModel)]="cardiologue.nom" required #nom="ngModel">
+              <div *ngIf="nom.invalid && (nom.dirty || nom.touched)"
+                class="alert alert-danger">
+                  <div *ngIf="nom.errors.required">
+                    Nom est obligatoire.
+                  </div>
+                </div>
           </div>
           <div class="form-group">
             <label for="prenom">Prénom:</label>
             <input type="text" id="prenom" name="prenom" class="form-control rounded-pill form-control-lg"
-              [(ngModel)]="cardiologue.prenom">
+              [(ngModel)]="cardiologue.prenom" required #prenom="ngModel">
+              <div *ngIf="prenom.invalid && (prenom.dirty || prenom.touched)"
+                class="alert alert-danger">
+                  <div *ngIf="prenom.errors.required">
+                    Prénom est obligatoire.
+                  </div>
+                </div>
           </div>
           <div class="form-group">
             <label for="qualification">Qualification:</label>
             <input type="text" id="qualification" name="qualification" class="form-control rounded-pill form-control-lg"
-              [(ngModel)]="cardiologue.qualification">
+              [(ngModel)]="cardiologue.qualification" required #qualification="ngModel">
+              <div *ngIf="qualification.invalid && (qualification.dirty || qualification.touched)"
+                class="alert alert-danger">
+                  <div *ngIf="qualification.errors.required">
+                    Qualification est obligatoire.
+                  </div>
+                </div>
           </div>
           <div class="form-group">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" class="form-control rounded-pill form-control-lg"
-              [(ngModel)]="cardiologue.username">
+              [(ngModel)]="cardiologue.username" required #username="ngModel">
+              <div *ngIf="username.invalid && (username.dirty || username.touched)"
+                class="alert alert-danger">
+                  <div *ngIf="username.errors.required">
+                    Username est obligatoire.
+                  </div>
+                </div>
           </div>
           <div class="form-group">
             <label for="password">Password:</label>
             <input type="text" id="password" name="password" class="form-control rounded-pill form-control-lg"
-              [(ngModel)]="cardiologue.password">
+              [(ngModel)]="cardiologue.password" required #password="ngModel">
+              <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                class="alert alert-danger">
+                  <div *ngIf="password.errors.required">
+                    Password est obligatoire.
+                  </div>
+                </div>
           </div>
           <div class="form-group">
             <label for="role">Role:</label>
             <input type="text" id="role" name="role" class="form-control rounded-pill form-control-lg"
-              [(ngModel)]="cardiologue.role">
+              [(ngModel)]="cardiologue.role" required #role="ngModel">
+              <div *ngIf="role.invalid && (role.dirty || role.touched)"
+                class="alert alert-danger">
+                  <div *ngIf="role.errors.required">
+                    Role est obligatoire.
+                  </div>
+                </div>
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-custom rounded-pill">Enregistrer</button>
