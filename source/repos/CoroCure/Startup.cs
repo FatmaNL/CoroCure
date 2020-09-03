@@ -1,4 +1,7 @@
+using System;
+using System.Threading.Tasks;
 using CoroCure.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -39,6 +42,35 @@ namespace CoroCure
 
             services.AddControllers()
                 .AddNewtonsoftJson();
+
+            services.AddHttpContextAccessor();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(options =>
+                    {
+                        options.ExpireTimeSpan = TimeSpan.FromSeconds(10);
+                        options.LoginPath = string.Empty;
+                        options.AccessDeniedPath = string.Empty;
+                        options.ReturnUrlParameter = string.Empty;
+                        options.LogoutPath = string.Empty;
+                        options.Cookie.HttpOnly = false;
+                        options.Events.OnSignedIn = context =>
+                        {
+                            context.Response.StatusCode = 200;
+                            return Task.CompletedTask;
+                        };
+                        options.Events.OnRedirectToLogin = context =>
+                        {
+                            context.Response.StatusCode = 401;
+                            return Task.CompletedTask;
+                        };
+                    });
+
+            services.AddDistributedMemoryCache();
+
+            services.AddAuthorization();
+
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,11 +83,17 @@ namespace CoroCure
 
             // app.UseHttpsRedirection();
 
+            app.UseAuthentication();
+
+            app.UseCookiePolicy();
+
             app.UseRouting();
 
-            app.UseCors();
-
             app.UseAuthorization();
+
+            app.UseSession();
+
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {

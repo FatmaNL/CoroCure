@@ -17,6 +17,8 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ExportationComponent } from './exportation/exportation.component';
+import { AuthGuardService } from './auth-guard.service';
+import { AuthenticationService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,7 @@ import { ExportationComponent } from './exportation/exportation.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [AuthGuardService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

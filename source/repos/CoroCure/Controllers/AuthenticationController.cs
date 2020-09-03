@@ -1,40 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using CoroCure.Data;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoroCure.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext dbContext;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public AuthenticationController(ApplicationDbContext context)
+        public AuthenticationController(ApplicationDbContext dbContext, IHttpContextAccessor httpContextAccessor)
         {
-           _context = context;
+            this.dbContext = dbContext;
+            this.httpContextAccessor = httpContextAccessor;
         }
 
-        [HttpPost]
-        public ActionResult Login(string username, string password)
+        [HttpPost("signin")]
+        [Consumes("application/x-www-form-urlencoded")]
+        [AllowAnonymous]
+        public async Task<ActionResult> Login([FromForm] string username, [FromForm] string password)
         {
-            var compte = _context.Comptes.Where(c => c.Username == username && c.Password == password).SingleOrDefault();
-            if (compte == null)
-            {
-                return Forbid();
-            }
-            //start http session
-            return Ok();
+            var cardiologue = dbContext.Comptes.Where(c => c.Username == username && c.Password == password)
+                                               .SingleOrDefault();
+
+            if (cardiologue == null)
+                return new UnauthorizedResult();
+
+            var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+            identity.AddClaim(new Claim("username-claim", username));
+            var claims = new ClaimsPrincipal();
+            claims.AddIdentity(identity);
+
+            await httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claims);
+            /*var httpSession = httpContextAccessor.HttpContext.Session;
+            httpSession.SetString("username", username);*/
+
+            return new OkResult();
         }
 
-        [HttpPost]
-        public ActionResult Logout()
+        [HttpPost("signout")]
+        public async Task Logout()
         {
-            // supprimer session http
+            await httpContextAccessor.HttpContext.SignOutAsync();
+        }
+
+        [HttpGet("authorize")]
+        public ActionResult Session()
+        {
             return Ok();
         }
     }

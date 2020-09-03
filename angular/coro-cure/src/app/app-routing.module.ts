@@ -6,15 +6,16 @@ import { AngioplastieComponent } from './angioplastie/angioplastie.component';
 import { CoronarographieComponent } from './coronarographie/coronarographie.component';
 import { CardiologueComponent } from './cardiologue/cardiologue.component';
 import { ExportationComponent } from './exportation/exportation.component';
+import { AuthGuardService } from './auth-guard.service';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'patients', component: PatientComponent },
-  { path: 'coronarographie', component: CoronarographieComponent },
+  { path: 'patients', component: PatientComponent/* , canActivate: [AuthGuardService] */ },
+  { path: 'coronarographie', component: CoronarographieComponent /* , canActivate: [AuthGuardService] */},
   { path: 'angioplastie', component: AngioplastieComponent },
   { path: 'cardiologue', component: CardiologueComponent },
-  { path: 'exportation', component: ExportationComponent }, 
+  { path: 'exportation', component: ExportationComponent },
 
   { path: '', redirectTo: 'patients', pathMatch: 'full' }
   //{path: '**', component: LoginComponent} //wildcard path

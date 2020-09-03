@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthGuardService } from './auth-guard.service';
 
 @Component({
   selector: 'pm-root',
