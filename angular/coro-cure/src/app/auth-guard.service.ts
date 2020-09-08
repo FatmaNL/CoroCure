@@ -12,10 +12,10 @@ export class AuthGuardService implements CanActivate {
     return new Observable<boolean>(o => {
       this.authService.Authorize().toPromise()
       .then(
-        () => {o.next(true); }
+        () => {o.next(true); this.authService.loggedIn.next(true); }
       )
       .catch(
-        () => { console.log('unauthorized'); this.router.navigate(['/login']); o.next(false); }
+        () => { console.log('unauthorized'); this.router.navigate(['/login']); o.next(false); this.authService.loggedIn.next(false); }
       );
     });
 

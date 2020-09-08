@@ -15,7 +15,7 @@ export class PatientService {
   constructor(private http: HttpClient) { }
 
   getPatients(): Observable<TabPatient[]> {
-    return this.http.get<TabPatient[]>(this.patientUrl)
+    return this.http.get<TabPatient[]>(this.patientUrl, {withCredentials: true})
       .pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),
         catchError(this.handleError)

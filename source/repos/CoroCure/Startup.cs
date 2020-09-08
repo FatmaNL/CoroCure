@@ -33,7 +33,7 @@ namespace CoroCure
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200")
+                        builder.WithOrigins("http://localhost:4200", "http://localhost:8200")
                                .AllowAnyHeader()
                                .AllowAnyMethod()
                                .AllowCredentials();
@@ -55,7 +55,7 @@ namespace CoroCure
                         options.AccessDeniedPath = string.Empty;
                         options.ReturnUrlParameter = string.Empty;
                         options.LogoutPath = string.Empty;
-                        options.Cookie.HttpOnly = false;
+                        options.Cookie.HttpOnly = true;
                         options.Events.OnSignedIn = context =>
                         {
                             context.Response.StatusCode = 200;

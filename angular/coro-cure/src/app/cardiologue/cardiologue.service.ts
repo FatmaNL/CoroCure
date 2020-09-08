@@ -9,13 +9,13 @@ import { catchError, tap } from 'rxjs/operators';
 )
 
 export class CardiologueService{
-    private cardiologueUrl='http://localhost:5000/api/Cardiologue';
+    private cardiologueUrl= 'http://localhost:5000/api/Cardiologue';
     // private cardiologueUrl='assets/cardiologue.json';
 
   constructor(private http: HttpClient) { }
 
   getCardiologues(): Observable<TabCardiologue[]> {
-    return this.http.get<TabCardiologue[]>(this.cardiologueUrl)
+    return this.http.get<TabCardiologue[]>(this.cardiologueUrl, {withCredentials: true})
       .pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),
         catchError(this.handleError)
@@ -23,25 +23,25 @@ export class CardiologueService{
   }
 
   getCardiologue(cin: number): Observable<TabCardiologue | undefined> {
-    return this.http.get<TabCardiologue>(`${this.cardiologueUrl}/${cin}`);
+    return this.http.get<TabCardiologue>(`${this.cardiologueUrl}/${cin}`, {withCredentials: true});
   }
 
   deleteCardiologue(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.cardiologueUrl}/${id}`)
+    return this.http.delete<void>(`${this.cardiologueUrl}/${id}`, {withCredentials: true})
       .pipe(
         catchError(this.handleError)
       );
   }
 
   addCardiologue(newCardiologue: TabCardiologue): Observable<TabCardiologue> {
-    return this.http.post<TabCardiologue>(this.cardiologueUrl, newCardiologue)
+    return this.http.post<TabCardiologue>(this.cardiologueUrl, newCardiologue, {withCredentials: true})
       .pipe(
         catchError(this.handleError)
       );
   }
 
   updateCardiologue(updatedCardiologue: TabCardiologue) {
-    return this.http.put<void>(`${this.cardiologueUrl}/${updatedCardiologue.cin}`, updatedCardiologue);
+    return this.http.put<void>(`${this.cardiologueUrl}/${updatedCardiologue.cin}`, updatedCardiologue, {withCredentials: true});
   }
 
       /*updateCardiologue(updatedCardiologue: TabCardiologue) {

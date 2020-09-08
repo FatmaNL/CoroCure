@@ -25,7 +25,7 @@ namespace CoroCure.Data.Entities
             this.Compte.CIN = cardiologueDTO.CIN;
             this.Compte.Username = cardiologueDTO.Username;
             this.Compte.Password = cardiologueDTO.Password;
-            this.Compte.Role = cardiologueDTO.Role;
+            this.Compte.Roles = cardiologueDTO.Roles;
         }
 
         public int CIN { get; set; }

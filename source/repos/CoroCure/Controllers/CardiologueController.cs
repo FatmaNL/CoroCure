@@ -1,11 +1,11 @@
-﻿using CoroCure.Data;
+﻿using System.Collections.Generic;
+using System.Linq;
+using CoroCure.Data;
 using CoroCure.Data.DTO;
 using CoroCure.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mime;
 
 namespace CoroCure.Controllers
 {
@@ -22,12 +22,14 @@ namespace CoroCure.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin")] 
         public List<CardiologueDTO> Get()
         {
             return _context.Cardiologues.Include( c => c.Compte).Select(c => new CardiologueDTO(c)).ToList();
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public Cardiologue GetCardiologue(int id)
         {
             return _context.Cardiologues.Where(c => c.CIN == id).SingleOrDefault();

@@ -1,8 +1,4 @@
 ﻿using CoroCure.Data.Entities;
-using Reinforced.Typings.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CoroCure.Data.DTO
 {
@@ -20,7 +16,7 @@ namespace CoroCure.Data.DTO
             Qualification = c.Qualificaction;
             Username = c.Compte.Username;
             Password = c.Compte.Password;
-            Role = c.Compte.Role;
+            Roles = c.Compte.Roles;
         }
 
         public int CIN { get; set; }
@@ -29,9 +25,7 @@ namespace CoroCure.Data.DTO
         public string Qualification { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public string Role { get; set; }
-        
-
+        public string Roles { get; set; }
     }
 
 }

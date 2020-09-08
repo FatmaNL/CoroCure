@@ -1,32 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
 import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { CompteDTO } from './models/compte.dto';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthenticationService {
   private endpoint: string;
 
-  constructor(
-    private httpClient: HttpClient
-  ) {
+  public compte = new BehaviorSubject<CompteDTO>(null);
+
+  public loggedIn = new BehaviorSubject<boolean>(false);
+
+  constructor(private httpClient: HttpClient) {
     this.endpoint = `${environment.endpoint}/authentication`;
   }
-  public SignIn(username: string, password: string): Observable<HttpResponse<any>> {
+
+  public SignIn(username: string, password: string): Observable<HttpResponse<CompteDTO>> {
     const payload = new HttpParams()
       .set('username', username)
       .set('password', password);
 
-    return this.httpClient.post<HttpResponse<any>>(`${this.endpoint}/signin`, payload, {withCredentials: true});
+    return this.httpClient.post<CompteDTO>(`${this.endpoint}/signin`, payload, {withCredentials: true, observe: 'response'});
   }
 
   public SignOut(): Observable<HttpResponse<any>> {
-    return this.httpClient.post<HttpResponse<any>>(`${this.endpoint}/signout`, null, {withCredentials: true});
+    return this.httpClient.post<HttpResponse<any>>(`${this.endpoint}/signout`, null, {withCredentials: true, observe: 'response'});
   }
 
   public Authorize(): Observable<HttpResponse<any>> {
-    return this.httpClient.get<HttpResponse<any>>(`${this.endpoint}/authorize`, {withCredentials: true});
+    return this.httpClient.get<HttpResponse<any>>(`${this.endpoint}/authorize`, {withCredentials: true, observe: 'response'});
   }
 
 }

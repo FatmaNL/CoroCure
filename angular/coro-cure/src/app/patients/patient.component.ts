@@ -15,8 +15,8 @@ export class PatientComponent implements OnInit {
     patient: TabPatient = new TabPatient();
     selectedPatient: TabPatient;
 
-    @ViewChild("dismissUpdateDialog") dismissUpdateDialog: ElementRef;
-    @ViewChild("dismissCreateDialog") dismissCreateDialog: ElementRef;
+    @ViewChild('dismissUpdateDialog') dismissUpdateDialog: ElementRef;
+    @ViewChild('dismissCreateDialog') dismissCreateDialog: ElementRef;
 
     constructor(private patientservice: PatientService, private spinner: NgxSpinnerService) {
     }

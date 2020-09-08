@@ -5,6 +5,8 @@ using System.Net.Mime;
 using System.Threading.Tasks;
 using CoroCure.Data;
 using CoroCure.Data.Entities;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +26,7 @@ namespace CoroCure.Controllers
 
 
         [HttpGet]
+        [Authorize]
         public List<Patient> Get()
         {
             return _context.Patients.ToList();
