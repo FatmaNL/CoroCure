@@ -4,6 +4,7 @@ import { CardiologueService } from './cardiologue.service';
 import { __assign } from 'tslib';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgForm, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cardiologue',
@@ -20,7 +21,10 @@ export class CardiologueComponent implements OnInit {
   @ViewChild('dismissUpdateDialog') dismissUpdateDialog: ElementRef;
   @ViewChild('cardiologueForm') formAjouter: ElementRef;
 
-  constructor(private cardiologueservice: CardiologueService, private spinner: NgxSpinnerService) { }
+  constructor(
+    private cardiologueservice: CardiologueService,
+    private spinner: NgxSpinnerService,
+    private toast: ToastrService) { }
 
   ngOnInit(): void {
     this.getCardiologues();
@@ -44,10 +48,11 @@ export class CardiologueComponent implements OnInit {
   deleteCardiologue(id: number): void {
     this.cardiologueservice.deleteCardiologue(id).subscribe(
       (data: void) => {
-        let index: number = this.cardiologues.findIndex(c => c.cin == id);
+        let index: number = this.cardiologues.findIndex(c => c.cin === id);
         this.cardiologues.splice(index, 1);
+        this.toast.success(`Cardiologue ${id} à été supprimé`);
       },
-      (err: any) => console.log(err)
+      (err: any) => { console.log(err); this.toast.error('La suppression de cardiologue a échouée'); }
     );
   }
 

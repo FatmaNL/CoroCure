@@ -10,6 +10,7 @@ import { CardiologueDTO } from '../models/cardiologue.dto';
 import { CoronarographieService } from './coronarographie.service';
 import { TabPatient } from '../patients/patient';
 import { PatientService } from '../patients/patient.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-coronarographie',
@@ -34,6 +35,7 @@ export class CoronarographieComponent implements OnInit {
     private cardiologueservice: CardiologueService,
     private patientService: PatientService,
     private spinner: NgxSpinnerService,
+    private toast: ToastrService,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace CoroCure.Controllers
 {
@@ -19,7 +20,7 @@ namespace CoroCure.Controllers
     public class PatientController : ControllerBase
     {
         private ApplicationDbContext _context;
-        public PatientController (ApplicationDbContext context)
+        public PatientController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -61,15 +62,30 @@ namespace CoroCure.Controllers
             _context.SaveChanges();
 
             return Ok();
-        } 
+        }
 
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
-            var dbPatient = _context.Patients.Where(c => c.Id == id).SingleOrDefault();
-            _context.Patients.Remove(dbPatient);
-            _context.SaveChanges();
+            try
+            {
+                var dbPatient = _context.Patients.Where(c => c.Id == id).SingleOrDefault();
+                _context.Patients.Remove(dbPatient);
+                _context.SaveChanges();
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                if(ex.InnerException != null && ex.InnerException is PostgresException)
+                {
+                    var pEx = ex.InnerException as PostgresException;
+                    return BadRequest(pEx.Detail);
+                }
+        
+                return BadRequest("Suppression de patient échouée");
+            }
 
         }
 
@@ -77,5 +93,5 @@ namespace CoroCure.Controllers
 
     }
 
-    
+
 }

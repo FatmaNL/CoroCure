@@ -20,7 +20,7 @@
             <td>{{ex.cardiologue}}</td>
 
             <td>
-              <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" (click)="export(ex.numeroDossier,ex.numeroIntervention)" type="submit" data-toggle="modal"
+              <button class="btn my-2 my-sm-0 btn-search rounded-pill btn-xs" (click)="exportPdf(ex.numeroDossier,ex.numeroIntervention)" type="submit" data-toggle="modal"
               data-target="#modal-exporter">
                 Exporter
               </button>
@@ -31,6 +31,6 @@
     </div>
   </div>
 
-  <div style="text-align: center; margin-top: 25px; margin-bottom: 25px; padding: 50px;">
-    <button type="submit" class="btn btn-custom">Exporter Tableau</button>
+  <div style="text-align: center; margin-top: 25px; margin-bottom: 25px; padding: 50px;" *ngIf="(role | async) == 'Cardiologue Chercheur'">
+    <button type="submit" class="btn btn-custom" (click)="exportXls()">Exportation de donnees</button>
   </div>

@@ -37,5 +37,10 @@ namespace CoroCure.Data.Entities
         //[ForeignKey("Username")]
         public Compte Compte { get; set; }
         public List<InterventionMedicale> InterventionMedicales { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Nom} {Prenom} (CIN: {CIN})";
+        }
     }
 }

@@ -23,12 +23,20 @@ export class ExportationService {
     return this.httpClient.get<ExportationDTO[]>(this.endpoint);
   }
 
-  public export(patientId: number, interventionId: number): Observable<any> {
+  public exportPdf(patientId: number, interventionId: number): Observable<any> {
     const httpOptions = {
       responseType: 'blob' as 'json'
     };
 
-    return this.httpClient.get(this.endpoint + '/' + patientId + '/' + interventionId, httpOptions);
+    return this.httpClient.get(this.endpoint + '/pdf/' + patientId + '/' + interventionId, httpOptions);
+  }
+
+  public exportXls(): Observable<any> {
+    const httpOptions = {
+      responseType: 'blob' as 'json'
+    };
+
+    return this.httpClient.get(this.endpoint + '/excel', httpOptions);
   }
 
 }
