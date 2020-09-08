@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace CoroCure.Controllers
 {
@@ -53,15 +54,16 @@ namespace CoroCure.Controllers
             var principal = new ClaimsPrincipal(identity);
 
             await httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-            /*var httpSession = httpContextAccessor.HttpContext.Session;
-            httpSession.SetString("username", username);*/
-
+            
             var dto = new CompteDTO
             {
                 Username = compte.Username,
                 FullName = $"{compte.Cardiologue.Nom} {compte.Cardiologue.Prenom}",
                 Roles = compte.Roles.Split(',')
             };
+
+            var httpSession = httpContextAccessor.HttpContext.Session;
+            httpSession.SetString("compte", JsonConvert.SerializeObject(dto));
 
             return new OkObjectResult(dto);
         }
@@ -76,7 +78,13 @@ namespace CoroCure.Controllers
         [Authorize] // retourne 401 si non authentifié
         public ActionResult Session()
         {
-            return Ok();
+            var httpSession = httpContextAccessor.HttpContext.Session;
+            var compteJson = httpSession.GetString("compte");
+            var compteDTO = JsonConvert.DeserializeObject<CompteDTO>(compteJson);
+            if (compteDTO == null)
+                return Unauthorized();
+
+            return Ok(compteDTO);
         }
     }
 }

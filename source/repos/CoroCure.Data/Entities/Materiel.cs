@@ -16,6 +16,7 @@ namespace CoroCure.Data.Entities
         public string CGReseauD { get; set; }
 
         public string Pontage{ get; set; }
+
         public Angioplastie Angioplastie { get; set; }
         
     }

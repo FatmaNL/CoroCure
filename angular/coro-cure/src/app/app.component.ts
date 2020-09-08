@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
   title = 'coro-cure';
   public userFullName: Observable<string>;
 
+  public role: Observable<string>;
+
   public isLoggedIn$: Observable<boolean>;
 
   constructor(private router: Router, private spinner: NgxSpinnerService, private authService: AuthenticationService) {
@@ -45,6 +47,7 @@ export class AppComponent implements OnInit {
       next: (data) => {
         if (data !== null) {
           this.userFullName = of(data.fullName);
+          this.role = of(data.roles);
         }
         else {
           this.userFullName = of('Test test');
@@ -58,5 +61,4 @@ export class AppComponent implements OnInit {
       next: () => { this.router.navigate(['/login']); },
       error: () => { } });
   }
-
 }

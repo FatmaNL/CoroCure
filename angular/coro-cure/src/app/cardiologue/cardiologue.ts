@@ -11,5 +11,5 @@ export class TabCardiologue {
         //compte:
         public username: string;
         public password: string;
-        public role: string
+        public roles: string;
 }

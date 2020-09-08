@@ -14,7 +14,7 @@ namespace CoroCure.Data.Entities
         public int TIMIFinal { get; set; }
 
         public string Resultat { get; set; }
-        public int AngioplastieId { get; set; }
+        public int? AngioplastieId { get; set; }
         public Angioplastie Angioplastie { get; set; }
         public List<Stent> Stents { get; set; }
         public List<Ballon> Ballons { get; set; }

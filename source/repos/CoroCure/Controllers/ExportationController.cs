@@ -147,7 +147,13 @@ namespace CoroCure.Controllers
                         }
                         document.Add(p);
                     }    
-                }
+                
+                    if(intervention is Angioplastie)
+                    {
+
+                    }
+
+                    }
                 
                 document.Close();
             }

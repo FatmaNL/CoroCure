@@ -7,15 +7,22 @@ import { PatientDTO } from './patient.dto';
 import { BiologieDTO } from './biologie.dto';
 
 export abstract class InterventionMedicaleDTO {
-  public Id: number;
-  public Nom: string;
-  public Numero: number;
-  public Date: any;
+
+  /**
+   *
+   */
+  constructor() {
+    this.cardiologue = new CardiologueDTO();
+  }
+  public id: number;
+  public nom: string;
+  public numero: number;
+  public date: any;
   public estUrgente: boolean;
-  public CIN: number;
-  public Cardiologue: CardiologueDTO;
-  public PatientId: number;
-  public Patient: PatientDTO;
-  public BiologieId: number;
-  public Biologie: BiologieDTO;
+  public cin: number;
+  public cardiologue: CardiologueDTO;
+  public patientId: number;
+  public patient: PatientDTO;
+  public biologieId: number;
+  public biologie: BiologieDTO;
 }

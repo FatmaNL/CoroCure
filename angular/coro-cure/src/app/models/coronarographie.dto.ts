@@ -18,21 +18,21 @@ export class CoronarographieDTO extends InterventionMedicaleDTO {
   constructor() {
     super();
 
-    this.Cardiologue = new CardiologueDTO();
-    this.FacteursRisqueAntecedants = new FacteursRisqueAntecedantsDTO();
-    this.Angioplastie = new AngioplastieDTO();
-    this.ContrasteDosimetrie = new ContrasteDosimetrieDTO();
-    this.Lesions = new Array<LesionDTO>();
-    this.Biologie = new BiologieDTO();
+    this.cardiologue = new CardiologueDTO();
+    this.facteursRisqueAntecedants = new FacteursRisqueAntecedantsDTO();
+    this.angioplastie = new AngioplastieDTO();
+    this.contrasteDosimetrie = new ContrasteDosimetrieDTO();
+    this.lesions = new Array<LesionDTO>();
+    this.biologie = new BiologieDTO();
   }
 
-  public Voie: string;
-  public Statut: string;
-  public MotifPrinc: string;
-  public AutreMotif: string;
-  public FeVG: number;
-  public FacteursRisqueAntecedants: FacteursRisqueAntecedantsDTO;
-  public Angioplastie: AngioplastieDTO;
-  public ContrasteDosimetrie: ContrasteDosimetrieDTO;
-  public Lesions: LesionDTO[];
+  public voie: string;
+  public statut: string;
+  public motifPrinc: string;
+  public autreMotif: string;
+  public feVG: number;
+  public facteursRisqueAntecedants: FacteursRisqueAntecedantsDTO;
+  public angioplastie: AngioplastieDTO;
+  public contrasteDosimetrie: ContrasteDosimetrieDTO;
+  public lesions: LesionDTO[];
 }

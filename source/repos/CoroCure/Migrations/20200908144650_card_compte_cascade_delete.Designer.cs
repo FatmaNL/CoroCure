@@ -3,15 +3,17 @@ using System;
 using CoroCure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CoroCure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200908144650_card_compte_cascade_delete")]
+    partial class card_compte_cascade_delete
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -345,7 +347,7 @@ namespace CoroCure.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("AngioplastieId")
+                    b.Property<int>("AngioplastieId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Resultat")
@@ -589,7 +591,8 @@ namespace CoroCure.Migrations
                     b.HasOne("CoroCure.Data.Entities.Angioplastie", "Angioplastie")
                         .WithMany("Procedures")
                         .HasForeignKey("AngioplastieId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CoroCure.Data.Entities.Traitement", b =>

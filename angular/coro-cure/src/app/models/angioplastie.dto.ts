@@ -7,22 +7,28 @@ import { CoronarographieDTO } from './coronarographie.dto';
 import { TraitementDTO } from './traitement.dto';
 import { MaterielDTO } from './materiel.dto';
 import { ProcedureDTO } from './procedure.dto';
+import { CardiologueDTO } from './cardiologue.dto';
 
 export class AngioplastieDTO extends InterventionMedicaleDTO {
   constructor() {
     super();
+
+    this.cardiologue = new CardiologueDTO();
+    this.traitements = new Array<TraitementDTO>();
+    this.materiels = new Array<MaterielDTO>();
+    this.procedures = new Array<ProcedureDTO>();
   }
-  public PADiastolique: number;
-  public PASystolique: number;
-  public FreqCardique: number;
-  public AbordArterielPrincipal: string;
-  public AnticoagulantIV: string;
-  public AnticaogulantIVQte: number;
-  public RisordanQte: number;
-  public LoxenQte: number;
-  public AntiGIIBIIIQte: number;
-  public Coronarographie: CoronarographieDTO;
-  public Traitements: TraitementDTO[];
-  public Materiels: MaterielDTO[];
-  public Procedures: ProcedureDTO[];
+  public pADiastolique: number;
+  public pASystolique: number;
+  public freqCardique: number;
+  public abordArterielPrincipal: string;
+  public anticoagulantIV: string;
+  public anticaogulantIVQte: number;
+  public risordanQte: number;
+  public loxenQte: number;
+  public antiGIIBIIIQte: number;
+  public coronarographie: CoronarographieDTO;
+  public traitements: TraitementDTO[];
+  public materiels: MaterielDTO[];
+  public procedures: ProcedureDTO[];
 }

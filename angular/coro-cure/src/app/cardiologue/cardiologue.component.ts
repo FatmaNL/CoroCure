@@ -3,6 +3,7 @@ import { TabCardiologue } from './cardiologue';
 import { CardiologueService } from './cardiologue.service';
 import { __assign } from 'tslib';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { NgForm, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-cardiologue',
@@ -15,8 +16,9 @@ export class CardiologueComponent implements OnInit {
   cardiologue: TabCardiologue = new TabCardiologue();
   selectedCardiologue: TabCardiologue;
 
-  @ViewChild("dismissCreateDialog") dismissCreateDialog: ElementRef;
-  @ViewChild("dismissUpdateDialog") dismissUpdateDialog: ElementRef;
+  @ViewChild('dismissCreateDialog') dismissCreateDialog: ElementRef;
+  @ViewChild('dismissUpdateDialog') dismissUpdateDialog: ElementRef;
+  @ViewChild('cardiologueForm') formAjouter: ElementRef;
 
   constructor(private cardiologueservice: CardiologueService, private spinner: NgxSpinnerService) { }
 
@@ -50,6 +52,16 @@ export class CardiologueComponent implements OnInit {
   }
 
   addCardiologue(): void {
+    const isValid = this.formAjouter.nativeElement.className.indexOf('ng-invalid') === -1;
+
+    console.log(this.formAjouter.nativeElement.className.indexOf('ng-invalid'));
+    console.log(isValid);
+
+    if (!isValid) {
+      console.log('card form invalid');
+      return;
+    }
+
     this.cardiologue.cin = Number(this.cardiologue.cin);
     this.cardiologueservice.addCardiologue(this.cardiologue)
       .subscribe(
@@ -60,7 +72,8 @@ export class CardiologueComponent implements OnInit {
           this.getCardiologues();
         },
         (err: any) => console.log(err)
-      )
+      );
+
   }
 
   setSelection(cardiologue: TabCardiologue) {

@@ -9,6 +9,15 @@ namespace CoroCure.Data.DTO
         {
         }
 
+        public CoronarographieDTO(Coronarographie c) : base(c)
+        {
+            this.Voie = c.Voie;
+            this.Statut = c.Statut;
+            this.MotifPrinc = c.MotifPrinc;
+            this.AutreMotif = c.AutreMotif;
+            this.FeVG = c.FeVG;
+        }
+
         public string Voie { get; set; }
         public string Statut { get; set; }
         public string MotifPrinc { get; set; }

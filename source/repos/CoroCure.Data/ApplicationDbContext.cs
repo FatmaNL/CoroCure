@@ -34,7 +34,7 @@ namespace CoroCure.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = "Server=127.0.0.1;Port=5432;Database=CoroCure;User Id=postgres;Password=0000;";
+            var connectionString = "Server=127.0.0.1;Port=5432;Database=CoroCure;User Id=postgres;Password=notasecret;";
             optionsBuilder.UseNpgsql(connectionString, m => m.MigrationsAssembly("CoroCure"));
 
             base.OnConfiguring(optionsBuilder);
@@ -86,7 +86,7 @@ namespace CoroCure.Data
                         .HasOne(s => s.Compte)
                         .WithOne(ad => ad.Cardiologue)
                         .HasForeignKey<Compte>(ad => ad.CIN)
-                        .IsRequired(false);
+                        .OnDelete(DeleteBehavior.Cascade);
 
             /*modelBuilder.Entity<Compte>()
                         .HasOne(s => s.Cardiologue)
@@ -117,7 +117,8 @@ namespace CoroCure.Data
             modelBuilder.Entity<Coronarographie>()
                         .HasOne(s => s.Angioplastie)
                         .WithOne(ad => ad.Coronarographie)
-                        .HasForeignKey<Coronarographie>(ad => ad.AngioplastieId);
+                        .HasForeignKey<Coronarographie>(ad => ad.AngioplastieId)
+                        .IsRequired(false);
 
             //one to many
             modelBuilder.Entity<InterventionMedicale>()

@@ -19,6 +19,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ExportationComponent } from './exportation/exportation.component';
 import { AuthGuardService } from './auth-guard.service';
 import { AuthenticationService } from './auth.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -33,13 +34,14 @@ import { AuthenticationService } from './auth.service';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    FormsModule,
+    NgbModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
-    CommonModule,
-    BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
   providers: [AuthGuardService, AuthenticationService],

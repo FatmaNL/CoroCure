@@ -22,7 +22,6 @@ namespace CoroCure.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Admin")] 
         public List<CardiologueDTO> Get()
         {
             return _context.Cardiologues.Include( c => c.Compte).Select(c => new CardiologueDTO(c)).ToList();

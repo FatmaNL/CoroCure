@@ -30,8 +30,8 @@ export class AuthenticationService {
     return this.httpClient.post<HttpResponse<any>>(`${this.endpoint}/signout`, null, {withCredentials: true, observe: 'response'});
   }
 
-  public Authorize(): Observable<HttpResponse<any>> {
-    return this.httpClient.get<HttpResponse<any>>(`${this.endpoint}/authorize`, {withCredentials: true, observe: 'response'});
+  public Authorize(): Observable<HttpResponse<CompteDTO>> {
+    return this.httpClient.get<CompteDTO>(`${this.endpoint}/authorize`, {withCredentials: true, observe: 'response'});
   }
 
 }

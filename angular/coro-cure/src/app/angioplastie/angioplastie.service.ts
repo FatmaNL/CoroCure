@@ -6,26 +6,27 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { CardiologueDTO } from '../models/cardiologue.dto';
 import { tap, catchError } from 'rxjs/operators';
+import { AngioplastieDTO } from '../models/angioplastie.dto';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CoronarographieService {
+export class AngioplastieService {
 
   private endpoint: string;
 
   constructor(
     private httpClient: HttpClient
   ) {
-    this.endpoint = `${environment.endpoint}/coronarographie`;
+    this.endpoint = `${environment.endpoint}/angioplastie`;
   }
 
-  public add(coronarographie: CoronarographieDTO): Observable<any> {
-    return this.httpClient.post(this.endpoint, coronarographie);
+  public add(angioplastie: AngioplastieDTO): Observable<any> {
+    return this.httpClient.post(this.endpoint, angioplastie);
   }
 
-  public get(): Observable<CoronarographieDTO[]> {
-    const data = this.httpClient.get<CoronarographieDTO[]>(this.endpoint)
+  public get(): Observable<AngioplastieDTO[]> {
+    const data = this.httpClient.get<AngioplastieDTO[]>(this.endpoint)
     .pipe(
       tap(data => console.log('All: ' + JSON.stringify(data)))
     );

@@ -8,19 +8,23 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLinkActive="active current">
+      <li class="nav-item" routerLinkActive="active current"
+      *ngIf="(role | async) == 'Cardiologue Expert' || (role | async) == 'Cardiologue Chercheur' || (role | async) == 'Cardiologue'">
         <a class="nav-link" routerLink="/patients">Patients</a>
       </li>
-      <li class="nav-item" routerLinkActive="active current">
+      <li class="nav-item" routerLinkActive="active current" *ngIf="(role | async) == 'Admin'">
         <a class="nav-link" routerLink="/cardiologue">Cardiologues</a>
       </li>
-      <li class="nav-item" routerLinkActive="active current">
+      <li class="nav-item" routerLinkActive="active current"
+      *ngIf="(role | async) == 'Cardiologue Expert' || (role | async) == 'Cardiologue Chercheur' || (role | async) == 'Cardiologue'">
         <a class="nav-link" routerLink="/coronarographie">Coronarographie</a>
       </li>
-      <li class="nav-item" routerLinkActive="active current">
+      <li class="nav-item" routerLinkActive="active current"
+      *ngIf="(role | async) == 'Cardiologue Expert' || (role | async) == 'Cardiologue Chercheur' || (role | async) == 'Cardiologue'">
         <a class="nav-link" routerLink="/angioplastie">Angioplastie</a>
       </li>
-      <li class="nav-item" routerLinkActive="active current">
+      <li class="nav-item" routerLinkActive="active current"
+      *ngIf="(role | async) == 'Cardiologue Expert' || (role | async) == 'Cardiologue Chercheur'">
         <a class="nav-link" routerLink="/exportation">Exportation</a>
       </li>
     </ul>
@@ -30,7 +34,7 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-user-circle fa-1x"></i> {{userFullName | async}}
+          <i class="fa fa-user-circle fa-1x"></i> {{userFullName | async}} | <small>{{role | async}}</small>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Rapports</a>
@@ -42,7 +46,7 @@
   </div>
 </nav>
 
-<div class="container-fluid">
+<div class="container">
   <br>
   <router-outlet></router-outlet>
 </div>

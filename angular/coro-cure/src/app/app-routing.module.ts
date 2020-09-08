@@ -7,17 +7,45 @@ import { CoronarographieComponent } from './coronarographie/coronarographie.comp
 import { CardiologueComponent } from './cardiologue/cardiologue.component';
 import { ExportationComponent } from './exportation/exportation.component';
 import { AuthGuardService } from './auth-guard.service';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'patients', component: PatientComponent , canActivate: [AuthGuardService]  },
-  { path: 'coronarographie', component: CoronarographieComponent , canActivate: [AuthGuardService] },
-  { path: 'angioplastie', component: AngioplastieComponent, canActivate: [AuthGuardService] },
-  { path: 'cardiologue', component: CardiologueComponent, canActivate: [AuthGuardService] },
-  { path: 'exportation', component: ExportationComponent, canActivate: [AuthGuardService] },
+  {
+    path: '', component: WelcomeComponent,
+    canActivate: [AuthGuardService],
+    data: { role: ['Admin', 'Cardiologue', 'Cardiologue Expert', 'Cardiologue Chercheur'] }
+  },
+  {
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: 'patients', component: PatientComponent,
+    canActivate: [AuthGuardService],
+    data: { role: ['Cardiologue', 'Cardiologue Expert', 'Cardiologue Chercheur'] }
+  },
+  {
+    path: 'coronarographie', component: CoronarographieComponent,
+    canActivate: [AuthGuardService],
+    data: { role: ['Cardiologue', 'Cardiologue Expert', 'Cardiologue Chercheur'] }
+  },
+  {
+    path: 'angioplastie', component: AngioplastieComponent,
+    canActivate: [AuthGuardService],
+    data: { role: ['Cardiologue', 'Cardiologue Expert', 'Cardiologue Chercheur'] }
+  },
+  {
+    path: 'cardiologue', component: CardiologueComponent,
+    canActivate: [AuthGuardService],
+    data: { role: ['Admin'] }
+  },
+  {
+    path: 'exportation', component: ExportationComponent,
+    canActivate: [AuthGuardService],
+    data: { role: ['Cardiologue Expert', 'Cardiologue Chercheur'] }
+  },
 
-  { path: '', redirectTo: 'patients', pathMatch: 'full' }
+  { path: '', redirectTo: '', pathMatch: 'full' }
   //{path: '**', component: LoginComponent} //wildcard path
 ];
 

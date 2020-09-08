@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit{
       next: (data) => {
         this.auth.loggedIn.next(true);
         this.auth.compte.next(data.body);
-        this.router.navigate(['/patients']);
+        this.router.navigate(['']);
       },
       error: () => { this.username = ''; this.password = ''; this.toastr.error('Authentification Echoué'); }
     });

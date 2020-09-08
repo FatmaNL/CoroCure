@@ -12,7 +12,23 @@ namespace CoroCure.Data.DTO
         {
         }
 
-        public int Id { get; }
+        public InterventionMedicaleDTO(InterventionMedicale entity)
+        {
+            this.Id = entity.Id;
+            this.Nom = entity.Nom;
+            this.Numero = entity.Numero;
+            this.Date = entity.Date;
+            this.estUrgente = entity.estUrgente;
+            this.CIN = entity.CIN.GetValueOrDefault();
+
+            if(entity.Cardiologue != null)
+                this.Cardiologue = new CardiologueDTO(entity.Cardiologue);
+
+            if(entity.Patient != null)
+                this.Patient = new PatientDTO(entity.Patient);
+        }
+
+        public int Id { get; set; } 
         public string Nom { get; set; }
         public int Numero { get; set; }
 

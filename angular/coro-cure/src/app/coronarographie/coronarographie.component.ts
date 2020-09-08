@@ -69,7 +69,7 @@ export class CoronarographieComponent implements OnInit {
 
   public addLesion(): void {
     if (this.lesion !== null && this.lesion !== undefined) {
-      this.coronarographie.Lesions.push(this.lesion);
+      this.coronarographie.lesions.push(this.lesion);
     }
   }
 
@@ -85,8 +85,8 @@ export class CoronarographieComponent implements OnInit {
   }
 
   public addCoronarographie(): void {
-    this.coronarographie.Cardiologue.CIN = Number(this.coronarographie.Cardiologue.CIN);
-    this.coronarographie.Numero = Number(this.coronarographie.Numero);
+    this.coronarographie.cardiologue.CIN = Number(this.coronarographie.cardiologue.CIN);
+    this.coronarographie.numero = Number(this.coronarographie.numero);
 
     this.spinner.show();
     this.coronarographieService.add(this.coronarographie).subscribe(
@@ -96,17 +96,17 @@ export class CoronarographieComponent implements OnInit {
   }
 
   get imc() {
-    const poids = this.coronarographie.FacteursRisqueAntecedants.Poids;
-    const taille = this.coronarographie.FacteursRisqueAntecedants.Taille;
+    const poids = this.coronarographie.facteursRisqueAntecedants.Poids;
+    const taille = this.coronarographie.facteursRisqueAntecedants.Taille;
 
     if (poids > 0 && taille > 0) {
-      const divider = Math.pow(this.coronarographie.FacteursRisqueAntecedants.Taille, 2);
+      const divider = Math.pow(this.coronarographie.facteursRisqueAntecedants.Taille, 2);
       if (divider !== undefined && divider !== 0) {
         this._imc = poids / divider;
         this._imc = Number.parseFloat(this._imc.toFixed(2));
-        this.coronarographie.FacteursRisqueAntecedants.IMC = this._imc;
+        this.coronarographie.facteursRisqueAntecedants.IMC = this._imc;
 
-        return this.coronarographie.FacteursRisqueAntecedants.IMC;
+        return this.coronarographie.facteursRisqueAntecedants.IMC;
       }
     }
 
@@ -114,17 +114,17 @@ export class CoronarographieComponent implements OnInit {
   }
 
   get obesite() {
-    const poids = this.coronarographie.FacteursRisqueAntecedants.Poids;
-    const taille = this.coronarographie.FacteursRisqueAntecedants.Taille;
+    const poids = this.coronarographie.facteursRisqueAntecedants.Poids;
+    const taille = this.coronarographie.facteursRisqueAntecedants.Taille;
 
     if (poids > 0 && taille > 0) {
-      const divider = Math.pow(this.coronarographie.FacteursRisqueAntecedants.Taille, 3);
+      const divider = Math.pow(this.coronarographie.facteursRisqueAntecedants.Taille, 3);
       if (divider !== undefined && divider !== 0) {
         this._imc = poids / divider * 1.2;
         this._imc = Number.parseFloat(this._imc.toFixed(2));
-        this.coronarographie.FacteursRisqueAntecedants.IMC = this._imc;
+        this.coronarographie.facteursRisqueAntecedants.IMC = this._imc;
 
-        return this.coronarographie.FacteursRisqueAntecedants.IMC;
+        return this.coronarographie.facteursRisqueAntecedants.IMC;
       }
     }
 
@@ -134,8 +134,8 @@ export class CoronarographieComponent implements OnInit {
   get clCreatinine() {
     let clCreatinine = 0;
 
-    const patient = this.patients.find(p => p.id == this.coronarographie.PatientId);
-    const poids = this.coronarographie.FacteursRisqueAntecedants.Poids;
+    const patient = this.patients.find(p => p.id == this.coronarographie.patientId);
+    const poids = this.coronarographie.facteursRisqueAntecedants.Poids;
 
     if (patient === null || patient === undefined)
     {
@@ -143,7 +143,7 @@ export class CoronarographieComponent implements OnInit {
     }
 
     const age = new Date().getFullYear() - new Date(patient.dateNaissance).getFullYear();
-    const creatinine = this.coronarographie.Biologie.Creatinine;
+    const creatinine = this.coronarographie.biologie.Creatinine;
 
 
     if (isNaN(poids) || poids <= 0 || isNaN(age) || age <= 0 || isNaN(creatinine) || creatinine <= 0)
@@ -160,7 +160,7 @@ export class CoronarographieComponent implements OnInit {
       clCreatinine = (1.04 * poids * (140 - age)) / creatinine;
     }
 
-    this.coronarographie.Biologie.CLCreatinine = clCreatinine;
+    this.coronarographie.biologie.CLCreatinine = clCreatinine;
     return clCreatinine;
   }
 

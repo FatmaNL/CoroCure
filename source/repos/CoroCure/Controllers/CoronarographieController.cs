@@ -22,9 +22,11 @@ namespace CoroCure.Controllers
         }
 
         [HttpGet]
-        public List<Coronarographie> Get()
+        public List<CoronarographieDTO> Get()
         {
-            return _context.Coronarographies.ToList();
+            return _context.Coronarographies
+                           .Select(c => new CoronarographieDTO(c))
+                           .ToList();
         }
 
         [HttpGet("{Id}")]

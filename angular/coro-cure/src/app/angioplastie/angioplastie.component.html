@@ -1,328 +1,527 @@
-<div class="container-fluid justify-content-center">
-    <div class="row">
-        <div id="angioplastie">
-            <div class="d-flex justify-content-left align-items-left coro-container">
-                <form class="interv-form">
-                    <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Angioplastie :</h5>
-                    <hr>
-                    <div class="row">
-                        <div class="col-3" style="min-width: 225px;">
-                            <div class="form-group">
-                                <label for="numero">Numéro:</label>
-                                <input type="text" id="numero" name="numero"
-                                    class="form-control rounded-pill form-control-sm" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="date">Date:</label>
-                                <input type="date" id="date" name="date"
-                                    class="form-control rounded-pill form-control-sm" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="numeroCoro">Numéro de coronarographie:</label>
-                                <input type="texte" id="numeroCoro" name="numeroCoro"
-                                    class="form-control rounded-pill form-control-sm" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="urgente">Urgente:</label>
-                                <input type="text" id="urgente" name="urgente"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="cardiologue">Opérateur:</label>
-                                <input type="text" id="cardiologue" name="cardiologue"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="paDiastolique">PA diastolique:</label>
-                                <input type="text" id="paDiastolique" name="paDiastolique"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="paSystolique">PA systolique:</label>
-                                <input type="text" id="paSystolique" name="paSystolique"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                        </div>
-                        <div class="col-3" style="padding-left:50px; min-width: 250px;">
-                            <div class="form-group">
-                                <label for="frequenceCardique">Fréquence cardique:</label>
-                                <input type="text" id="frequenceCardique" name="frequenceCardique"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="abordArteriel">Abord Arteriel Principal:</label>
-                                <input type="text" id="abordArteriel" name="abordArteriel"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="anticoagulantIV">Anticoagulant IV:</label>
-                                <input type="text" id="anticoagulantIV" name="anticoagulantIV"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="quantiteAnticoagulant">Quantité Anticoagulant IV:</label>
-                                <input type="text" id="quantiteAnticoagulant" name="quantiteAnticoagulant"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="quantiteRisordan">Quantité Risordan:</label>
-                                <input type="text" id="quantiteRisordan" name="quantiteRisordan"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="quantiteLoxen">Quantité Loxen:</label>
-                                <input type="text" id="quantiteLoxen" name="quantiteLoxen"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="quantiteAntiG">Quantité Anti GIIBIII:</label>
-                                <input type="text" id="quantiteAntiG" name="quantiteAntiG"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                        </div>
-                    </div>
-                </form>
+<div class="card">
+  <div class="card-body">
+    <form class="interv-form">
+      <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Intervention :</h5>
+      <hr>
+      <div class="row">
+        <div class="col-6" style="min-width: 225px;">
+          <div class="form-group">
+            <label for="numero">Numéro:</label>
+            <input type="number" id="numero" name="numero" class="form-control rounded-pill form-control-sm"
+              [(ngModel)]="angioplastie.numero" required>
+          </div>
+          <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" class="form-control rounded-pill form-control-sm"
+              [(ngModel)]="angioplastie.date" required>
+          </div>
+          <div class="form-group">
+            <label for="nomCoro">Nom de l'intervention:</label>
+            <input type="texte" id="nomCoro" name="nomCoro" class="form-control rounded-pill form-control-sm"
+              [(ngModel)]="angioplastie.nom" required>
+          </div>
+          <div class="form-check">
+            <input id="estUrgente" name="estUrgente" class="form-check-input" type="checkbox" [(ngModel)]="angioplastie.estUrgente" required #estUrgente="ngModel">
+            <label class="form-check-label" for="estUrgente">Urgente*</label>
+          </div>
+
+          <div class="form-group">
+            <label for="numDossier">Numero Dossier*:</label>
+            <select name="numDossier" id="numDossier" class="form-control" [(ngModel)]="angioplastie.patientId"
+              #numDossier="ngModel">
+              <option disabled selected value> -- select -- </option>
+              <option *ngFor="let patient of patients" [value]="patient.id">{{patient.id}} - {{patient.nom}}
+                {{patient.prenom}}</option>
+            </select>
+            <div *ngIf="numDossier.invalid && (numDossier.dirty || numDossier.touched)" class="alert alert-danger">
+              <div *ngIf="numDossier.errors.required">
+                Numero de dossier est obligatoire.
+              </div>
             </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cardiologue">Opérateur:</label>
+            <select name="cardiologue" id="cardiologue" class="form-control" [(ngModel)]="angioplastie.cin"
+              #cardiologue="ngModel">
+              <option disabled selected value> -- select -- </option>
+              <option *ngFor="let cardiologue of cardiologues" [value]="cardiologue.cin">{{cardiologue.nom}}
+                {{cardiologue.prenom}}</option>
+            </select>
+            <div *ngIf="cardiologue.invalid && (cardiologue.dirty || cardiologue.touched)" class="alert alert-danger">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="coronarographie">Choronarographie:</label>
+            <select name="coronarographie" id="coronarographie" class="form-control" [(ngModel)]="angioplastie.coronarographie"
+              #coronarographie="ngModel">
+              <option disabled selected value> -- select -- </option>
+              <option *ngFor="let c of coronarographies" [ngValue]="c">{{c.id}}</option>
+            </select>
+            <!-- <div *ngIf="coronarographie.invalid && (coronarographie.dirty || coronarographie.touched)" class="alert alert-danger">
+            </div> -->
+          </div>
         </div>
-    </div>
+        <div class="col-6" style="padding-left:50px; min-width: 250px;">
+          <div class="form-group">
+            <label for="paDiastolique">PA diastolique:</label>
+            <input type="number" id="paDiastolique" name="paDiastolique" class="form-control rounded-pill form-control-sm" [(ngModel)]="angioplastie.pADiastolique">
+          </div>
+          <div class="form-group">
+            <label for="paSystolique">PA systolique:</label>
+            <input type="number" id="paSystolique" name="paSystolique" class="form-control rounded-pill form-control-sm"  [(ngModel)]="angioplastie.pASystolique">
+          </div>
+
+          <div class="form-group">
+            <label for="frequenceCardique">Fréquence cardique:</label>
+            <input type="number" id="frequenceCardique" name="frequenceCardique" class="form-control rounded-pill form-control-sm"  [(ngModel)]="angioplastie.freqCardique">
+          </div>
+          <div class="form-group">
+            <label for="abordArteriel">Abord Arteriel Principal:</label>
+            <input type="text" id="abordArteriel" name="abordArteriel" class="form-control rounded-pill form-control-sm"  [(ngModel)]="angioplastie.abordArterielPrincipal">
+          </div>
+          <div class="form-group">
+            <label for="anticoagulantIV">Anticoagulant IV:</label>
+            <input type="text" id="anticoagulantIV" name="anticoagulantIV" class="form-control rounded-pill form-control-sm"  [(ngModel)]="angioplastie.anticoagulantIV">
+          </div>
+          <div class="form-group">
+            <label for="quantiteAnticoagulant">Quantité Anticoagulant IV:</label>
+            <input type="number" id="quantiteAnticoagulant" name="quantiteAnticoagulant"  [(ngModel)]="angioplastie.anticaogulantIVQte"
+              class="form-control rounded-pill form-control-sm">
+          </div>
+          <div class="form-group">
+            <label for="quantiteRisordan">Quantité Risordan:</label>
+            <input type="number" id="quantiteRisordan" name="quantiteRisordan"  [(ngModel)]="angioplastie.risordanQte"
+              class="form-control rounded-pill form-control-sm">
+          </div>
+          <div class="form-group">
+            <label for="quantiteLoxen">Quantité Loxen:</label>
+            <input type="number" id="quantiteLoxen" name="quantiteLoxen"  [(ngModel)]="angioplastie.loxenQte"
+              class="form-control rounded-pill form-control-sm">
+          </div>
+          <div class="form-group">
+            <label for="quantiteAntiG">Quantité Anti GIIBIII:</label>
+            <input type="number" id="quantiteAntiG" name="quantiteAntiG"  [(ngModel)]="angioplastie.antiGIIBIIIQte"
+              class="form-control rounded-pill form-control-sm">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 
-<!--Tables-->
-<div class="row" style="margin-top: 350px; margin-left: 10px;">
-    <div class="card col-5">
-        <div class="card-body">
-            <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Contraste et dosimétrie:</h5>
-            <hr>
-            <table class="table table-striped table-hover">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Type PDC</th>
-                        <th scope="col">Quantité PDC</th>
-                        <th scope="col">Quantité PDS</th>
-                        <th scope="col">Nombre d'images</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="card col-4" style="margin-left: 10px;">
-        <div class="card-body">
-            <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Biologie:</h5>
-            <hr>
-            <table class="table table-striped table-hover">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Type</th>
-                        <th scope="col">Degré</th>
-                        <th scope="col">Flux TIMI</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<br>
+
+<div class="card">
+  <div class="card-body">
+    <form class="interv-form">
+      <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Procédures :</h5>
+      <hr>
+      <div class="row justify-content-center">
+        <button class="btn btn-custom rounded-pill" data-toggle="modal" data-target="#procedureModal">Ajouter une
+          procedure</button>
+      </div>
+
+      <div class="row">
+        <table class="table table-striped table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Technique</th>
+              <th scope="col">TIMIFinal</th>
+              <th scope="col">Resultat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of angioplastie.procedures">
+              <td>{{p.Technique}}</td>
+              <td>{{p.TIMIFinal}}</td>
+              <td>{{p.Resultat}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </form>
+  </div>
 </div>
 
-<!--Matériels/Procédures-->
-<div class="container-fluid justify-content-center" style="margin-top: 20px;">
-    <div class="row">
-        <div id="Matériels">
-            <div class="d-flex justify-content-left align-items-left coro-container">
-                <form class="interv-form">
-                    <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Matériels :</h5>
-                    <hr>
-                    <div class="row">
-                        <div class="col-3" style="min-width: 225px;">
-                            <div class="form-group">
-                                <label for="tailleDesilet">Taille desilet:</label>
-                                <input type="text" id="tailleDesilet" name="tailleDesilet"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="reseauG">CG Réseau G:</label>
-                                <input type="text" id="reseauG" name="reseauG"
-                                    class="form-control rounded-pill form-control-sm" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="reseauD">CG Réseau D:</label>
-                                <input type="texte" id="reseauD" name="reseauD"
-                                    class="form-control rounded-pill form-control-sm" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="pontage">Pontage:</label>
-                                <input type="text" id="pontage" name="pontage"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="procedureId">Pocédure ID:</label>
-                                <input type="text" id="procedureId" name="procedureId"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                        </div>
-                        <div class="col-3" style="min-width: 225px;">
-                            <h6>Ballons:</h6>
-                            <div class="form-group">
-                                <label for="typeBallon">Type:</label>
-                                <input type="text" id="typeBallon" name="typeBallon"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="longueur">Longueur:</label>
-                                <input type="text" id="longueur" name="longueur"
-                                    class="form-control rounded-pill form-control-sm" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="diametre">Diamètre:</label>
-                                <input type="texte" id="diametre" name="diametre"
-                                    class="form-control rounded-pill form-control-sm" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phase">Phase:</label>
-                                <input type="text" id="phase" name="phase"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                        </div>
-                        <div class="col-3" style="min-width: 225px;">
-                            <h6>Stents:</h6>
-                            <div class="form-group">
-                                <label for="typeStent">Type:</label>
-                                <input type="text" id="typeStent" name="typeStent"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="longueur">Longueur:</label>
-                                <input type="text" id="longueur" name="longueur"
-                                    class="form-control rounded-pill form-control-sm" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="diametre">Diamètre:</label>
-                                <input type="texte" id="diametre" name="diametre"
-                                    class="form-control rounded-pill form-control-sm" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="marque">Marque:</label>
-                                <input type="text" id="marque" name="marque"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="pression">Pression inérieure:</label>
-                                <input type="text" id="pression" name="pression"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="duree">Durée inérieure:</label>
-                                <input type="text" id="duree" name="duree"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                        </div>
-                        <div class="col-3" style="min-width: 225px;">
-                            <h6>Guides:</h6>
-                            <div class="form-group">
-                                <label for="typeBallon">Type:</label>
-                                <input type="text" id="typeBallon" name="typeBallon"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+<br>
+
+<div class="card" *ngIf="angioplastie.procedures && angioplastie.procedures.length">
+  <div class="card-body">
+    <form class="interv-form">
+      <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Materiels :</h5>
+      <hr>
+
+      <div class="col-4">
+        <select [(ngModel)]="selectedProcedure" id="selectedProcedure" name="selectedProcedure"
+          class="form-control rounded-pill form-control-sm">
+          <option *ngFor="let p of angioplastie.procedures" [ngValue]="p">{{p.TIMIFinal}} - {{p.Technique}}</option>
+        </select>
+      </div>
+
+      <div class="row justify-content-center">
+        <button class="btn btn-custom rounded-pill" data-toggle="modal" data-target="#materielModal">Ajouter
+          materiel</button>
+      </div>
+
+      <div *ngIf="selectedProcedure && selectedProcedure.Ballons?.length">
+        <h6 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Ballons:</h6>
+        <div class="row">
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Taille Desilet</th>
+                <th scope="col">CGReseauG</th>
+                <th scope="col">CGReseauD</th>
+                <th scope="col">Pontage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let b of selectedProcedure.Ballons">
+                <td>{{b.TailleDesilet}}</td>
+                <td>{{b.CGReseauG}}</td>
+                <td>{{b.CGReseauD}}</td>
+                <td>{{b.Pontage}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div id="Procédures">
-            <div class="d-flex justify-content-left align-items-left coro-container" style="margin-left: 10px;">
-                <form class="interv-form">
-                    <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Procédures :</h5>
-                    <hr>
-                    <div class="row">
-                        <div class="col-3" style="min-width: 225px;">
-                            <div class="form-group">
-                                <label for="procedureId">ID:</label>
-                                <input type="text" id="procedureId" name="procedureId"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="technique">Technique:</label>
-                                <input type="text" id="technique" name="technique"
-                                    class="form-control rounded-pill form-control-sm" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="ballonPre">Ballons PRE:</label>
-                                <input type="texte" id="ballonPre" name="ballonPre"
-                                    class="form-control rounded-pill form-control-sm" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="ballonPost">Ballons POST:</label>
-                                <input type="text" id="ballonPost" name="ballonPost"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="stent">Stents:</label>
-                                <input type="text" id="stent" name="stent"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="timiFinal">TIMI Final:</label>
-                                <input type="text" id="timiFinal" name="timiFinal"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                            <div class="form-group">
-                                <label for="resultat">Résultat:</label>
-                                <input type="text" id="resultat" name="resultat"
-                                    class="form-control rounded-pill form-control-sm">
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+      </div>
+
+      <div *ngIf="selectedProcedure && selectedProcedure.Stents?.length">
+        <h6 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Stents:</h6>
+        <div class="row">
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Taille Desilet</th>
+                <th scope="col">CGReseauG</th>
+                <th scope="col">CGReseauD</th>
+                <th scope="col">Pontage</th>
+                <th scope="col">Longueur</th>
+                <th scope="col">Type</th>
+                <th scope="col">Diametre</th>
+                <th scope="col">Marque</th>
+                <th scope="col">PressionInf</th>
+                <th scope="col">DureeInf</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let b of selectedProcedure.Stents">
+                <td>{{b.TailleDesilet}}</td>
+                <td>{{b.CGReseauG}}</td>
+                <td>{{b.CGReseauD}}</td>
+                <td>{{b.Pontage}}</td>
+                <td>{{b.Longueur}}</td>
+                <td>{{b.Type}}</td>
+                <td>{{b.Diametre}}</td>
+                <td>{{b.Marque}}</td>
+                <td>{{b.PressionInf}}</td>
+                <td>{{b.DureeInf}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-    </div>
+      </div>
+
+      <div *ngIf="selectedProcedure && selectedProcedure.Guides?.length">
+        <h6 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Guides:</h6>
+        <div class="row">
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Taille Desilet</th>
+                <th scope="col">CGReseauG</th>
+                <th scope="col">CGReseauD</th>
+                <th scope="col">Pontage</th>
+                <th scope="col">Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let b of selectedProcedure.Guides">
+                <td>{{b.TailleDesilet}}</td>
+                <td>{{b.CGReseauG}}</td>
+                <td>{{b.CGReseauD}}</td>
+                <td>{{b.Pontage}}</td>
+                <td>{{b.Type}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- <div *ngIf="selectedProcedure !== undefined">
+        <h6 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Ballons :</h6>
+        <div class="row">
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Taille Desilet</th>
+                <th scope="col">CGReseauG</th>
+                <th scope="col">CGReseauD</th>
+                <th scope="col">Pontage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let b of selectedProcedure.Ballons">
+                <td>{{b.TailleDesilet}}</td>
+                <td>{{b.CGReseauG}}</td>
+                <td>{{b.CGReseauD}}</td>
+                <td>{{b.Pontage}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div> -->
+    </form>
+  </div>
 </div>
+
+<br>
+
+<!-- <div class="card">
+  <div class="card-body">
+    <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Biologie:</h5>
+    <hr>
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Type</th>
+          <th scope="col">Degré</th>
+          <th scope="col">Flux TIMI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> -->
+
+<br>
+
+<!-- Procedure -->
+<div class="modal fade" id="procedureModal" tabindex="-1" role="dialog" aria-labelledby="procedureModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="procedureModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="procedure-form">
+          <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Procedure :</h5>
+          <hr>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="Technique">Technique:</label>
+                <input type="text" id="Technique" name="Technique" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="procedure.Technique">
+              </div>
+              <div class="form-group">
+                <label for="TIMIFinal">TIMIFinal:</label>
+                <input type="number" id="TIMIFinal" name="TIMIFinal" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="procedure.TIMIFinal" required>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="resultat">Résultat:</label>
+                <input type="texte" id="resultat" name="resultat" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="procedure.Resultat" required>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="ajouterProcedure()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Matériels-->
+<div class="modal fade" id="materielModal" tabindex="-1" role="dialog" aria-labelledby="materielModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="materielModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form class="materiel-form">
+          <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Matériels :</h5>
+          <hr>
+
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="tailleDesilet">Taille desilet:</label>
+                <input type="number" id="tailleDesilet" name="tailleDesilet"
+                  class="form-control rounded-pill form-control-sm" [(ngModel)]="materiel.TailleDesilet">
+              </div>
+              <div class="form-group">
+                <label for="reseauG">CG Réseau G:</label>
+                <input type="text" id="reseauG" name="reseauG" class="form-control rounded-pill form-control-sm"
+                  required [(ngModel)]="materiel.CGReseauG">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="reseauD">CG Réseau D:</label>
+                <input type="texte" id="reseauD" name="reseauD" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="materiel.CGReseauD" required>
+              </div>
+              <div class="form-group">
+                <label for="pontage">Pontage:</label>
+                <input type="text" id="pontage" name="pontage" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="materiel.Pontage">
+              </div>
+            </div>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="typeMateriel">Type de materiel:</label>
+                <select id="typeMateriel" name="typeMateriel" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="typeMateriel">
+                  <option value="ballon">Ballon</option>
+                  <option value="stent">Stent</option>
+                  <option value="guide">Guide</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="typeMateriel == 'ballon'">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="typeBallon">Type:</label>
+                <input type="text" id="typeBallon" name="typeBallon" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="materielBallon.Type">
+              </div>
+              <div class="form-group">
+                <label for="longueur">Longueur:</label>
+                <input type="number" id="longueur" name="longueur" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="materielBallon.Longueur" required>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="diametre">Diamètre:</label>
+                <input type="number" id="diametre" name="diametre" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="materielBallon.Diametre" required>
+              </div>
+              <div class="form-group">
+                <label for="phase">Phase:</label>
+                <input type="text" id="phase" name="phase" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="materielBallon.Phase">
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="typeMateriel == 'stent'">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="typeStent">Type:</label>
+                <input type="text" id="typeStent" name="typeStent" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="materielStent.Type">
+              </div>
+              <div class="form-group">
+                <label for="longueur">Longueur:</label>
+                <input type="number" id="longueur" name="longueur" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="materielStent.Longueur" required>
+              </div>
+              <div class="form-group">
+                <label for="diametre">Diamètre:</label>
+                <input type="number" id="diametre" name="diametre" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="materielStent.Diametre" required>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="marque">Marque:</label>
+                <input type="text" id="marque" name="marque" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="materielStent.Marque">
+              </div>
+              <div class="form-group">
+                <label for="pression">Pression inérieure:</label>
+                <input type="number" id="pression" name="pression" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="materielStent.PressionInf">
+              </div>
+              <div class="form-group">
+                <label for="duree">Durée inérieure:</label>
+                <input type="number" id="duree" name="duree" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="materielStent.DureeInf">
+              </div>
+            </div>
+          </div>
+          <div class="row" style="min-width: 225px;" *ngIf="typeMateriel == 'guide'">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="typeGuide">Type:</label>
+                <input type="text" id="typeGuide" name="typeGuide" class="form-control rounded-pill form-control-sm"
+                  [(ngModel)]="materielGuide.Type">
+              </div>
+            </div>
+          </div>
+          <!--
+          <div class="row justify-content-center">
+            <button (click)="ajouterMateriel()" class="btn btn-custom rounded-pill">Ajouter Materiel</button>
+          </div> -->
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="ajouterMateriel()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!--Traitements-->
-<div class="container-fluid justify-content-center">
-    <div class="row">
-        <div class="card col-5" style="margin-top: 350px; margin-left: 10px;">
-            <div class="card-body">
-                <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Traitements:</h5>
-                <hr>
-                <table class="table table-striped table-hover">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Nom</th>
-                            <th scope="col">ID Patient</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Posologie (mg/j)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- <div class="card">
+  <div class="card-body">
+    <h5 class="mb-3" style="color: rgb(70, 70, 70); font-weight: 500;">Traitements:</h5>
+    <hr>
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">ID Patient</th>
+          <th scope="col">Date</th>
+          <th scope="col">Posologie (mg/j)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> -->
 
 <!--btn-->
 <div style="text-align: center; margin-top: 25px; margin-bottom: 25px; padding: 50px;">
-    <button type="submit" class="btn btn-custom">Enregistrer</button>
-    <button type="submit" class="btn btn-custom">Réinitialiser</button>
+  <button type="submit" class="btn btn-custom" (click)="ajouterAngioplatie()">Enregistrer</button>
+  <button type="submit" class="btn btn-custom">Réinitialiser</button>
 </div>
